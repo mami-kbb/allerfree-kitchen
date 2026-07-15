@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('servings')->nullable();
             $table->text('tips')->nullable();
-            $table->string('status')->default(1)->comment('0:pending, 1:approved, 2:reject');
+            $table->tinyInteger('status')->default(1)->comment('0:pending, 1:approved, 2:reject');
             $table->timestamp('approval_at')->nullable();
             $table->text('rejection_reason')->nullable();
             $table->timestamps();

@@ -20,4 +20,27 @@ class Recipe extends Model
         'approved_at',
         'rejection_reason',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function steps() {
+        return $this->hasMany(Step::class);
+    }
+    public function ingredients() {
+        return $this->belongsToMany(Ingredient::class, 'ingredient_recipe');
+    }
+
+    public function allergies() {
+        return $this->belongsToMany(Allergy::class, 'allergy_recipe');
+    }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

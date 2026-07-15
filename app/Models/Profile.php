@@ -14,4 +14,8 @@ class Profile extends Model
         'profile_image',
         'comment',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

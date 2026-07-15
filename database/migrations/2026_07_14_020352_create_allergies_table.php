@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('allergies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->boolean('is_selectable')->default(true);
             $table->timestamps();
         });
     }

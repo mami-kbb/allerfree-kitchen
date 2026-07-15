@@ -43,4 +43,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile() {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function allergies() {
+        return $this->belongsToMany(Allergy::class, 'allergy_user');
+    }
+
+    public function recipes() {
+        return $this->hasMany(Recipe::class);
+    }
+
+    public function likedRecipes() {
+        return $this->belongsToMany(Recipe::class, 'likes');
+    }
 }

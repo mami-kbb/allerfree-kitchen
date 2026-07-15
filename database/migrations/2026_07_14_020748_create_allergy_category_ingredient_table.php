@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ingredient_id')->constrained()->onDelete('cascade');
             $table->foreignId('allergy_category_id')->constrained()->onDelete('cascade');
+            $table->unique(['ingredient_id', 'allergy_category_id'], 'aci_unique');
             $table->timestamps();
         });
     }
