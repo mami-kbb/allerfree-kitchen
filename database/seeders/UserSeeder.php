@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => '管理者',
+            'name' => 'admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -22,8 +22,16 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => '一般ユーザー',
-            'email' => 'user@example.com',
+            'name' => 'user1',
+            'email' => 'user1@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'role' => 'user',
+        ]);
+
+        User::create([
+            'name' => 'user2',
+            'email' => 'user2@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'role' => 'user',
