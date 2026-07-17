@@ -23,6 +23,7 @@ class AllergySeeder extends Seeder
             ])
             ->toArray()
         );
+        //map()で配列の1件1件を加工してインサートする
         //...$allergyでデータの配列をそのまま展開してくれる
     }
 }
