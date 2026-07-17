@@ -19,7 +19,7 @@ class AllergyCategoryIngredientSeeder extends Seeder
         //dataで受け取った名前の値からidに変換する。
 
         $ingredientIds = Ingredient::pluck('id', 'name');
-        $allergyCategoryIds = AllergyCategory::pluck('id', 'name');
+        $allergyCategoryIds = AllergyCategory::pluck('id', 'category');
         $now = now();
 
         DB::table('allergy_category_ingredient')->insert(

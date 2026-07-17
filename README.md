@@ -9,7 +9,7 @@
 - バックエンド： PHP 8.5.6, Laravel 10.50.2
 - フロントエンド：
 - データベース： MySQL 8.4.9
-- 開発環境： Docker, Laravel Sail,phpMyAdmin
+- 開発環境： Docker, Laravel Sail, phpMyAdmin
 
 ## 環境構築
 (後で記載)
