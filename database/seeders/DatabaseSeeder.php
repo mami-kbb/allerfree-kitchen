@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             AllergyRecipeSeeder::class,
             StepSeeder::class,
             AllergyCategorySeeder::class,
-            AllergyCategoryIngredentSeeder::class,
+            AllergyCategoryIngredientSeeder::class,
         ]);
     }
 }

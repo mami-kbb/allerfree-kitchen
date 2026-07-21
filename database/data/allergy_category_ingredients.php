@@ -264,4 +264,8 @@ return [
         'ingredient' => 'しいたけ',
         'allergy_category' => 'キノコ類',
     ],
+    [
+        'ingredient' => '水',
+        'allergy_category' => 'その他',
+    ],
 ];
