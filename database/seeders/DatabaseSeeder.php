@@ -14,15 +14,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            AllergySeeder::class,
             ProfileSeeder::class,
+            AllergySeeder::class,
             IngredientSeeder::class,
+            AllergyCategorySeeder::class,
             RecipeSeeder::class,
             IngredientRecipeSeeder::class,
             AllergyUserSeeder::class,
             AllergyRecipeSeeder::class,
             StepSeeder::class,
-            AllergyCategorySeeder::class,
             AllergyCategoryIngredientSeeder::class,
         ]);
     }

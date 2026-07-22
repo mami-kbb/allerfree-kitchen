@@ -207,17 +207,17 @@ return [
     ],
     [
         'recipe' => 'サーモンの味噌バター焼き',
-        'step_number' => 1,
+        'step_number' => 2,
         'content' => 'サーモンに調味料を塗り、10分ほど置く',
     ],
     [
         'recipe' => 'サーモンの味噌バター焼き',
-        'step_number' => 1,
+        'step_number' => 3,
         'content' => 'フライパンに油を熱し、サーモンを両面焼く',
     ],
     [
         'recipe' => 'サーモンの味噌バター焼き',
-        'step_number' => 1,
+        'step_number' => 4,
         'content' => '仕上げにバターを加え、全体に絡めて完成',
     ],
 ];

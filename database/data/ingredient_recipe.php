@@ -12,7 +12,7 @@ return [
     ],
     [
         'recipe' => '野菜たっぷり 和風そぼろ丼',
-        'ingredient' => 'にんんじん',
+        'ingredient' => 'にんじん',
         'quantity' => '1/3本',
     ],
     [
