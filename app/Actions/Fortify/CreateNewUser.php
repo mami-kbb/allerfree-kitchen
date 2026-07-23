@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => ['required', 'min:8', 'confirmed'],
         ],[
-            'name.required' => 'お名前を入力してください',
+            'name.required' => 'ユーザー名を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
             'password.required' => 'パスワードを入力してください',
