@@ -78,8 +78,8 @@ return [
 
     'redirects' => [
         'login' => '/',
-        'register' => '/mypage/profile',
-        'email-verification' => '/mypage/profile',
+        'register' => '/mypage/edit',
+        'email-verification' => '/mypage/edit',
         'logout' => '/login',
     ],
 
@@ -154,7 +154,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([

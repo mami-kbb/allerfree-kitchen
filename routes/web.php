@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,12 @@ use App\Http\Controllers\RecipeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/email/verify', function() {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/', [RecipeController::class,'index']);
+
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile_edit');
+});
