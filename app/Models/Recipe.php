@@ -26,14 +26,17 @@ class Recipe extends Model
     }
 
     public function steps() {
-        return $this->hasMany(Step::class);
+        return $this->hasMany(Step::class)->orderBy('step_number');
     }
     public function ingredients() {
-        return $this->belongsToMany(Ingredient::class, 'ingredient_recipe');
+        return $this->belongsToMany(Ingredient::class, 'ingredient_recipe')
+        ->withPivot('quantity')
+        ->withTimestamps();
     }
 
     public function allergies() {
-        return $this->belongsToMany(Allergy::class, 'allergy_recipe');
+        return $this->belongsToMany(Allergy::class, 'allergy_recipe')
+        ->withTimestamps();
     }
 
     public function likes() {
@@ -42,5 +45,32 @@ class Recipe extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeKeywordSearch($query, $keyword) {
+        if (!empty($keyword)) {
+            $keywords = preg_split('/\s+/', $keyword);
+
+            foreach ($keywords as $word) {
+                $query->where('name', 'LIKE', "%{$word}%");
+            }
+        }
+        return $query;
+    }
+
+    public function scopeExcludeAllergies($query, $excludeAllergies) {
+        if (!empty($excludeAllergies)) {
+            $query->whereDosentHave('allergies', function ($q) use ($excludeAllergies) {
+                $q->whereIn('allergies.id', $excludeAllergies);
+            });
+        }
+        return $query;
+    }
+
+    public function scopeSearch($query, $keyword, $excludeAllergies)
+    {
+        return $query
+        ->keywordSearch($keyword)
+        ->excludeAllergies($excludeAllergies);
     }
 }
