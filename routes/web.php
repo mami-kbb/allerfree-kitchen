@@ -20,9 +20,10 @@ Route::get('/email/verify', function() {
 
 Route::get('/', [RecipeController::class,'index'])->name('recipes.list');
 Route::get('/recipe/{recipe_id}', [RecipeController::class, 'show'])->name('recipe.show');
+Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile');
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile_edit');
+    Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/recipe/{id}/like', [RecipeController::class, 'toggle'])->name('like');
 });

@@ -23,7 +23,7 @@ class RecipeController extends Controller
             $recipes = collect();
         } else {
             $recipes = Recipe::query()
-                ->orderBy('created_at', 'desc')
+                ->latest()
                 ->paginate(12);
         }
 

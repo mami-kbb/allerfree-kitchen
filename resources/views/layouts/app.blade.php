@@ -8,7 +8,7 @@
 <body>
     <header>
         <div>
-            <h1>Allerfree Kitchen</h1>
+            <a href="{{ route('recipes.list') }}">Allerfree Kitchen</a>
             <div>@yield('nav')</div>
         </div>
     </header>

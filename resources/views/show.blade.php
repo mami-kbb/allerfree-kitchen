@@ -12,7 +12,7 @@
             <h2>{{ $recipe->name }}</h2>
             <div>
                 <p>投稿者：</p>
-                <a href="">
+                <a href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
                     @if($recipe->user->profile->profile_image)
                     <img src="{{ asset('storage/'.$recipe->user->profile->profile_image) }}" alt="ユーザーアイコン">
                     @else
