@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
+use PharIo\Manifest\AuthorCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/recipe/{id}/like', [RecipeController::class, 'toggle'])->name('like');
+    Route::get('/post', [RecipeController::class, 'create'])->name('recipe.create');
 });

@@ -27,7 +27,7 @@ class RecipeController extends Controller
                 ->paginate(12);
         }
 
-        return view('index', compact('recipes','tab'));
+        return view('recipes.index', compact('recipes','tab'));
     }
 
     public function show($recipe_id) {
@@ -50,7 +50,7 @@ class RecipeController extends Controller
         $isLiked = auth()->check() && $user->likes()
         ->where('recipe_id', $recipe_id)->exists();
 
-        return view('show', compact('recipe', 'isLiked'));
+        return view('recipes.show', compact('recipe', 'isLiked'));
     }
 
     public function toggle($id) {

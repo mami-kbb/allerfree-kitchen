@@ -15,10 +15,10 @@ class ProfileController extends Controller
         ->latest()
         ->paginate(12);
 
-        return view('profile', compact('user', 'recipes'));
+        return view('profiles.show', compact('user', 'recipes'));
     }
 
     public function edit() {
-        return view('auth.profile_edit');
+        return view('profiles.edit');
     }
 }
