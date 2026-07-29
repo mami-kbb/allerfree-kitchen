@@ -26,6 +26,7 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/recipe/{id}/like', [RecipeController::class, 'toggle'])->name('like');
     Route::get('/post', [RecipeController::class, 'create'])->name('recipe.create');
 });
