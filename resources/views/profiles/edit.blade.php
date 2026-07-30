@@ -55,6 +55,25 @@
             {{ $message }}
             @enderror
         </div>
+        <button type="submit">更新する</button>
     </form>
 </div>
+<script>
+    document.getElementById('image').onchange = function (event) {
+    const list = document.getElementById('list');
+    list.innerHTML = '';
+
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'reader_image';
+        list.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+};
+</script>
 @endsection

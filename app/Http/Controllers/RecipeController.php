@@ -66,4 +66,14 @@ class RecipeController extends Controller
 
         return back();
     }
+
+    public function create() {
+        $allergies = Allergy::all();
+
+        return view('recipes.create', compact('allergies'));
+    }
+
+    public function store() {
+        return redirect('/');
+    }
 }

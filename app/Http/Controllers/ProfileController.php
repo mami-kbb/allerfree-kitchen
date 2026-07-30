@@ -26,7 +26,7 @@ class ProfileController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
-        $allergies = Allergy::all();
+        $allergies = Allergy::where('is_selectable', true)->get();
         $selectedAllergies = $user->allergyIds();
 
         return view('profiles.edit', compact('profile', 'allergies', 'selectedAllergies'));

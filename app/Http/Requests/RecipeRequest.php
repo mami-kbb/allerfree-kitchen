@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Override;
+
+class RecipeRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'image' => ['required', 'image', 'mimes:jpeg,png'],
+            'name' => ['required','string', 'max:50'],
+            'allergy_recipe' => ['required', 'array'],
+            'allergy_recipe.*' => ['exists:allergies,id'],
+            'description' => ['max:500'],
+            'ingredients.0' => ['required', 'string'],
+            'ingredients.*' => ['required'],
+            'quantities.*' => ['nullable', 'string'],
+            'steps.0' => ['required', 'string'],
+            'steps.*' => ['nullable', 'string'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'image.required' => 'レシピ画像を選択してください',
+            'image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
+            'name.required' => 'レシピ名を入力してください',
+            'allergy_recipe.required' => 'レシピのアレルギー情報を設定してください',
+            'steps.0.required' => '手順を１つ以上入力してください',
+        ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $ingredients = $this->ingredients ?? [];
+            $quantities = $this->quantities ?? [];
+
+            $hasIngredient = collect($ingredients) ->filter()->isNotEmpty();
+            $hasQuantity = collect($quantities)->filter()->isNotEmpty();
+        });
+    }
+}
