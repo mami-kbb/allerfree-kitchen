@@ -61,6 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Like::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function likedRecipes() {
         return $this->belongsToMany(Recipe::class, 'likes')->withTimestamps();
     }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
 use PharIo\Manifest\AuthorCollection;
 
 /*
@@ -27,7 +29,9 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/recipe/{id}/like', [RecipeController::class, 'toggle'])->name('like');
+    Route::post('/recipe/{id}/like', [LikeController::class, 'store'])->name('like');
+    Route::post('/recipe/{id}/unlike', [LikeController::class, 'destroy'])->name('unlike');
+    Route::post('/recipe/{id}/comment', [CommentController::class, 'create'])->name('comment');
     Route::get('/post', [RecipeController::class, 'create'])->name('recipe.create');
     Route::post('/post', [RecipeController::class, 'store'])->name('recipe.store');
 });

@@ -36,7 +36,7 @@ class RecipeController extends Controller
             'allergies',
             'ingredients',
             'steps',
-            'comments',
+            'comments.user.profile',
         ])
         ->withCount([
             'likes',
@@ -51,20 +51,6 @@ class RecipeController extends Controller
         ->where('recipe_id', $recipe_id)->exists();
 
         return view('recipes.show', compact('recipe', 'isLiked'));
-    }
-
-    public function toggle($id) {
-        /** @var \App\Models\User $user */
-        $user = auth()->user();
-        $like = $user->likes()->where('recipe_id', $id)->first();
-
-        if ($like) {
-            $like->delete();
-        } else {
-            $user->likes()->create(['recipe_id' => $id]);
-        }
-
-        return back();
     }
 
     public function create() {

@@ -55,6 +55,22 @@ class RecipeRequest extends FormRequest
 
             $hasIngredient = collect($ingredients) ->filter()->isNotEmpty();
             $hasQuantity = collect($quantities)->filter()->isNotEmpty();
+
+            if (!$hasIngredient && !$hasQuantity) {
+                $validator->errors()->add('ingredients', '材料を１つ以上入力してください');
+            }
+
+            foreach ($ingredients as $index => $ingredient) {
+                $quantity = $quantities[$index] ?? null;
+
+                if ($ingredient && !$quantity) {
+                    $validator->error()->add("quantities.$index", '分量を入力してください');
+                }
+
+                if (!$ingredient && $quantity) {
+                    $validator->error()->add("ingredient.$index", '材料を入力してください');
+                }
+            }
         });
     }
 }
