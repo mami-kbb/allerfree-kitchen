@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RecipeRequest;
 use App\Models\Recipe;
 use App\Models\Allergy;
 use App\Models\Ingredient;
@@ -59,7 +60,49 @@ class RecipeController extends Controller
         return view('recipes.create', compact('allergies'));
     }
 
-    public function store() {
-        return redirect('/');
+    public function store(RecipeRequest $request) {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $path = $request->file('image')->store('images', 'public');
+
+        $recipe = $user->recipes()->create([
+            'name' => $request->name,
+            'image' => $path,
+            'description' => $request->description,
+            'servings' => $request->servings,
+            'tips' => $request->tips,
+            'status' => 1,
+        ]);
+
+        $recipe->allergies()->sync($request->allergy_recipe);
+
+        foreach ($request->ingredients as $key => $ing_name) {
+            if (empty($ing_name)) {
+                continue;
+            }
+
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => $ing_name,
+            ]);
+
+            $recipe->ingredients()->attach($ingredient->id, [
+                'quantity' => $request->quantities[$key] ?? '',
+            ]);
+        }
+
+        foreach ($request->steps as $index => $content) {
+            if (empty($content)) {
+                continue;
+            }
+
+            $recipe->steps()->create([
+                'step_number' => $index + 1,
+                'content' => $content,
+            ]);
+        }
+
+        return redirect()->route('profile', [
+            'user_id' => $user->id,
+            ]);
     }
 }

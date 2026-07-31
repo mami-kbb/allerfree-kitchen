@@ -13,9 +13,9 @@
             <div>
                 <p>レシピ画像</p>
                 <div id="list">
-                    <label for="recipe_image">画像を選択する</label>
+                    <label for="image">画像を選択する</label>
                 </div>
-                <input type="file" id="recipe_image" name="recipe_image" hidden>
+                <input type="file" id="image" name="image" hidden>
                 <div>
                     @error('image')
                     {{ $message }}
@@ -99,7 +99,7 @@
 </div>
 
 <script>
-    document.getElementById('recipe_image').addEventListener('change', function (e) {
+    document.getElementById('image').addEventListener('change', function (e) {
         const list = document.getElementById('list');
 
         const file = e.target.files[0];
@@ -107,7 +107,7 @@
 
         const img = document.createElement('img');
         img.src = URL.createObjectURL(file);
-        img.className = 'reader_image';
+        img.className = 'image';
 
         list.innerHTML = '';
         list.appendChild(img);
