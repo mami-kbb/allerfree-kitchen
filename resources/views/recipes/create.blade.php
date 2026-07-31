@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         @error('allergy_recipe')
-                        {{ $message }}cd
+                        {{ $message }}
                         @enderror
                     </div>
                 </div>
@@ -68,7 +68,10 @@
                     @endfor
                 </div>
                 <button type="button" id="add-ingredient">+ 材料を追加</button>
-                @error('ingredients')
+                @error('ingredients.0')
+                {{ $message }}
+                @enderror
+                @error('quantities')
                 {{ $message }}
                 @enderror
                 <div>
@@ -82,7 +85,7 @@
                 </div>
                 <button type="button" id="add-step">+ 工程を追加</button>
                 <div>
-                    @error('steps')
+                    @error('steps.0')
                     {{ $message }}
                     @enderror
                 </div>

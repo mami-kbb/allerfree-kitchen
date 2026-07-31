@@ -76,6 +76,7 @@ class RecipeController extends Controller
 
         $recipe->allergies()->sync($request->allergy_recipe);
 
+        //数量と紐づけるためにキーと値を取り出す
         foreach ($request->ingredients as $key => $ing_name) {
             if (empty($ing_name)) {
                 continue;
@@ -104,5 +105,9 @@ class RecipeController extends Controller
         return redirect()->route('profile', [
             'user_id' => $user->id,
             ]);
+    }
+
+    public function edit() {
+        return view('recipes.edit');
     }
 }

@@ -29,7 +29,7 @@ class RecipeRequest extends FormRequest
             'allergy_recipe.*' => ['exists:allergies,id'],
             'description' => ['max:500'],
             'ingredients.0' => ['required', 'string'],
-            'ingredients.*' => ['required'],
+            'ingredients.*' => ['nullable', 'string'],
             'quantities.*' => ['nullable', 'string'],
             'steps.0' => ['required', 'string'],
             'steps.*' => ['nullable', 'string'],
@@ -45,6 +45,7 @@ class RecipeRequest extends FormRequest
             'name.max' => 'レシピ名は50文字以内で入力してください',
             'allergy_recipe.required' => 'レシピのアレルギー情報を設定してください',
             'description.max' => 'レシピの説明は500文字以内で入力してください',
+            'ingredients.0.required' => '材料を１つ以上入力してください',
             'steps.0.required' => '手順を１つ以上入力してください',
         ];
     }
@@ -55,22 +56,15 @@ class RecipeRequest extends FormRequest
             $ingredients = $this->ingredients ?? [];
             $quantities = $this->quantities ?? [];
 
-            $hasIngredient = collect($ingredients) ->filter()->isNotEmpty();
-            $hasQuantity = collect($quantities)->filter()->isNotEmpty();
-
-            if (!$hasIngredient && !$hasQuantity) {
-                $validator->errors()->add('ingredients', '材料を１つ以上入力してください');
-            }
-
             foreach ($ingredients as $index => $ingredient) {
                 $quantity = $quantities[$index] ?? null;
 
                 if ($ingredient && !$quantity) {
-                    $validator->error()->add("quantities.$index", '分量を入力してください');
+                    $validator->errors()->add("quantities.$index", '分量を入力してください');
                 }
 
                 if (!$ingredient && $quantity) {
-                    $validator->error()->add("ingredient.$index", '材料を入力してください');
+                    $validator->errors()->add("ingredients.$index", '材料を入力してください');
                 }
             }
         });

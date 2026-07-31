@@ -47,6 +47,9 @@
                 <p class="like-count" data-testid="like-count">{{ $recipe->likes_count }}</p>
             </div>
         </div>
+        @if (auth()->id() === $recipe->user->id)
+        <a href="{{ route('recipe.edit')}}">レシピを編集</a>
+        @endif
     </div>
     <div>
         <div>
