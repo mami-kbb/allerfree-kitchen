@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RecipeRequest;
 use App\Models\Recipe;
 use App\Models\Allergy;
 use App\Models\Ingredient;
-use App\Models\AllergyCategory;
 
 class RecipeController extends Controller
 {
@@ -91,14 +91,14 @@ class RecipeController extends Controller
             ]);
         }
 
-        foreach ($request->steps as $index => $content) {
-            if (empty($content)) {
+        foreach ($request->steps as $index => $step) {
+            if (empty($step)) {
                 continue;
             }
 
             $recipe->steps()->create([
                 'step_number' => $index + 1,
-                'content' => $content,
+                'content' => $step,
             ]);
         }
 
@@ -107,7 +107,75 @@ class RecipeController extends Controller
             ]);
     }
 
-    public function edit() {
-        return view('recipes.edit');
+    public function edit($recipe_id) {
+        $recipe = Recipe::with([
+            'allergies',
+            'ingredients',
+            'steps',
+        ])
+        ->findOrFail($recipe_id);
+        $allergies = Allergy::all();
+        $selectedAllergies = $recipe->allergyIds();
+
+        return view('recipes.edit', compact('recipe', 'allergies', 'selectedAllergies'));
+    }
+
+    public function update(RecipeRequest $request, $recipe_id) {
+        $recipe = Recipe::with([
+            'allergies',
+            'ingredients',
+            'steps',
+        ])
+        ->findOrFail($recipe_id);
+
+        $path = $request->file('image')->store('images', 'public');
+
+        $recipe->update([
+                'image' => $path,
+                'name' => $request->name,
+                'description' => $request->description,
+                'servings' => $request->servings,
+                'tips' => $request->tips,
+            ]);
+
+        $allergyIds = $request->input('allergy_recipe', []);
+        $recipe->allergies()->sync($allergyIds);
+
+        $recipe->ingredients()->detach();
+
+        foreach ($request->ingredients as $key => $ing_name) {
+            if (empty($ing_name)) {
+                continue;
+            }
+
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => $ing_name,
+            ]);
+
+            $recipe->ingredients()->attach($ingredient->id, [
+                'quantity' => $request->quantities[$key] ?? '',
+            ]);
+        }
+
+        $recipe->steps()->delete();
+
+        foreach ($request->steps as $index => $step) {
+            if (empty($step)) {
+                continue;
+            }
+
+            $recipe->steps()->create([
+                'step_number' => $index + 1,
+                'content' => $step,
+            ]);
+        }
+
+        return redirect()->route('profile', [
+            'user_id' => Auth::user()
+        ]);
+    }
+
+    public function delete($recipe_id) {
+
     }
 }

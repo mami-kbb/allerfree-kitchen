@@ -39,6 +39,10 @@ class Recipe extends Model
         ->withTimestamps();
     }
 
+    public function allergyIds() {
+        return $this->allergies->pluck('id')->toArray();
+    }
+
     public function likes() {
         return $this->hasMany(Like::class);
     }

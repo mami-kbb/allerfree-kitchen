@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/recipe/{id}/comment', [CommentController::class, 'create'])->name('comment');
     Route::get('/post', [RecipeController::class, 'create'])->name('recipe.create');
     Route::post('/post', [RecipeController::class, 'store'])->name('recipe.store');
-    Route::get('/recipe/{id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
-    Route::post('/recipe/{id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
+    Route::get('/recipe/{recipe_id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
+    Route::put('/recipe/{recipe_id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
+    Route::delete('/recipe/{recipe_id}/delete', [RecipeController::class, 'deletey'])->name('recipe.delete');
 });

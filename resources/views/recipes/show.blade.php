@@ -48,7 +48,7 @@
             </div>
         </div>
         @if (auth()->id() === $recipe->user->id)
-        <a href="{{ route('recipe.edit')}}">レシピを編集</a>
+        <a href="{{ route('recipe.edit',['recipe_id' => $recipe->id]) }}">レシピを編集</a>
         @endif
     </div>
     <div>

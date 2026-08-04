@@ -7,17 +7,17 @@
 @section('content')
 <div>
     <h2>プロフィール設定</h2>
-    <form action="{{ route('profile.update') }}" method="post">
+    <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data" novalidate>
         @csrf
         <div>
-            <div>
+            <div id="list">
                 @if ($profile->profile_image)
                 <img src="{{ asset('storage/'. $profile->profile_image) }}" alt="ユーザーアイコン">
                 @else
                 <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
                 @endif
             </div>
-            <div>
+            <div >
                 <label for="image">画像を選択する</label>
                 <input type="file" id="image" name="profile_image" accept="image/png, image/jpeg" hidden>
                 <div>
@@ -59,21 +59,18 @@
     </form>
 </div>
 <script>
-    document.getElementById('image').onchange = function (event) {
-    const list = document.getElementById('list');
-    list.innerHTML = '';
+    document.getElementById('image').addEventListener('change', function (e) {
+        const list = document.getElementById('list');
 
-    const file = event.target.files[0];
-    if (!file) return;
+        const file = e.target.files[0];
+        if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
         const img = document.createElement('img');
-        img.src = e.target.result;
-        img.className = 'reader_image';
+        img.src = URL.createObjectURL(file);
+        img.className = 'image';
+
+        list.innerHTML = '';
         list.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-};
+    });
 </script>
 @endsection

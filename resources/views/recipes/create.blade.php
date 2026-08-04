@@ -8,14 +8,14 @@
 <div>
     <h2>レシピ投稿</h2>
     <div>
-        <form action="{{ route('recipe.store') }}" method="post" novalidate>
+        <form action="{{ route('recipe.store') }}" method="post" enctype="multipart/form-data" novalidate>
             @csrf
             <div>
                 <p>レシピ画像</p>
                 <div id="list">
                     <label for="image">画像を選択する</label>
                 </div>
-                <input type="file" id="image" name="image" hidden>
+                <input type="file" id="image" name="image" accept="image/png, image/jpeg" hidden>
                 <div>
                     @error('image')
                     {{ $message }}
@@ -60,12 +60,14 @@
                 </div>
                 <div>
                     <label>材料</label>
-                    @for ($i = 0; $i < max(2, count(old('ingredients', []))); $i++)
-                    <div>
-                        <input type="text" name="ingredients[]" placeholder="材料名" value="{{ old('ingredients.'.$i) }}">
-                        <input type="text" name="quantities[]" placeholder="分量" value="{{ old('quantities.'.$i) }}">
+                    <div id="ingredient-list">
+                        @for ($i = 0; $i < max(2, count(old('ingredients', []))); $i++)
+                        <div>
+                            <input type="text" name="ingredients[]" placeholder="材料名" value="{{ old('ingredients.'.$i) }}">
+                            <input type="text" name="quantities[]" placeholder="分量" value="{{ old('quantities.'.$i) }}">
+                        </div>
+                        @endfor
                     </div>
-                    @endfor
                 </div>
                 <button type="button" id="add-ingredient">+ 材料を追加</button>
                 @error('ingredients.0')
@@ -76,14 +78,16 @@
                 @enderror
                 <div>
                     <label>作り方</label>
-                    @for ($i = 0; $i < max(2, count(old('steps', []))); $i++)
-                    <div>
-                        <label>{{ $i +1 }}:</label>
-                        <input type="text" name="steps[]" placeholder="作り方" value="{{ old('steps.'.$i) }}">
+                    <div id="step-list">
+                        @for ($i = 0; $i < max(2, count(old('steps', []))); $i++)
+                        <div class="step-item">
+                            <label>{{ $i +1 }}:</label>
+                            <input type="text" name="steps[]" placeholder="作り方" value="{{ old('steps.'.$i) }}">
+                        </div>
+                        @endfor
                     </div>
-                    @endfor
+                    <button type="button" id="add-step">+ 工程を追加</button>
                 </div>
-                <button type="button" id="add-step">+ 工程を追加</button>
                 <div>
                     @error('steps.0')
                     {{ $message }}
@@ -136,7 +140,7 @@
         newItem.style.marginBottom = '10px';
         newItem.innerHTML = `
             <span class="step-number">${stepCount}</span>
-            <input type="text" name="steps[]" class="form-step__input" placeholder="作り方の説明">
+            <input type="text" name="steps[]" class="form-step__input" placeholder="作り方">
         `;
         container.appendChild(newItem);
     });

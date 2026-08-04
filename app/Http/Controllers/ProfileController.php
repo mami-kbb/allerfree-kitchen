@@ -43,6 +43,7 @@ class ProfileController extends Controller
             $profileImage = $profile?->profile_image;
         }
 
+        //user_idはProfileを探す第一引数。あればupdateなければcreateになる。
         Profile::updateOrCreate(
             ['user_id' => $user->id],
             [
@@ -58,6 +59,6 @@ class ProfileController extends Controller
         $allergyIds = $request->input('allergy_user', []);
         $user->allergies()->sync($allergyIds);
 
-        return redirect('/');
+        return redirect()->route('profile', ['user_id' => $user->id]);
     }
 }
