@@ -7,7 +7,7 @@
         メール認証を完了してください。
     </p>
     <a href="http://localhost:8025" target="_blank">認証はこちらから</a>
-    <form action="{{ route('verification.send') }}">
+    <form method="post" action="{{ route('verification.send') }}">
         @csrf
         <button type="submit">認証メールを再送する</button>
     </form>

@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Override;
 
-class RecipeRequest extends FormRequest
+class RecipeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,12 +26,13 @@ class RecipeRequest extends FormRequest
             'name' => ['required','string', 'max:50'],
             'allergy_recipe' => ['required', 'array'],
             'allergy_recipe.*' => ['exists:allergies,id'],
-            'description' => ['max:500'],
+            'description' => ['nullable', 'max:500'],
             'ingredients.0' => ['required', 'string'],
             'ingredients.*' => ['nullable', 'string'],
             'quantities.*' => ['nullable', 'string'],
             'steps.0' => ['required', 'string'],
             'steps.*' => ['nullable', 'string'],
+            'tips' => ['nullable', 'max:500'],
         ];
     }
 
@@ -47,6 +47,7 @@ class RecipeRequest extends FormRequest
             'description.max' => 'レシピの説明は500文字以内で入力してください',
             'ingredients.0.required' => '材料を１つ以上入力してください',
             'steps.0.required' => '手順を１つ以上入力してください',
+            'tips.max' => 'コツ・ポイントは500文字以内で入力してください。',
         ];
     }
 

@@ -67,38 +67,40 @@
                     <label>材料</label>
                     <div id="ingredient-list">
                         @foreach($recipe->ingredients as $i => $ingredient)
-                        <div>
+                        <div class="ingredient-item">
                             <input type="text" name="ingredients[]" placeholder="材料名" value="{{ old('ingredients.'.$i, $ingredient->name) }}">
                             <input type="text" name="quantities[]" placeholder="分量" value="{{ old('quantities.'.$i, $ingredient->pivot->quantity) }}">
                         </div>
                         @endforeach
+                        <div class="ingredient-item">
+                            <input type="text" name="ingredients[]" placeholder="材料名">
+                            <input type="text" name="quantities[]" placeholder="分量">
+                        </div>
                     </div>
-                    <div id="ingredient-item">
-                        <input type="text" name="ingredients[]" placeholder="材料名">
-                        <input type="text" name="quantities[]" placeholder="分量">
-                    </div>
-                    <button type="button" id="add-ingredient">+ 材料を追加</button>
                 </div>
-                @error('ingredients.0')
-                {{ $message }}
-                @enderror
-                @error('quantities')
-                {{ $message }}
-                @enderror
+                <button type="button" id="add-ingredient">+ 材料を追加</button>
+                <div>
+                    @error('ingredients.0')
+                    {{ $message }}
+                    @enderror
+                    @error('quantities')
+                    {{ $message }}
+                    @enderror
+                </div>
+
                 <div>
                     <label>作り方</label>
                     <div id="step-list">
                         @foreach ($recipe->steps as $i => $step)
                         <div class="step-item">
-                            <label>{{ $i +1 }}:</label>
+                            <label>{{ $i +1 }}：</label>
                             <input type="text" name="steps[]" placeholder="作り方" value="{{ old('steps.'.$i, $step->content) }}">
                         </div>
                         @endforeach
                         <div class="step-item">
-                            <label>{{ $recipe->steps->count() + 1 }}:</label>
+                            <label>{{ $recipe->steps->count() + 1 }}：</label>
                             <input type="text" name="steps[]" placeholder="作り方">
                         </div>
-
                     </div>
                     <button type="button" id="add-step">+ 工程を追加</button>
                 </div>
@@ -114,9 +116,16 @@
                 <textarea name="tips" id="tips" cols="30" rows="5">{{ old('tips', $recipe->tips) }}</textarea>
             </div>
             <div>
-                <button type="submit">編集する</button>
+                <button type="submit">更新</button>
             </div>
         </form>
+        <div>
+            <form action="{{ route('recipe.delete', ['recipe_id' => $recipe->id]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit">削除</button>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -154,7 +163,7 @@
         newItem.className = 'step-item';
         newItem.style.marginBottom = '10px';
         newItem.innerHTML = `
-            <span class="step-number">${stepCount}</span>
+            <span class="step-number">${stepCount}：</span>
             <input type="text" name="steps[]" class="form-step__input" placeholder="作り方">
         `;
         container.appendChild(newItem);

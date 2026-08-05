@@ -8,14 +8,16 @@
 <div>
     <div>
         <div>
-            @if($user->profile->profile_image)
+            @if($user->profile && $user->profile->profile_image)
                 <img src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
             @else
                 <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
             @endif
             <div>
                 <p>{{ $user->name }}</p>
+                @if($user->profile && $user->profile->comment)
                 <p>{{ $user->profile->comment }}</p>
+                @endif
             </div>
         </div>
         @if (auth()->id() === $user->id)
@@ -32,7 +34,7 @@
             <p>{{ $recipe->name }}</p>
         </a>
         @empty
-        <p>該当するレシピが見つかりませんでした。</p>
+        <p>No recipe</p>
         @endforelse
         <div>
             {{ $recipes->appends(request()->query())->links('pagination::bootstrap-4') }}

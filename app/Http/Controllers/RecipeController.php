@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RecipeRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RecipeStoreRequest;
+use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Recipe;
 use App\Models\Allergy;
 use App\Models\Ingredient;
@@ -60,7 +62,7 @@ class RecipeController extends Controller
         return view('recipes.create', compact('allergies'));
     }
 
-    public function store(RecipeRequest $request) {
+    public function store(RecipeStoreRequest $request) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
         $path = $request->file('image')->store('images', 'public');
@@ -120,62 +122,78 @@ class RecipeController extends Controller
         return view('recipes.edit', compact('recipe', 'allergies', 'selectedAllergies'));
     }
 
-    public function update(RecipeRequest $request, $recipe_id) {
-        $recipe = Recipe::with([
-            'allergies',
-            'ingredients',
-            'steps',
-        ])
-        ->findOrFail($recipe_id);
+    public function update(RecipeUpdateRequest $request, $recipe_id) {
+        $recipe = Recipe::findOrFail($recipe_id);
 
-        $path = $request->file('image')->store('images', 'public');
-
-        $recipe->update([
-                'image' => $path,
+        DB::transaction(function () use ($request, $recipe) {
+            $recipe->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'servings' => $request->servings,
                 'tips' => $request->tips,
             ]);
 
-        $allergyIds = $request->input('allergy_recipe', []);
-        $recipe->allergies()->sync($allergyIds);
-
-        $recipe->ingredients()->detach();
-
-        foreach ($request->ingredients as $key => $ing_name) {
-            if (empty($ing_name)) {
-                continue;
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('images', 'public');
+                $recipe->update([
+                    'image' => $path,
+                ]);
             }
 
-            $ingredient = Ingredient::firstOrCreate([
-                'name' => $ing_name,
-            ]);
+            $allergyIds = $request->input('allergy_recipe', []);
+            $recipe->allergies()->sync($allergyIds);
 
-            $recipe->ingredients()->attach($ingredient->id, [
-                'quantity' => $request->quantities[$key] ?? '',
-            ]);
-        }
+            //材料をすべて削除
+            //マスターの材料は残すからdetachを使用
+            $recipe->ingredients()->detach();
 
-        $recipe->steps()->delete();
+            //材料を登録しなおす
+            $ingredients = $request->input('ingredients', []);
+            $quantities = $request->input('quantities', []);
 
-        foreach ($request->steps as $index => $step) {
-            if (empty($step)) {
-                continue;
+            foreach ($ingredients as $key => $ing_name) {
+                if (empty($ing_name)) {
+                    continue;
+                }
+
+                $ingredient = Ingredient::firstOrCreate([
+                    'name' => $ing_name,
+                ]);
+
+                $recipe->ingredients()->attach($ingredient->id, [
+                    'quantity' => $quantities[$key] ?? null,
+                ]);
             }
 
-            $recipe->steps()->create([
-                'step_number' => $index + 1,
-                'content' => $step,
-            ]);
-        }
+            //手順をすべて削除
+            $recipe->steps()->delete();
+
+            //手順を登録しなおす
+            $steps = $request->input('steps', []);
+
+            foreach ($steps as $index => $step) {
+                if (empty($step)) {
+                    continue;
+                }
+
+                $recipe->steps()->create([
+                    'step_number' => $index + 1,
+                    'content' => $step,
+                ]);
+            }
+        });
 
         return redirect()->route('profile', [
-            'user_id' => Auth::user()
+            'user_id' => Auth::user()->id,
         ]);
     }
 
     public function delete($recipe_id) {
+        $recipe = Recipe::findOrFail($recipe_id);
+        $recipe->delete();
 
+        return redirect()->route('profile', [
+            'user_id' => Auth::user()->id,
+        ]);
     }
 }
