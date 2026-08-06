@@ -4,7 +4,7 @@
         <form action="{{ route('recipes.list')}}" method="get">
             <input type="text" id="keywordInput" name="keyword" value="{{ request('keyword') }}" placeholder="食材・レジピ名でさがす" autocomplete="off">
 
-            <input type="hidden" name="tab" value="{{ request('tab', 'recommend) }}'">
+            <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
 
             <div id="allergyDropdown">
                 <div>
@@ -28,14 +28,14 @@
                     <input type="hidden" name="allergy_recipe[]" value="0">
                     <div>
                         @foreach($allergies as $allergy)
-                        <input type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" {{ in_array($allergy->id, $selectedIds) ? 'checked' : '' }} name="allergy_recipe[]" data-name="{{ $allergy->name }}" class="allergy-checkbox">
+                        <input type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" {{ in_array($allergy->id, $excludeAllergies) ? 'checked' : '' }} name="allergy_recipe[]" data-name="{{ $allergy->name }}" class="allergy-checkbox">
                         <label for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
                         @endforeach
                     </div>
                     <div>
                         @foreach($allergyCategories as $allergyCategory)
-                        <input type="checkbox" id="category_{{ $allergyCategory->id }}" value="{{ $allergyCategory->id }}" {{ in_array($allergyCategory->id, $selectedCategoryIds) ? 'checked' : '' }} name="allergy_category[]" data-name="{{ $allergyCategory->name }}" class="category-checkbox">
-                        <label for="category_{{ $allergyCategory->id }}">{{ $allergyCategory->name }}</label>
+                        <input type="checkbox" id="category_{{ $allergyCategory->id }}" value="{{ $allergyCategory->id }}" {{ in_array($allergyCategory->id, $excludeCategories) ? 'checked' : '' }} name="allergy_category[]" data-category="{{ $allergyCategory->category }}" class="category-checkbox">
+                        <label for="category_{{ $allergyCategory->id }}">{{ $allergyCategory->category }}</label>
                         @endforeach
                     </div>
                     <button type="button" id="applyAllergy">設定</button>
@@ -91,7 +91,7 @@
         }
 
         const categoryChecked = document.querySelectorAll('.category-checkbox:checked');
-        const categories = Array.from(categoryChecked).map(el > el.dataset.category);
+        const categories = Array.from(categoryChecked).map(el => el.dataset.category);
 
         if (categories.length > 0) {
             selectedCategoryText.textContent = "除外アレルギーカテゴリー：" + categories.join('，');

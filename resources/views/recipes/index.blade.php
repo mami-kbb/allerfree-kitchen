@@ -7,7 +7,13 @@
 @section('content')
 <div>
     <div>
-        <h2>レシピ一覧</h2>
+        <h2>{{ $message }}</h2>
+        @if ($selectedAllergies->count())
+        <p>除外アレルギー：{{ $selectedAllergies->implode('，') }}</p>
+        @endif
+        @if ($selectedCategories->count())
+        <p>除外アレルギーカテゴリー：{{ $selectedCategories->implode('，') }}</p>
+        @endif
     </div>
     <div>
         <a href="{{ route('recipes.list', array_merge(request()->all(), ['tab' => 'recommend'])) }}">おすすめ</a>

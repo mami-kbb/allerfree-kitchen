@@ -71,10 +71,20 @@ class Recipe extends Model
         return $query;
     }
 
-    public function scopeSearch($query, $keyword, $excludeAllergies)
+    public function scopeExcludeCategories($query, $excludeCategories) {
+        if (!empty($excludeCategories)) {
+            $query->whereDosentHave('allergyCategory', function ($q) use ($excludeCategories) {
+                $q->whereIn('allergyCategories.id', $excludeCategories);
+            });
+        }
+        return $query;
+    }
+
+    public function scopeSearch($query, $keyword, $excludeAllergies, $excludeCategories)
     {
         return $query
         ->keywordSearch($keyword)
-        ->excludeAllergies($excludeAllergies);
+        ->excludeAllergies($excludeAllergies)
+        ->excludeCategories($excludeCategories);
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Requests\RecipeUpdateRequest;
 use App\Models\Recipe;
 use App\Models\Allergy;
 use App\Models\Ingredient;
+use App\Models\AllergyCategory;
 
 class RecipeController extends Controller
 {
@@ -20,21 +21,51 @@ class RecipeController extends Controller
         $keyword = $request->get('keyword');
         $selectedAllergies = collect();
         $selectedCategories = collect();
+        $allergies = Allergy::all();
+        $allergyCategories = AllergyCategory::all();
 
+        if ($request->has('allergy_recipe')) {
+            $excludeAllergies = array_filter((array) $request->input('allergy_recipe'));
+        } else {
+            $excludeAllergies = auth()->check() ? $user->allergyIds() :[];
+        }
+
+        if ($request->has('allergy_category')) {
+            $excludeCategories = array_filter((array) $request->input('allergy_category'));
+        } else {
+            $excludeCategories = [];
+        }
+
+        if ($keyword) {
+            $keywords = preg_split('/\s+/', $keyword);
+            $message = implode(' ', $keywords) . ' のレシピ一覧';
+        } else {
+            $message = "レシピ一覧";
+        }
+
+        if (!empty($excludeAllergies)) {
+            $selectedAllergies = Allergy::whereIn('id', $excludeAllergies)->pluck('name');
+        }
+
+        if (!empty($excludeCategories)) {
+            $selectedCategories = AllergyCategory::whereIn('id', $excludeCategories)->pluck('category');
+        }
 
         if ($tab === 'mylist' && auth()->check()) {
             $recipes = $user->likedRecipes()
                 ->orderBy('likes.created_at', 'desc')
+                ->search($keyword, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         } elseif ($tab === 'mylist') {
             $recipes = collect();
         } else {
             $recipes = Recipe::query()
                 ->latest()
+                ->search($keyword, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         }
 
-        return view('recipes.index', compact('recipes','tab'));
+        return view('recipes.index', compact('recipes','tab', 'keyword', 'message', 'selectedAllergies', 'selectedCategories', 'excludeAllergies', 'excludeCategories', 'allergies', 'allergyCategories'));
     }
 
     public function show($recipe_id) {
