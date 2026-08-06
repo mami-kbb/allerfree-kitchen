@@ -17,6 +17,10 @@ class RecipeController extends Controller
         /** @var \App\Models\User $user */
         $user = auth()->user();
         $tab = $request->get('tab', 'recommend');
+        $keyword = $request->get('keyword');
+        $selectedAllergies = collect();
+        $selectedCategories = collect();
+
 
         if ($tab === 'mylist' && auth()->check()) {
             $recipes = $user->likedRecipes()
