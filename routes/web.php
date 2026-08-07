@@ -5,7 +5,6 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
-use PharIo\Manifest\AuthorCollection;
 
 /*
 |--------------------------------------------------------------------------

@@ -9,7 +9,7 @@ class LikeController extends Controller
     public function store($id) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
-        $user->likes()->create([
+        $user->likes()->firstOrCreate([
             'recipe_id' => $id,
         ]);
 

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class Recipe extends Model
 {
@@ -18,7 +17,7 @@ class Recipe extends Model
         'servings',
         'tips',
         'status',
-        'approved_at',
+        'approval_at',
         'rejection_reason',
     ];
 

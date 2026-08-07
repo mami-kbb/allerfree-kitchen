@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Override;
 
 class CommentRequest extends FormRequest
 {
@@ -27,7 +26,6 @@ class CommentRequest extends FormRequest
         ];
     }
 
-    #[Override]
     public function messages()
     {
         return [
