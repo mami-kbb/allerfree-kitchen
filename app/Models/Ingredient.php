@@ -19,7 +19,7 @@ class Ingredient extends Model
         return $this->belongsToMany(Recipe::class, 'ingredient_recipe')->withPivot('quantity');
     }
 
-    public function allergyCategory() {
+    public function allergyCategories() {
         return $this->belongsToMany(AllergyCategory::class, 'allergy_category_ingredient');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class Recipe extends Model
 {
@@ -52,29 +53,42 @@ class Recipe extends Model
     }
 
     public function scopeKeywordSearch($query, $keyword) {
-        if (!empty($keyword)) {
-            $keywords = preg_split('/\s+/', $keyword);
-
-            foreach ($keywords as $word) {
-                $query->where('name', 'LIKE', "%{$word}%");
-            }
+        if (empty ($keyword)) {
+            return $query;
         }
+
+        //スペースで区切られたキーワードを配列にする
+        $keywords = preg_split('/\s+/', trim($keyword));
+
+        //レシピ名と材料名でAND検索をする。
+        foreach ($keywords as $word) {
+            $query->where(function ($query) use ($word) {
+                $query->where('name', 'like', "%{$word}%")
+                ->orWhereHas('ingredients', function ($q) use ($word) {
+                    $q->where('ingredients.name', 'like', "%{$word}%");
+                });
+            });
+        }
+
         return $query;
     }
 
     public function scopeExcludeAllergies($query, $excludeAllergies) {
         if (!empty($excludeAllergies)) {
-            $query->whereDosentHave('allergies', function ($q) use ($excludeAllergies) {
+            $query->whereDoesntHave('allergies', function ($q) use ($excludeAllergies) {
                 $q->whereIn('allergies.id', $excludeAllergies);
             });
         }
         return $query;
     }
 
+    //allergy_categoriesとリレーションがあるのはingredients
     public function scopeExcludeCategories($query, $excludeCategories) {
         if (!empty($excludeCategories)) {
-            $query->whereDosentHave('allergyCategory', function ($q) use ($excludeCategories) {
-                $q->whereIn('allergyCategories.id', $excludeCategories);
+            $query->whereDoesntHave('ingredients', function ($q) use ($excludeCategories) {
+                $q->whereHas('allergyCategories', function ($q2) use ($excludeCategories) {
+                    $q2->whereIn('allergy_categories.id', $excludeCategories);
+                });
             });
         }
         return $query;

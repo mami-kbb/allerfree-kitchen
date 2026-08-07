@@ -37,8 +37,7 @@ class RecipeController extends Controller
         }
 
         if ($keyword) {
-            $keywords = preg_split('/\s+/', $keyword);
-            $message = implode(' ', $keywords) . ' のレシピ一覧';
+            $message = "{$keyword} のレシピ一覧";
         } else {
             $message = "レシピ一覧";
         }

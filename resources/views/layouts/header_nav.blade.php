@@ -6,7 +6,7 @@
 
             <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
 
-            <div id="allergyDropdown">
+            <div id="allergyDropdown" style="display: none;">
                 <div>
                     <p id="selectedAllergy">
                         除外アレルギー：{{ $selectedAllergies->implode(', ') ? : '未選択' }}
@@ -33,6 +33,7 @@
                         @endforeach
                     </div>
                     <div>
+                        <p>除外するアレルギーカテゴリーを選択</p>
                         @foreach($allergyCategories as $allergyCategory)
                         <input type="checkbox" id="category_{{ $allergyCategory->id }}" value="{{ $allergyCategory->id }}" {{ in_array($allergyCategory->id, $excludeCategories) ? 'checked' : '' }} name="allergy_category[]" data-category="{{ $allergyCategory->category }}" class="category-checkbox">
                         <label for="category_{{ $allergyCategory->id }}">{{ $allergyCategory->category }}</label>
