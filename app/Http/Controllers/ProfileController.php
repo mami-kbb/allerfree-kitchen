@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Allergy;
@@ -37,27 +39,45 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
 
-        if ($request->hasFile('profile_image')) {
-            $profileImage = $request->file('profile_image')->store('profiles', 'public');
-        } else {
-            $profileImage = $profile?->profile_image;
+        $oldImage = $profile?->profile_image;
+        $newImage = null;
+
+        //transactionで代入した$newImageを外側でも使用するために"&"を付ける
+        try {
+            DB::transaction(function () use ($request, $user, $oldImage, &$newImage) {
+                if ($request->hasFile('profile_image')) {
+                    $newImage = $request->file('profile_image')->store('profiles', 'public');
+                }
+
+                //$newImageがあればそれをなければ$oldImageを代入
+                $profileImage = $newImage ?? $oldImage;
+
+                //user_idはProfileを探す第一引数。あればupdateなければcreateになる。
+                Profile::updateOrCreate(
+                    ['user_id' => $user->id],
+                    [
+                        'profile_image' => $profileImage,
+                        'comment' => $request->comment,
+                    ]
+                );
+
+                $user->update([
+                    'name' => $request->name,
+                ]);
+
+                $allergyIds = $request->input('allergy_user', []);
+                $user->allergies()->sync($allergyIds);
+            });
+        } catch (\Throwable $e) {
+            if ($newImage) {
+                Storage::disk('public')->delete($newImage);
+            }
+            throw $e;
         }
 
-        //user_idはProfileを探す第一引数。あればupdateなければcreateになる。
-        Profile::updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'profile_image' => $profileImage,
-                'comment' => $request->comment,
-            ]
-        );
-
-        $user->update([
-            'name' => $request->name,
-        ]);
-
-        $allergyIds = $request->input('allergy_user', []);
-        $user->allergies()->sync($allergyIds);
+        if ($oldImage && $newImage) {
+            Storage::disk('public')->delete($oldImage);
+        }
 
         return redirect()->route('profile', ['user_id' => $user->id]);
     }

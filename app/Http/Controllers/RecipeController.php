@@ -179,63 +179,79 @@ class RecipeController extends Controller
 
         $this->authorize('update', $recipe);
 
-        DB::transaction(function () use ($request, $recipe) {
-            $recipe->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'servings' => $request->servings,
-                'tips' => $request->tips,
-            ]);
+        $oldImage = $recipe->image;
+        $newImage = null;
 
-            if ($request->hasFile('image')) {
-                $path = $request->file('image')->store('images', 'public');
+        try {
+            DB::transaction(function () use ($request, $recipe, &$newImage) {
                 $recipe->update([
-                    'image' => $path,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'servings' => $request->servings,
+                    'tips' => $request->tips,
                 ]);
-            }
 
-            $allergyIds = $request->input('allergy_recipe', []);
-            $recipe->allergies()->sync($allergyIds);
-
-            //材料をすべて削除
-            //マスターの材料は残すからdetachを使用
-            $recipe->ingredients()->detach();
-
-            //材料を登録しなおす
-            $ingredients = $request->input('ingredients', []);
-            $quantities = $request->input('quantities', []);
-
-            foreach ($ingredients as $key => $ing_name) {
-                if (empty($ing_name)) {
-                    continue;
+                if ($request->hasFile('image')) {
+                    $newImage = $request->file('image')->store('images', 'public');
+                    $recipe->update([
+                        'image' => $newImage,
+                    ]);
                 }
 
-                $ingredient = Ingredient::firstOrCreate([
-                    'name' => $ing_name,
-                ]);
+                $allergyIds = $request->input('allergy_recipe', []);
+                $recipe->allergies()->sync($allergyIds);
 
-                $recipe->ingredients()->attach($ingredient->id, [
-                    'quantity' => $quantities[$key] ?? null,
-                ]);
-            }
+                //材料をすべて削除
+                //マスターの材料は残すからdetachを使用
+                $recipe->ingredients()->detach();
 
-            //手順をすべて削除
-            $recipe->steps()->delete();
+                //材料を登録しなおす
+                $ingredients = $request->input('ingredients', []);
+                $quantities = $request->input('quantities', []);
 
-            //手順を登録しなおす
-            $steps = $request->input('steps', []);
+                foreach ($ingredients as $key => $ing_name) {
+                    if (empty($ing_name)) {
+                        continue;
+                    }
 
-            foreach ($steps as $index => $step) {
-                if (empty($step)) {
-                    continue;
+                    $ingredient = Ingredient::firstOrCreate([
+                        'name' => $ing_name,
+                    ]);
+
+                    $recipe->ingredients()->attach($ingredient->id, [
+                        'quantity' => $quantities[$key] ?? null,
+                    ]);
                 }
 
-                $recipe->steps()->create([
-                    'step_number' => $index + 1,
-                    'content' => $step,
-                ]);
+                //手順をすべて削除
+                $recipe->steps()->delete();
+
+                //手順を登録しなおす
+                $steps = $request->input('steps', []);
+
+                foreach ($steps as $index => $step) {
+                    if (empty($step)) {
+                        continue;
+                    }
+
+                    $recipe->steps()->create([
+                        'step_number' => $index + 1,
+                        'content' => $step,
+                    ]);
+                }
+            });
+        } catch (\Throwable $e) {
+            if ($newImage) {
+                //保存に失敗した場合、新しい画像を消す
+                Storage::disk('public')->delete($newImage);
             }
-        });
+            throw $e;
+        }
+
+        //保存に成功した場合古い画像を消す
+        if ($newImage && $oldImage) {
+            Storage::disk('public')->delete($oldImage);
+        }
 
         return redirect()->route('profile', [
             'user_id' => Auth::user()->id,
