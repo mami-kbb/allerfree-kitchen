@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
+use App\Models\Recipe;
 
 class CommentController extends Controller
 {
-    public function create($id, CommentRequest $request) {
+    public function create(Recipe $recipe, CommentRequest $request) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
-        $user->comments()->create([
-            'recipe_id' => $id,
+        $recipe->comments()->create([
+            'user_id' => $user->id,
             'comment' => $request->comment,
         ]);
 

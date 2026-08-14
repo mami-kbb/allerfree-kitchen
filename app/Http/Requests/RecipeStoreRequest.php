@@ -47,7 +47,7 @@ class RecipeStoreRequest extends FormRequest
             'description.max' => 'レシピの説明は500文字以内で入力してください',
             'ingredients.0.required' => '材料を１つ以上入力してください',
             'steps.0.required' => '手順を１つ以上入力してください',
-            'tips.max' => 'コツ・ポイントは500文字以内で入力してください。',
+            'tips.max' => 'コツ・ポイントは500文字以内で入力してください',
         ];
     }
 

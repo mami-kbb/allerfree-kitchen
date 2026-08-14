@@ -13,7 +13,7 @@
             <div>
                 <p>投稿者：</p>
                 <a href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
-                    @if($recipe->user->profile->profile_image)
+                    @if($recipe->user->profile?->profile_image)
                     <img src="{{ asset('storage/'.$recipe->user->profile->profile_image) }}" alt="ユーザーアイコン">
                     @else
                     <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
@@ -33,7 +33,7 @@
             </div>
             <div>
                 @auth
-                <form action="{{ route($isLiked ? 'unlike' : 'like', ['id' => $recipe->id]) }}" method="post">
+                <form action="{{ route($isLiked ? 'unlike' : 'like', ['recipe' => $recipe]) }}" method="post">
                     @csrf
                     <button class="like-btn">
                         <img src="{{ asset($isLiked ? '/images/heart_logo_pink.png' : '/images/heart_logo.png') }}" alt="いいね" class="like-btn__img">
@@ -81,7 +81,7 @@
             <div>
                 <div>
                     <div>
-                        @if ($comment->user->profile->profile_image)
+                        @if ($comment->user->profile?->profile_image)
                         <img src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="コメントユーザーアイコン">
                         @else
                         <img src="{{ asset('/images/icon.png') }}" alt="コメントユーザーアイコン">
@@ -95,7 +95,7 @@
         </div>
         <div>
             <h3>コメントを投稿</h3>
-            <form action="{{ route('comment', ['id'=> $recipe->id]) }}" method="post">
+            <form action="{{ route('comment', ['recipe'=> $recipe]) }}" method="post">
                 @csrf
                 <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
                 <div>

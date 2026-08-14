@@ -11,7 +11,7 @@
         @csrf
         <div>
             <div id="list">
-                @if ($profile && $profile->profile_image)
+                @if ($profile?->profile_image)
                 <img src="{{ asset('storage/'. $profile->profile_image) }}" alt="ユーザーアイコン">
                 @else
                 <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">

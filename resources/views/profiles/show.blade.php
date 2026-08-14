@@ -8,14 +8,14 @@
 <div>
     <div>
         <div>
-            @if($user->profile && $user->profile->profile_image)
+            @if($user->profile?->profile_image)
                 <img src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
             @else
                 <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
             @endif
             <div>
                 <p>{{ $user->name }}</p>
-                @if($user->profile && $user->profile->comment)
+                @if($user->profile?->comment)
                 <p>{{ $user->profile->comment }}</p>
                 @endif
             </div>

@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class LikeController extends Controller
 {
-    public function store($id) {
+    public function store(Recipe $recipe) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
-        $user->likes()->firstOrCreate([
-            'recipe_id' => $id,
+        $recipe->likes()->firstOrCreate([
+            'user_id' => $user->id,
         ]);
 
         return back();
     }
 
-    public function destroy($id) {
+    public function destroy(Recipe $recipe) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
         $user->likes()
-        ->where('recipe_id', $id)
+        ->where('recipe_id', $recipe->id)
         ->firstOrFail()
         ->delete();
 

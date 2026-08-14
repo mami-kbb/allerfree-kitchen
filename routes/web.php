@@ -28,9 +28,9 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/recipe/{id}/like', [LikeController::class, 'store'])->name('like');
-    Route::post('/recipe/{id}/unlike', [LikeController::class, 'destroy'])->name('unlike');
-    Route::post('/recipe/{id}/comment', [CommentController::class, 'create'])->name('comment');
+    Route::post('/recipe/{recipe}/like', [LikeController::class, 'store'])->name('like');
+    Route::post('/recipe/{recipe}/unlike', [LikeController::class, 'destroy'])->name('unlike');
+    Route::post('/recipe/{recipe}/comment', [CommentController::class, 'create'])->name('comment');
     Route::get('/post', [RecipeController::class, 'create'])->name('recipe.create');
     Route::post('/post', [RecipeController::class, 'store'])->name('recipe.store');
     Route::get('/recipe/{recipe_id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
