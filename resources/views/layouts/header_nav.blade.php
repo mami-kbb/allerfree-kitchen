@@ -1,8 +1,8 @@
 <nav>
     @if( in_array(Route::currentRouteName(), ['recipes.list']) )
-    <div>
+    <div class="m-auto p-4">
         <form action="{{ route('recipes.list')}}" method="get">
-            <input type="text" id="keywordInput" name="keyword" value="{{ request('keyword') }}" placeholder="食材・レジピ名でさがす" autocomplete="off">
+            <input class="bg-white w-70 h-10 border rounded-md p-2" type="text" id="keywordInput" name="keyword" value="{{ request('keyword') }}" placeholder="食材・レジピ名でさがす" autocomplete="off">
 
             <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
 
@@ -42,7 +42,7 @@
                     <button type="button" id="applyAllergy">設定</button>
                 </div>
             </div>
-            <button type="submit">検索</button>
+            <button class="bg-taupe-200 hover:bg-taupe-300 active:bg-taupe-400 text-accent px-4 py-2 rounded-md font-semibold shadow-md" type="submit">検索</button>
         </form>
     </div>
     @endif
