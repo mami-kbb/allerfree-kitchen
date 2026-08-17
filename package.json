@@ -6,8 +6,30 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@tailwindcss/vite": "^4.3.3",
+        "autoprefixer": "^10.5.4",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
+        "postcss": "^8.5.26",
+        "tailwindcss": "^4.3.3",
         "vite": "^5.0.0"
-    }
+    },
+    "name": "allerfree-kitchen",
+    "version": "1.0.0",
+    "description": "本アプリは食物アレルギーを持つ子供を育てる親御さん向けに特化したレシピ投稿・検索プラットフォームです。 レシピ投稿時にアレルギー品目を明示的にタグ付けすることで、ユーザーが特定のアレルギー品目を含まないレシピを安全に検索・発見できる仕組みを提供します。",
+    "main": "vite.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mami-kbb/allerfree-kitchen.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mami-kbb/allerfree-kitchen/issues"
+    },
+    "homepage": "https://github.com/mami-kbb/allerfree-kitchen#readme"
 }

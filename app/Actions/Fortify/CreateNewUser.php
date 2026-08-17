@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -41,16 +42,18 @@ class CreateNewUser implements CreatesNewUsers
             'password.confirmed' => 'パスワードと一致しません',
         ])->validate();
 
-        $user = User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        return DB::transaction(function () use ($input) {
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+            ]);
 
-        //profile表示のためにprofileデータも一緒に作成する
+            //profile表示のためにprofileデータも一緒に作成する
 
-        $user->profile()->create();
+            $user->profile()->create();
 
-        return $user;
+            return $user;
+        });
     }
 }
