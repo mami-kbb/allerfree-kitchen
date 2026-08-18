@@ -1,30 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <h1>ログイン</h1>
-    <form action="{{ route('login') }}" method="post" novalidate>
+<div class="bg-primary min-h-screen p-4 sm:p-6 flex flex-col items-center">
+    <h1 class="text-2xl font-bold text-accent">ログイン</h1>
+    <form class="flex flex-col items-center w-full max-w-md my-4" action="{{ route('login') }}" method="post" novalidate>
         @csrf
-        <div class="form-group">
-            <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}">
+        <div class="my-4 w-full">
+            <div class="flex justify-between items-center">
+                <label class="text-lg" for="email">メールアドレス：</label>
+                <input class=" bg-white w-64 border rounded-md py-1 px-2" type="email" id="email" name="email" value="{{ old('email') }}">
+            </div>
             @error('email')
-            <p class="error">{{ $message }}</p>
+            <p class="text-error">{{ $message }}</p>
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="password">パスワード</label>
-            <input type="password" id="password" name="password">
+        <div class="my-4 w-full">
+            <div class="flex justify-between items-center">
+                <label class="text-lg" for="password">パスワード：</label>
+                <input class="bg-white w-64 border rounded-md py-1 px-2" type="password" id="password" name="password">
+            </div>
             @error('password')
-            <p class="error">{{ $message }}</p>
+            <p class="text-error">{{ $message }}</p>
             @enderror
         </div>
 
-        <button type="submit">ログイン</button>
+        <button class="bg-taupe-200 hover:bg-taupe-300 active:bg-taupe-400 text-accent px-4 py-2 border rounded-md font-semibold shadow-md my-4" type="submit">ログイン</button>
     </form>
-    <p class="link">
-        <a href="{{ route('register') }}">アカウントをお持ちでない方はこちら</a>
+    <p>
+        <a class="text-blue-800 active:text-blue-900 hover:shadow-md" href="{{ route('register') }}">アカウントをお持ちでない方はこちら</a>
     </p>
 </div>
 @endsection
