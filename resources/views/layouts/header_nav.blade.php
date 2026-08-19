@@ -35,7 +35,7 @@
                         @foreach($allergies as $allergy)
                         <div>
                             <input class="peer sr-only allergy-checkbox" type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" {{ in_array($allergy->id, $excludeAllergies) ? 'checked' : '' }} name="allergy_recipe[]" data-name="{{ $allergy->name }}" class="allergy-checkbox">
-                            <label class="block border border-gray-300 bg-white rounded-4xl px-3 py-1 text-sm cursor-pointer peer-checked:bg-taupe-300" for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
+                            <label class="block border border-gray-300 bg-white rounded-full px-3 py-1 text-sm cursor-pointer peer-checked:bg-taupe-300" for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
                         </div>
                         @endforeach
                     </div>
@@ -45,11 +45,10 @@
                             @foreach($allergyCategories as $allergyCategory)
                             <div>
                                 <input class="peer sr-only category-checkbox" type="checkbox" id="category_{{ $allergyCategory->id }}" value="{{ $allergyCategory->id }}" {{ in_array($allergyCategory->id, $excludeCategories) ? 'checked' : '' }} name="allergy_category[]" data-category="{{ $allergyCategory->category }}" class="category-checkbox">
-                                <label class="block border border-gray-300 bg-white text-sm rounded-4xl cursor-pointer px-3 py-1 peer-checked:bg-taupe-300" for="category_{{ $allergyCategory->id }}">{{ $allergyCategory->category }}</label>
+                                <label class="block border border-gray-300 bg-white text-sm rounded-full cursor-pointer px-3 py-1 peer-checked:bg-taupe-300" for="category_{{ $allergyCategory->id }}">{{ $allergyCategory->category }}</label>
                             </div>
                             @endforeach
                         </div>
-                        
                     </div>
                     <button class="bg-white hover:shadow-md border border-accent text-accent px-4 py-2 mx-2 rounded-md font-semibold" type="button" id="applyAllergy">設定</button>
                 </div>

@@ -5,75 +5,79 @@
 @endsection
 
 @section('content')
-<div>
-    <div>
-        <img src="{{ asset('storage/'.$recipe->image) }}" alt="{{ $recipe->name }}">
+<div class="bg-primary min-h-screen p-4 sm:p-6 flex flex-col items-center">
+    <div class="md:flex gap-10">
         <div>
-            <h2>{{ $recipe->name }}</h2>
-            <div>
+            <img class="w-xl rounded-2xl object-cover" src="{{ asset('storage/'.$recipe->image) }}" alt="{{ $recipe->name }}">
+        </div>
+        <div class="mx-2 px-4">
+            <h2 class="text-center text-2xl font-bold text-accent m-4">{{ $recipe->name }}</h2>
+            <div class="flex justify-end items-center m-4">
                 <p>投稿者：</p>
-                <a href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
+                <a class="flex items-center gap-4" href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
                     @if($recipe->user->profile?->profile_image)
-                    <img src="{{ asset('storage/'.$recipe->user->profile->profile_image) }}" alt="ユーザーアイコン">
+                    <img class="block shrink-0 w-12 h-12 rounded-full object-cover" src="{{ asset('storage/'.$recipe->user->profile->profile_image) }}" alt="ユーザーアイコン">
                     @else
-                    <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
+                    <img class="block shrink-0 w-12 h-12 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
                     @endif
-                    {{ $recipe->user->name }}
+                    <p>{{ $recipe->user->name }}</p>
                 </a>
             </div>
             <div>
-                <h3>レシピ説明</h3>
-                <p>{{ $recipe->description }}</p>
+                <h3 class="text-xl font-semibold">レシピ説明</h3>
+                <p class="my-3">{{ $recipe->description }}</p>
             </div>
-            <div>
-                <span>該当アレルギー：</span>
+            <div class="my-2">
+                <span class="text-lg font-semibold">該当アレルギー：</span>
                 @foreach ($recipe->allergies as $allergy)
-                <span>{{ $allergy->name }}</span>
+                <span class="text-md font-semibold border rounded-full px-2 py-1 mx-1 text-olive-500 bg-white">{{ $allergy->name }}</span>
                 @endforeach
             </div>
-            <div>
+            <div class="text-end">
                 @auth
                 <form action="{{ route($isLiked ? 'unlike' : 'like', ['recipe' => $recipe]) }}" method="post">
                     @csrf
                     <button class="like-btn">
-                        <img src="{{ asset($isLiked ? '/images/heart_logo_pink.png' : '/images/heart_logo.png') }}" alt="いいね" class="like-btn__img">
+                        <img src="{{ asset($isLiked ? '/images/heart_logo_pink.png' : '/images/heart_logo.png') }}" alt="いいね" class="w-8 object-cover">
                     </button>
                 </form>
                 @else
                 <a href="{{ route('login') }}" class="like-btn">
-                    <img src="{{ asset('/images/heart_logo.png') }}" alt="いいね" class="like-btn__img">
+                    <img src="{{ asset('/images/heart_logo.png') }}" alt="いいね" class="w-8 object-cover">
                 </a>
                 @endauth
-                <p class="like-count" data-testid="like-count">{{ $recipe->likes_count }}</p>
+                <p class="" data-testid="like-count">{{ $recipe->likes_count }}</p>
             </div>
+            @if (auth()->id() === $recipe->user->id)
+            <a class="block w-48 text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2  my-4 rounded-md font-semibold" href="{{ route('recipe.edit',['recipe_id' => $recipe->id]) }}">レシピを編集</a>
+            @endif
         </div>
-        @if (auth()->id() === $recipe->user->id)
-        <a href="{{ route('recipe.edit',['recipe_id' => $recipe->id]) }}">レシピを編集</a>
-        @endif
+    </div>
+    <div class="w-full md:flex m-4 px-6 gap-12">
+        <div class="my-6 md:w-1/4">
+            <h3 class="text-lg font-semibold">材料({{ $recipe->servings }})</h3>
+            @foreach ($recipe->ingredients as $ingredient)
+            <div class="flex justify-between my-1 py-1 border-b px-2.5">
+                <p>{{ $ingredient->name }}</p>
+                <p>{{ $ingredient->pivot->quantity }}</p>
+            </div>
+            @endforeach
+        </div>
+        <div class="my-6 w-full md:w-1/2">
+            <h3 class="text-lg font-semibold">作り方</h3>
+            @foreach($recipe->steps as $step)
+            <div class="flex m-2 py-1 border-b px-2.5">
+                <p>step{{ $step->step_number }}：</p>
+                <p class="step-content">{{ $step->content }}</p>
+            </div>
+            @endforeach
+        </div>
     </div>
     <div>
-        <div>
-            <h3>材料({{ $recipe->servings }})</h3>
-            @foreach ($recipe->ingredients as $ingredient)
-            <div>
-                <p>{{ $ingredient->name }}<span>{{ $ingredient->pivot->quantity }}</span></p>
-            </div>
-            @endforeach
-        </div>
-        <div>
-            <h3>作り方</h3>
-            @foreach($recipe->steps as $step)
-            <div class="step-row">
-                <p class="step-content"><span class="step-number">step{{ $step->step_number }}：</span>{{ $step->content }}</p>
-            </div>
-            @endforeach
-        </div>
-        <div>
-            <h3>コツ・ポイント</h3>
-            <p>{{ $recipe->tips }}</p>
-        </div>
-        <p>※使用する調味料や加工食品によっては、アレルゲンが含まれる可能性があります。必ず商品の表示をご確認ください。</p>
+        <h3 class="text-lg font-semibold">コツ・ポイント</h3>
+        <p>{{ $recipe->tips }}</p>
     </div>
+    <p class="text-sm text-orange-900 m-4">※使用する調味料や加工食品によっては、アレルゲンが含まれる可能性があります。必ず商品の表示をご確認ください。</p>
     <div>
         <div>
             <h3>コメント<span>({{ $recipe->comments_count }})</span></h3>

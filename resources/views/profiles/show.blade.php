@@ -7,14 +7,14 @@
 @section('content')
 <div class="bg-primary min-h-screen p-4 sm:p-6">
     <div>
-        <div class="md:flex gap-6 justify-center items-center">
+        <div class="flex gap-6 justify-center items-center">
             @if($user->profile?->profile_image)
-                <img class="w-64 h-64 rounded-4xl object-cover" src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
+                <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
             @else
-                <img class="w-sm rounded-4xl object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
+                <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
             @endif
             <div class=" my-4">
-                <p class="text-xl font-semibold">{{ $user->name }}</p>
+                <p class="text-2xl font-semibold">{{ $user->name }}</p>
                 @if($user->profile?->comment)
                 <p>{{ $user->profile->comment }}</p>
                 @endif
@@ -24,8 +24,8 @@
             </div>
         </div>
     </div>
-    <div class="mx-auto my-6">
-        <h2 class="text-md font-semibold">投稿レシピ</h2>
+    <div class="m-6">
+        <h2 class="text-2xl font-semibold">投稿レシピ</h2>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse($recipes as $recipe)
