@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <p>
+<div class="bg-primary min-h-screen p-4 sm:p-6 text-center">
+    <p class="my-6">
         登録していただいたメールアドレスに認証メールを送信しました。<br>
         メール認証を完了してください。
     </p>
-    <a href="http://localhost:8025" target="_blank">認証はこちらから</a>
-    <form method="post" action="{{ route('verification.send') }}">
+    <a class="border rounded-md bg-taupe-200 hover:shadow-md px-4 py-2" href="http://localhost:8025" target="_blank">認証はこちらから</a>
+    <form class="my-6" method="post" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit">認証メールを再送する</button>
+        <button class="text-blue-600 cursor-pointer hover:shadow-md" type="submit">認証メールを再送する</button>
     </form>
 </div>
 @endsection

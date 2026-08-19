@@ -5,33 +5,33 @@
 @endsection
 
 @section('content')
-<div>
+<div class="bg-primary min-h-screen p-4 sm:p-6">
     <div>
-        <div>
+        <div class="md:flex gap-6 justify-center items-center">
             @if($user->profile?->profile_image)
-                <img src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
+                <img class="w-64 h-64 rounded-4xl object-cover" src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
             @else
-                <img src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
+                <img class="w-sm rounded-4xl object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
             @endif
-            <div>
-                <p>{{ $user->name }}</p>
+            <div class=" my-4">
+                <p class="text-xl font-semibold">{{ $user->name }}</p>
                 @if($user->profile?->comment)
                 <p>{{ $user->profile->comment }}</p>
                 @endif
+                @if (auth()->id() === $user->id)
+                <a class="block w-48 text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2  my-4 rounded-md font-semibold" href="{{ route('profile.edit')}}">プロフィールを編集</a>
+                @endif
             </div>
         </div>
-        @if (auth()->id() === $user->id)
-        <a href="{{ route('profile.edit')}}">プロフィールを編集</a>
-        @endif
     </div>
-    <div>
-        <h2>投稿レシピ</h2>
+    <div class="mx-auto my-6">
+        <h2 class="text-md font-semibold">投稿レシピ</h2>
     </div>
-    <div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse($recipes as $recipe)
-        <a href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
-            <div><img src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
-            <p>{{ $recipe->name }}</p>
+        <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
+            <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
+            <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
         </a>
         @empty
         <p>No recipe</p>

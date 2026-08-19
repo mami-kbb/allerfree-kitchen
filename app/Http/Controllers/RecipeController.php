@@ -22,7 +22,7 @@ class RecipeController extends Controller
         $keyword = $request->get('keyword');
         $selectedAllergies = collect();
         $selectedCategories = collect();
-        $allergies = Allergy::all();
+        $allergies = Allergy::where('is_selectable', true)->get();
         $allergyCategories = AllergyCategory::all();
 
         if ($request->has('allergy_recipe')) {

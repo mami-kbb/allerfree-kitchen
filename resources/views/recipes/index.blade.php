@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="bg-primary min-h-screen p-4 sm:p-6 ">
+<div class="bg-primary min-h-screen p-4 sm:p-6">
     <div>
         <h2 class="text-2xl font-bold text-accent">{{ $message }}</h2>
         @if ($selectedAllergies->count())
