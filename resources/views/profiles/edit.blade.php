@@ -12,13 +12,13 @@
             @csrf
             <div class="md:flex gap-6">
                 <div class="md:w-1/3">
-                    <div class="flex items-center gap-4 md:flex-col md:justify-center" id="list">
+                    <div class="flex justify-center items-center gap-6 md:flex-col md:justify-center md:items-center mb-10" id="list">
                         @if ($profile?->profile_image)
                         <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('storage/'. $profile->profile_image) }}" alt="ユーザーアイコン">
                         @else
                         <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
                         @endif
-                        <label class="block w-48 text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 ml-auto my-4 rounded-md font-semibold cursor-pointer" for="image">画像を選択する</label>
+                        <label class="block w-48 text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">画像を選択する</label>
                         <input type="file" id="image" name="profile_image" accept="image/png, image/jpeg" hidden>
                         @error('profile_image')
                         <p>{{ $message }}</p>
@@ -41,17 +41,21 @@
                             @endphp
                             <div class="flex flex-wrap gap-2 mt-2">
                                 @foreach($allergies as $allergy)
-                                <input class="peer sr-only allergy-checkbox" type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" name="allergy_user[]" {{ in_array($allergy->id, $selectedAllergies) ? 'checked' : '' }} >
-                                <label class="border border-gray-300 bg-white rounded-full px-3 py-1 text-sm cursor-pointer peer-checked:bg-taupe-300" for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
+                                <div class="mb-1">
+                                    <input class="peer sr-only allergy-checkbox" type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" name="allergy_user[]" {{ in_array($allergy->id, $selectedAllergies) ? 'checked' : '' }} >
+                                    <label class="border border-gray-300 bg-white rounded-full px-3 py-1 text-sm cursor-pointer peer-checked:bg-taupe-300" for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <label class="font-semibold md:text-lg" for="comment">自己PR：</label>
-                    <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y" name="comment" id="comment">{{ old('comment', $profile->comment ?? '') }}</textarea>
-                    @error('comment')
-                    <p class="text-error">{{ $message }}</p>
-                    @enderror
+                    <div>
+                        <label class="font-semibold md:text-lg" for="comment">自己PR：</label>
+                        <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y" name="comment" id="comment">{{ old('comment', $profile->comment ?? '') }}</textarea>
+                        @error('comment')
+                        <p class="text-error">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="text-center">

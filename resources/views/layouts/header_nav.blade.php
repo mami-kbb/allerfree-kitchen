@@ -34,7 +34,7 @@
                     <div class="flex flex-wrap gap-2">
                         @foreach($allergies as $allergy)
                         <div>
-                            <input class="peer sr-only allergy-checkbox" type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" {{ in_array($allergy->id, $excludeAllergies) ? 'checked' : '' }} name="allergy_recipe[]" data-name="{{ $allergy->name }}" class="allergy-checkbox">
+                            <input class="peer sr-only allergy-checkbox" type="checkbox" id="allergy_{{ $allergy->id }}" value="{{ $allergy->id }}" {{ in_array($allergy->id, $excludeAllergies) ? 'checked' : '' }} name="allergy_recipe[]" data-name="{{ $allergy->name }}">
                             <label class="block border border-gray-300 bg-white rounded-full px-3 py-1 text-sm cursor-pointer peer-checked:bg-taupe-300" for="allergy_{{ $allergy->id }}">{{ $allergy->name }}</label>
                         </div>
                         @endforeach

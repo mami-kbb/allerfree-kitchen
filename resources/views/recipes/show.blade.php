@@ -59,7 +59,7 @@
         </div>
         <div class="w-full md:w-3/4 md:flex mx-auto md:my-8 px-6 gap-12">
             <div class="my-6 md:w-1/3">
-                <h3 class="text-lg font-semibold">材料({{ $recipe->servings }})</h3>
+                <p class="text-lg font-semibold">材料({{ $recipe->servings }})</p>
                 @foreach ($recipe->ingredients as $ingredient)
                 <div class="flex justify-between my-1 py-1 border-b border-dashed px-2.5">
                     <p>{{ $ingredient->name }}</p>
@@ -68,7 +68,7 @@
                 @endforeach
             </div>
             <div class="my-6 md:flex-1">
-                <h3 class="text-lg font-semibold">作り方</h3>
+                <p class="text-lg font-semibold">作り方</p>
                 @foreach($recipe->steps as $step)
                 <div class="flex gap-2 m-2 py-1 border-b border-dashed px-2.5">
                     <p class="shrink-0">step{{ $step->step_number }}：</p>
@@ -78,13 +78,13 @@
             </div>
         </div>
         <div class="w-full bg-taupe-100 rounded-2xl md:w-3/4 px-4 py-3">
-            <h3 class="text-lg font-semibold">コツ・ポイント</h3>
+            <p class="text-lg font-semibold">コツ・ポイント</h>
             <p>{{ $recipe->tips }}</p>
         </div>
         <p class="text-sm text-orange-900 m-4">※使用する調味料や加工食品によっては、アレルゲンが含まれる可能性があります。必ず商品の表示をご確認ください。</p>
         <div class="w-full md:w-3/4 border border-accent/20 rounded-2xl bg-white px-6 py-4 my-4">
             <div>
-                <h3 class="text-lg font-bold">コメント<span>({{ $recipe->comments_count }})</span></h3>
+                <p class="text-lg font-bold">コメント<span>({{ $recipe->comments_count }})</span></p>
                 @foreach ($recipe->comments as $comment)
                 <div class="my-3 border-b border-dotted py-2">
                     <div class="flex items-center gap-2">
@@ -102,7 +102,7 @@
                 @endforeach
             </div>
             <div class="my-4">
-                <h3 class="font-bold">コメントを投稿</h3>
+                <p class="font-bold">コメントを投稿</p>
                 <form action="{{ route('comment', ['recipe'=> $recipe]) }}" method="post">
                     @csrf
                     <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y" name="comment" id="comment">{{ old('comment') }}</textarea>
