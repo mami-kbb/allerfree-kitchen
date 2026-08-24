@@ -22,15 +22,15 @@
         </div>
         <div class="container mx-auto p-4">
             @if ($tab === 'mylist' && auth()->guest())
-                <p>
-                    <a href="{{ route('login') }}">ログイン</a>するとお気に入りを管理できます
+                <p class="text-lg ml-4">
+                    <a class="hover:font-bold text-gray-600 hover:text-gray-900" href="{{ route('login') }}">ログイン</a>するとお気に入りを管理できます
                 </p>
             @else
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @forelse ($recipes as $recipe)
                     <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
                         <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
-                        <p class="font-bold my-2">{{ $recipe->name }}</p>
+                        <p class="font-bold text-center m-2">{{ $recipe->name }}</p>
                     </a>
                     @empty
                     <p>{{ $tab === 'mylist' ? 'お気に入りのレシピはありません。' : '該当するレシピが見つかりませんでした。' }}</p>
