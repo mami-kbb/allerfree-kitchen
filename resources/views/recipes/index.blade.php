@@ -26,19 +26,21 @@
                     <a class="hover:font-bold text-gray-600 hover:text-gray-900" href="{{ route('login') }}">ログイン</a>するとお気に入りを管理できます
                 </p>
             @else
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    @forelse ($recipes as $recipe)
-                    <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
-                        <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
-                        <p class="font-bold text-center m-2">{{ $recipe->name }}</p>
-                    </a>
-                    @empty
-                    <p>{{ $tab === 'mylist' ? 'お気に入りのレシピはありません。' : '該当するレシピが見つかりませんでした。' }}</p>
-                    @endforelse
-                </div>
-                <div>
-                    {{ $recipes->appends(request()->query())->links('pagination::bootstrap-4') }}
-                </div>
+                @if ($recipes->isEmpty())
+                    <p class="text-lg ml-4">{{ $tab === 'mylist' ? 'お気に入りのレシピはありません。' : '該当するレシピが見つかりませんでした。' }}</p>
+                @else
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        @foreach ($recipes as $recipe)
+                        <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
+                            <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
+                            <p class="font-bold text-center m-2">{{ $recipe->name }}</p>
+                        </a>
+                        @endforeach
+                    </div>
+                    <div>
+                        {{ $recipes->appends(request()->query())->links('pagination::bootstrap-4') }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>

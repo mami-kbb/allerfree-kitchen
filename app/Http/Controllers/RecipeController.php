@@ -93,8 +93,9 @@ class RecipeController extends Controller
 
     public function create() {
         $allergies = Allergy::all();
+        $ingredients =Ingredient::select('name', 'reading')->get();
 
-        return view('recipes.create', compact('allergies'));
+        return view('recipes.create', compact('allergies', 'ingredients'));
     }
 
     public function store(RecipeStoreRequest $request) {
@@ -170,8 +171,9 @@ class RecipeController extends Controller
 
         $allergies = Allergy::all();
         $selectedAllergies = $recipe->allergyIds();
+        $ingredients = Ingredient::select('name', 'reading')->get();
 
-        return view('recipes.edit', compact('recipe', 'allergies', 'selectedAllergies'));
+        return view('recipes.edit', compact('recipe', 'allergies', 'selectedAllergies', 'ingredients'));
     }
 
     public function update(RecipeUpdateRequest $request, $recipe_id) {

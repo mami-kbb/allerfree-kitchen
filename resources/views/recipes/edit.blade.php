@@ -66,13 +66,21 @@
                                 <label class="font-semibold text-lg">材料</label>
                                 <div id="ingredient-list">
                                     @foreach($recipe->ingredients as $i => $ingredient)
-                                    <div class="flex gap-2 mb-2">
-                                        <input class="border rounded-md  py-1 px-2 flex-1 @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" type="text" name="ingredients[]" placeholder="材料名" value="{{ old('ingredients.'.$i, $ingredient->name) }}">
+                                    <div class="flex gap-2 mb-2 ingredient-item">
+                                        <div class="relative flex-1">
+                                            <input class="border rounded-md  py-1 px-2 w-full ingredient-input @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" type="text" name="ingredients[]" placeholder="材料名" value="{{ old('ingredients.'.$i, $ingredient->name) }}" autocomplete="off">
+                                            <ul class="ingredient-suggestions absolute z-10 bg-white border rounded-md w-full mt-1 max-h-48 overflow-y-auto hidden shadow-md"></ul>
+                                        </div>
+                                        
                                         <input class="w-1/3 border rounded-md  py-1 px-2 @if($errors->has('ingredients') || $errors->has('quantities.'.$i)) border-error @endif" type="text" name="quantities[]" placeholder="分量" value="{{ old('quantities.'.$i, $ingredient->pivot->quantity) }}">
                                     </div>
                                     @endforeach
-                                    <div class="flex gap-2 mb-2">
-                                        <input class="flex-1 border rounded-md  py-1 px-2 @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" type="text" name="ingredients[]" placeholder="材料名">
+                                    <div class="flex gap-2 mb-2 ingredient-item">
+                                        <div class="relative flex-1">
+                                            <input class="w-full border rounded-md  py-1 px-2 ingredient-input @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" type="text" name="ingredients[]" placeholder="材料名" autocomplete="off">
+                                            <ul class="ingredient-suggestions absolute z-10 bg-white border rounded-md w-full mt-1 max-h-48 overflow-y-auto hidden shadow-md"></ul>
+                                        </div>
+
                                         <input class="w-1/3 border rounded-md  py-1 px-2 @if($errors->has('ingredients') || $errors->has('quantities.'.$i)) border-error @endif" type="text" name="quantities[]" placeholder="分量">
                                     </div>
                                 </div>
@@ -152,13 +160,67 @@
     document.getElementById('add-ingredient').addEventListener('click', function() {
         const container = document.getElementById('ingredient-list');
         const newItem = document.createElement('div');
-        newItem.className = 'flex gap-2 mb-2';
+        newItem.className = 'flex gap-2 mb-2 ingredient-item';
         newItem.innerHTML = `
-            <input type="text" name="ingredients[]" class="flex-1 border rounded-md py-1 px-2 @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" placeholder="材料名">
+            <div class="relative flex-1">
+                <input type="text" name="ingredients[]" class="border rounded-md py-1 px-2 w-full ingredient-input @if($errors->has('ingredients') || $errors->has('ingredients.'.$i)) border-error @endif" placeholder="材料名" autocomplete="off">
+                <ul class="ingredient-suggestions absolute z-10 bg-white border rounded-md w-full mt-1 max-h-48 overflow-auto hidden shadow-md"></ul>
+            </div>
             <input type="text" name="quantities[]" class="w-1/3 border rounded-md py-1 px-2 @if($errors->has('ingredients') || $errors->has('quantities.'.$i)) border-error @endif" placeholder="分量">
         `;
         container.appendChild(newItem);
     });
+
+    const ingredientCandidates = @json($ingredients);
+
+    function setupIngredientAutocomplete(container) {
+        container.addEventListener('input', function (e) {
+            if (!e.target.classList.contains('ingredient-input')) return;
+            showSuggestions(e.target);
+        });
+
+        container.addEventListener('focus', function (e) {
+            if (!e.target.classList.contains('ingredient-input')) return;
+            showSuggestions(e.target);
+        }, true);
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('ingredient-input')) {
+                document.querySelectorAll('.ingredient-suggestions').forEach(ul => ul.classList.add('hidden'));
+            }
+        });
+    }
+
+    function showSuggestions(input) {
+        const keyword = input.value.trim();
+        const ul = input.parentElement.querySelector('.ingredient-suggestions');
+        ul.innerHTML = '';
+
+        const matches = keyword === ''
+            ? ingredientCandidates
+            : ingredientCandidates.filter(item => item.name.includes(keyword) || (item.reading && item.reading.includes(keyword)));
+
+        if (matches.length === 0) {
+            ul.classList.add('hidden');
+            return;
+        }
+
+        matches.slice(0, 10).forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.name;
+            li.className = 'px-2 py-1 hover:bg-taupe-200 cursor-pointer';
+            li.addEventListener('mousedown', function (e) {
+                e.preventDefault();
+                input.value = item.name;
+                ul.classList.add('hidden');
+            });
+
+            ul.appendChild(li);
+        });
+
+        ul.classList.remove('hidden');
+    }
+    setupIngredientAutocomplete(document.getElementById('ingredient-list'));
 
     document.getElementById('add-step').addEventListener('click', function() {
         const container = document.getElementById('step-list');

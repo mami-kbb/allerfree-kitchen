@@ -12,6 +12,7 @@ class Ingredient extends Model
 
     protected $fillable = [
         'name',
+        'reading',
         'category',
     ];
 
