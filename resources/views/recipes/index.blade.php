@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="bg-primary min-h-screen md:pb-8">
-    <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:py-6 md:px-10">
+    <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
         <div>
             <h2 class="text-2xl font-bold text-accent">{{ $message }}</h2>
             @if ($selectedAllergies->count())
@@ -31,14 +31,14 @@
                 @else
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach ($recipes as $recipe)
-                        <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
-                            <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
-                            <p class="font-bold text-center m-2">{{ $recipe->name }}</p>
-                        </a>
+                            <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
+                                <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
+                                <p class="font-bold text-center m-2">{{ $recipe->name }}</p>
+                            </a>
                         @endforeach
                     </div>
-                    <div>
-                        {{ $recipes->appends(request()->query())->links('pagination::bootstrap-4') }}
+                    <div class="mt-8">
+                        {{ $recipes->appends(request()->query())->links('pagination::custom') }}
                     </div>
                 @endif
             @endif

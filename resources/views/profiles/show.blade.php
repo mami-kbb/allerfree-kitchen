@@ -28,19 +28,21 @@
         <div class="m-6 border-b px-4 py-2">
             <h2 class="text-2xl font-semibold">投稿レシピ</h2>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @forelse($recipes as $recipe)
-            <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
-                <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
-                <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
-            </a>
-            @empty
-            <p>No recipe</p>
-            @endforelse
-            <div>
-                {{ $recipes->appends(request()->query())->links('pagination::bootstrap-4') }}
+        @if ($recipes->isEmpty())
+            <p class="text-lg ml-4">No recipe</p>
+        @else
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach($recipes as $recipe)
+                    <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
+                        <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
+                        <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
+                    </a>
+                @endforeach
             </div>
-        </div>
+            <div class="mt-8">
+                {{ $recipes->appends(request()->query())->links('pagination::custom') }}
+            </div>
+        @endif
     </div>
 </div>
 @endsection

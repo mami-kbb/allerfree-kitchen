@@ -8,10 +8,10 @@
 <div class="bg-primary min-h-screen md:pb-8">
     <div class="rounded-2xl bg-white md:mx-6 p-4 md:py-6 md:px-10 flex flex-col items-center">
         <div class="md:flex gap-10 w-full max-w-6xl">
-            <div>
+            <div class="md:w-1/2">
                 <img class="w-full md:w-xl rounded-2xl object-cover" src="{{ asset('storage/'.$recipe->image) }}" alt="{{ $recipe->name }}">
             </div>
-            <div class="mx-2 px-4">
+            <div class="md:flex-1 mx-2 px-4">
                 <h2 class="text-center text-2xl font-bold text-accent m-4">{{ $recipe->name }}</h2>
                 <div class="flex justify-end items-center m-4">
                     <p>投稿者：</p>
@@ -85,21 +85,28 @@
         <div class="w-full md:w-3/4 border border-accent/20 rounded-2xl bg-white px-6 py-4 my-4">
             <div>
                 <p class="text-lg font-bold">コメント<span>({{ $recipe->comments_count }})</span></p>
-                @foreach ($recipe->comments as $comment)
-                <div class="my-3 border-b border-dotted py-2">
-                    <div class="flex items-center gap-2">
-                        <div>
-                            @if ($comment->user->profile?->profile_image)
-                            <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="コメントユーザーアイコン">
-                            @else
-                            <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="コメントユーザーアイコン">
-                            @endif
+                <div id="comment-list">
+                    @foreach ($recipe->comments as $index => $comment)
+                        <div class="my-3 border-b border-dotted py-2 comment-item {{ $index >= 3 ? 'hidden' :'' }}" data-index="{{ $index }}">
+                            <div class="flex items-center gap-2">
+                                <div>
+                                    @if ($comment->user->profile?->profile_image)
+                                        <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="コメントユーザーアイコン">
+                                    @else
+                                        <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="コメントユーザーアイコン">
+                                    @endif
+                                </div>
+                                <p>{{ $comment->user->name }}</p>
+                            </div>
+                            <p class="mt-2">{{ $comment->comment }}</p>
                         </div>
-                        <p>{{ $comment->user->name }}</p>
-                    </div>
-                    <p class="mt-2">{{ $comment->comment }}</p>
+                    @endforeach
                 </div>
-                @endforeach
+                @if ($recipe->comments_count > 3)
+                    <button type="button" id="show-more-comments" class="block mx-auto mt-4bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 rounded-md cursor-pointer">
+                    さらに表示
+                    </button>
+                @endif
             </div>
             <div class="my-4">
                 <p class="font-bold">コメントを投稿</p>
@@ -117,4 +124,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    const showMoreBtn = document.getElementById('show-more-comments');
+
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function () {
+            // 現在非表示になっているコメントを取得
+            const hiddenComments = document.querySelectorAll('#comment-list .comment-item.hidden');
+
+            // 先頭から3件だけ表示する
+            hiddenComments.forEach((comment, i) => {
+                if (i < 3) {
+                    comment.classList.remove('hidden');
+                }
+            });
+
+            // 全部表示し終わったらボタン自体を消す
+            const remaining = document.querySelectorAll('#comment-list .comment-item.hidden');
+            if (remaining.length === 0) {
+                showMoreBtn.remove();
+            }
+        });
+    }
+</script>
 @endsection

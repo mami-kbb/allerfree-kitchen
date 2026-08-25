@@ -16,7 +16,7 @@
                             <p class="text-left" id="selectedAllergyCategory">
                                 除外アレルギーカテゴリー：{{ $selectedCategories->implode(', ') ? : '未選択' }}
                             </p>
-                            <button class="bg-white hover:shadow-md border border-accent text-accent px-2 m-2 rounded-md font-semibold" type="button" id="openModal"> 詳細条件</button>
+                            <button class="bg-white hover:shadow-md border border-accent text-accent px-2 m-2 rounded-md font-semibold" type="button" id="openModal"> アレルギー設定</button>
                         </div>
                         <div class="m-2">
                             <p class="text-xs text-orange-900">※本サービスはレシピに登録された食材情報をもとに検索しています。<br>加工食品や調味料の原材料までは判定対象外です。</p>
