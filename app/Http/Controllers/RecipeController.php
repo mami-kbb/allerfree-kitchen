@@ -18,8 +18,11 @@ class RecipeController extends Controller
     public function index(Request $request) {
         /** @var \App\Models\User $user */
         $user = auth()->user();
-        $tab = $request->get('tab', 'recommend');
-        $keyword = $request->get('keyword');
+        $tab = $request->input('tab', 'recommend');
+        $keyword = $request->input('keyword');
+        $excludeIngredients = $request->input('exclude_ingredients');
+        $excludeIngredientsDisplay = $excludeIngredients
+        ? preg_replace('/\s+/', '，', trim($excludeIngredients)) : null;
         $selectedAllergies = collect();
         $selectedCategories = collect();
         $allergies = Allergy::where('is_selectable', true)->get();
@@ -53,23 +56,26 @@ class RecipeController extends Controller
 
         if ($tab === 'mylist' && auth()->check()) {
             $recipes = $user->likedRecipes()
+                ->approved()
                 ->orderBy('likes.created_at', 'desc')
-                ->search($keyword, $excludeAllergies, $excludeCategories)
+                ->search($keyword, $excludeIngredients, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         } elseif ($tab === 'mylist') {
             $recipes = collect();
         } else {
             $recipes = Recipe::query()
+                ->approved()
                 ->latest()
-                ->search($keyword, $excludeAllergies, $excludeCategories)
+                ->search($keyword, $excludeIngredients, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         }
 
-        return view('recipes.index', compact('recipes','tab', 'keyword', 'message', 'selectedAllergies', 'selectedCategories', 'excludeAllergies', 'excludeCategories', 'allergies', 'allergyCategories'));
+        return view('recipes.index', compact('recipes','tab', 'keyword', 'excludeIngredientsDisplay', 'message', 'selectedAllergies', 'selectedCategories', 'excludeAllergies', 'excludeCategories', 'allergies', 'allergyCategories'));
     }
 
     public function show($recipe_id) {
-        $recipe = Recipe::with([
+        $recipe = Recipe::approved()
+        ->with([
             'user.profile',
             'allergies',
             'ingredients',
@@ -269,6 +275,6 @@ class RecipeController extends Controller
 
         return redirect()->route('profile', [
             'user_id' => Auth::user()->id,
-        ]);
+        ])->with('delete', 'レシピを削除しました');
     }
 }

@@ -10,6 +10,10 @@
 
                     <div class="absolute left-0 top-full w-64 md:w-78 bg-white border border-gray-200 text-sm z-10" id="allergyDropdown" style="display: none;">
                         <div class="m-2">
+                            <label class="block text-left font-bold text-sm my-2" for="excludeIngredientInput">除外する食材</label>
+                            <input class="bg-white w-full border rounded-md p-2 text-sm" type="text" id="excludeIngredientInput" name="exclude_ingredients" value="{{ request('exclude_ingredients') }}" placeholder="例：卵, 牛乳" autocomplete="off">
+                        </div>
+                        <div class="m-2">
                             <p class="text-left my-2" id="selectedAllergy">
                                 除外アレルギー：{{ $selectedAllergies->implode(', ') ? : '未選択' }}
                             </p>

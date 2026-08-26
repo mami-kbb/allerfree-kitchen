@@ -7,6 +7,11 @@
 @section('content')
 <div class="bg-primary min-h-screen md:pb-6">
     <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:py-6 md:px-10">
+        @if (session('delete'))
+        <div class="font-bold text-accent">
+            {{ session('delete') }}
+        </div>
+        @endif
         <div>
             <div class="flex gap-6 justify-center items-center">
                 @if($user->profile?->profile_image)

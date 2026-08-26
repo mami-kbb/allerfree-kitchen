@@ -17,6 +17,7 @@ class ProfileController extends Controller
         ->findOrFail($user_id);
 
         $recipes = $user->recipes()
+        ->approved()
         ->latest()
         ->paginate(12);
 

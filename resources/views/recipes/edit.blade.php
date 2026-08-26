@@ -13,7 +13,7 @@
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col items-center gap-4" id="list">
-                    <img class="w-full md:w-xl rounded-2xl object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="レシピ画像">
+                    <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="レシピ画像">
                     <label class="block text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">レシピ画像を選択する</label>
                     <input type="file" id="image" name="image" accept="image/png, image/jpeg" hidden>
                     @error('image')

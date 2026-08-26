@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Override;
 
 class Recipe extends Model
 {
@@ -20,6 +22,16 @@ class Recipe extends Model
         'approval_at',
         'rejection_reason',
     ];
+
+    #[Override]
+    protected static function booted()
+    {
+        static::deleting(function (Recipe $recipe) {
+            if ($recipe->image && Storage::disk('public')->exists($recipe->image)) {
+                Storage::disk('public')->delete($recipe->image);
+            }
+        });
+    }
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -48,7 +60,11 @@ class Recipe extends Model
     }
 
     public function comments() {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+    }
+
+    public function scopeApproved($query) {
+        return $query->where('status', 1);
     }
 
     public function scopeKeywordSearch($query, $keyword) {
@@ -66,6 +82,22 @@ class Recipe extends Model
                 ->orWhereHas('ingredients', function ($q) use ($word) {
                     $q->where('ingredients.name', 'like', "%{$word}%");
                 });
+            });
+        }
+
+        return $query;
+    }
+
+    public function scopeExcludeIngredients($query, $excludeIngredients) {
+        if (empty($excludeIngredients)) {
+            return $query;
+        }
+
+        $words = preg_split('/\s+/', trim($excludeIngredients));
+
+        foreach ($words as $word) {
+            $query->whereDoesntHave('ingredients', function ($q) use ($word) {
+                $q->where('ingredients.name', 'like', "%{$word}%");
             });
         }
 
@@ -93,10 +125,11 @@ class Recipe extends Model
         return $query;
     }
 
-    public function scopeSearch($query, $keyword, $excludeAllergies, $excludeCategories)
+    public function scopeSearch($query, $keyword, $excludeIngredients, $excludeAllergies, $excludeCategories)
     {
         return $query
         ->keywordSearch($keyword)
+        ->excludeIngredients($excludeIngredients)
         ->excludeAllergies($excludeAllergies)
         ->excludeCategories($excludeCategories);
     }

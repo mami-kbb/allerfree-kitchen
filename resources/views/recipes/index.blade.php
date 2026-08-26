@@ -9,6 +9,9 @@
     <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
         <div>
             <h2 class="text-2xl font-bold text-accent">{{ $message }}</h2>
+            @if ($excludeIngredientsDisplay)
+            <p class="text-secondary">除外食材：<span>{{ $excludeIngredientsDisplay }}</span></p>
+            @endif
             @if ($selectedAllergies->count())
             <p class="text-secondary">除外アレルギー：<span class="font-bold text-secondary">{{ $selectedAllergies->implode('，') }}</span></p>
             @endif

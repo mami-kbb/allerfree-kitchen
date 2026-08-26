@@ -12,7 +12,7 @@
             <form class="flex flex-col items-center gap-4 w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.store') }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="flex flex-col items-center">
-                    <div class="border h-86 w-xl rounded-2xl @error('image') border-error @enderror overflow-hidden" id="list"></div>
+                    <div class="border h-102 w-xl rounded-2xl @error('image') border-error @enderror overflow-hidden" id="list"></div>
                     <label class="text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">レシピ画像を選択する</label>
                     <input type="file" id="image" name="image" accept="image/png, image/jpeg" hidden>
                     @error('image')
