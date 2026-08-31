@@ -68,7 +68,10 @@ class RecipeShowTest extends TestCase
         $milk = Allergy::where('name', '乳成分')->first();
         $gluten = Allergy::where('name', '小麦')->first();
 
-        $recipe->allergies()->attach($egg->id);$recipe->allergies()->attach($milk->id);
+        $recipe->allergies()->attach([
+            $egg->id,
+            $milk->id,
+            ]);
 
         $response = $this->get(route('recipe.show', ['recipe_id' => $recipe->id]));
 
