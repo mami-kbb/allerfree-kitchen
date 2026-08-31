@@ -98,7 +98,7 @@ class RecipeCrudTest extends TestCase
             ]);
 
         $egg = Allergy::where('name', '卵')->first();
-        $milk = Allergy::where('name', '乳成分');
+        $milk = Allergy::where('name', '乳成分')->first();
         $potato = Ingredient::where('name', 'じゃがいも')->first();
 
         $recipe->allergies()->attach($egg->id);
@@ -149,18 +149,19 @@ class RecipeCrudTest extends TestCase
             'status' => 1,
             ]);
 
-        $response = $this->actingAs($user)->post(
-            route('recipe.delete', ['recipe_id' => $recipe->id])
-            );
+        $response = $this->actingAs($user)->delete(route('recipe.delete', ['recipe_id' => $recipe->id]));
+
 
         $response->assertRedirectToRoute('profile', [
             'user_id' => $user->id,
             ]);
+
         $response->assertSessionHas(
-            'delete','レシピを削除しました'
+            'delete',
+            'レシピを削除しました'
             );
         $this->assertDatabaseMissing('recipes', [
-            'recipe_id' => $recipe->id,
+            'id' => $recipe->id,
         ]);
     }
 }
