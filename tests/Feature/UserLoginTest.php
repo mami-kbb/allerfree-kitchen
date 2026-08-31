@@ -28,14 +28,14 @@ class UserLoginTest extends TestCase
 
     public function test_login_validate_email(): void
     {
-        $response = $this->post('/login', $this->validLoginParams(['email' =>""]));
+        $response = $this->post(route('login'), $this->validLoginParams(['email' =>""]));
 
         $response->assertSessionHasErrors(['email' => 'メールアドレスを入力してください']);
     }
 
     public function test_login_validate_password(): void
     {
-        $response = $this->post('login', $this->validLoginParams(['password' => ""]));
+        $response = $this->post(route('login'), $this->validLoginParams(['password' => ""]));
 
         $response->assertSessionHasErrors(['password' => 'パスワードを入力してください']);
     }
@@ -44,7 +44,7 @@ class UserLoginTest extends TestCase
     {
         $this->createTestUser();
 
-        $response = $this->post('login', $this->validLoginParams(['email' => "test@test.com"]));
+        $response = $this->post(route('login'), $this->validLoginParams(['email' => "test@test.com"]));
 
         $response->assertSessionHasErrors(['email' => 'ログイン情報が登録されていません。']);
     }
@@ -53,7 +53,7 @@ class UserLoginTest extends TestCase
     {
         $user = $this->createTestUser();
 
-        $response = $this->post('/login', $this->validLoginParams());
+        $response = $this->post(route('login'), $this->validLoginParams());
 
         $response->assertRedirect('/');
         $this->assertAuthenticatedAs($user);
