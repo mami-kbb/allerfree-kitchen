@@ -68,38 +68,38 @@
 
 1. リポジトリをクローン
 
-\`\`\`bash
+```bash
 git clone git@github.com:mami-kbb/allerfree-kitchen.git
 cd allerfree-kitchen
-\`\`\`
+```
 
 2. 環境変数ファイルを準備
 
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 
 3. Sailのエイリアスを設定（未設定の場合）
 
 - Zshの場合
-\`\`\`bash
+```bash
 echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.zshrc
 exec $SHELL
-\`\`\`
+```
 
 - Bashの場合
-\`\`\`bash
+```bash
 echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashrc
 exec $SHELL
-\`\`\`
+```
 
 4. Docker Desktopを起動しておく
 
 5. プロジェクト直下で、以下のコマンドを実行
 
-\`\`\`bash
+```bash
 make init
-\`\`\`
+```
 make initは以下を自動で実行します。
 
 ```
@@ -122,9 +122,9 @@ init:
 
 ### 7. フロントエンドの開発サーバーを起動
 画面の表示を確認する場合は、別ターミナルで以下を実行する。
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 ## テストアカウント
 | name | email | password | 備考 |
@@ -141,10 +141,10 @@ Featureテストでは以下を検証しています。
 - お気に入り登録・解除
 
 全テストを実行する場合
-\`\`\`bash
+```bash
 sail artisan test
-\`\`\`
+```
 特定のテストのみ実行する場合
-\`\`\`bash
+```bash
 sail artisan test --filter=SearchRecipesTest
-\`\`\`
+```
