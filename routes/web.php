@@ -44,7 +44,13 @@ Route::get('/run-seed-xyz9f3', function () {
         abort(403, 'Forbidden');
     }
 
-    Artisan::call('db:seed', ['--force' => true]);
-
-    return 'Seeding done: ' . Artisan::output();
+    try {
+        Artisan::call('db:seed', ['--force' => true]);
+        return 'Seeding done: ' . Artisan::output();
+    } catch (\Throwable $e) {
+        return response(
+            'Error: ' . $e->getMessage() . "\n\n" . $e->getTraceAsString(),
+            500
+        );
+    }
 });
