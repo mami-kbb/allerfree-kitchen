@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         if (DB::table('users')->exists()) {
             return;
         }
+
         User::create([
             'name' => 'admin',
             'email' => 'admin@example.com',
