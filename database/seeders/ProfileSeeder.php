@@ -17,12 +17,14 @@ class ProfileSeeder extends Seeder
             return;
         }
 
-        //今後userが増える可能性を考慮してループ処理
-        foreach ([2, 3] as $userId) {
-            Profile::create([
-                'user_id' => $userId,
-                'comment' => fake()->text(100),
-            ]);
-        }
+        Profile::create([
+            'user_id' => 2,
+            'comment' => '卵と乳成分のアレルギーの子を持つ母です。',
+        ]);
+
+        Profile::create([
+            'user_id' => 3,
+            'comment' => '趣味は料理です。いろいろなアレルギーに対応したレシピを投稿していきます。',
+        ]);
     }
 }
