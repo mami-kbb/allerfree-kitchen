@@ -14,6 +14,10 @@ class AllergyCategoryIngredientSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('allergy_category_ingredient')->exists()) {
+            return;
+        }
+
         $data = require database_path('data/allergy_category_ingredients.php');
 
         //dataで受け取った名前の値からidに変換する。

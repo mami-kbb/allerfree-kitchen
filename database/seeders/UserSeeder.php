@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('users')->exists()) {
+            return;
+        }
         User::create([
             'name' => 'admin',
             'email' => 'admin@example.com',

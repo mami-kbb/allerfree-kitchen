@@ -13,6 +13,10 @@ class StepSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('steps')->exists()) {
+            return;
+        }
+
         $steps = require database_path('data/steps.php');
         $recipeIds = Recipe::pluck('id', 'name');
         $now = now();

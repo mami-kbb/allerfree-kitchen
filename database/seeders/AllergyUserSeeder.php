@@ -13,6 +13,10 @@ class AllergyUserSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('allergy_user')->exists()) {
+            return;
+        }
+
         $data = [
             [
                 'user_id' => 2,

@@ -14,6 +14,10 @@ class AllergyRecipeSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('allergy_recipe')->exists()) {
+            return;
+        }
+
         $data = require database_path('data/allergy_recipe.php');
         $recipeIds = Recipe::pluck('id','name');
         $allergyIds = Allergy::pluck('id', 'name');

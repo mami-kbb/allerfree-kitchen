@@ -12,6 +12,10 @@ class AllergyCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('allergy_categories')->exists()) {
+            return;
+        }
+
         $allergyCategories = require database_path('data/allergy_categories.php');
         $now = now();
 

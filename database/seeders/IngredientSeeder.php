@@ -12,6 +12,10 @@ class IngredientSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('ingredients')->exists()) {
+            return;
+        }
+
         //データを別けて管理することで、seederの登録の役割が明確になる。
         $ingredients = require database_path('data/ingredients.php');
         $now = now(); //同じ時間になるので最初に取得

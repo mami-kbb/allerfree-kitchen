@@ -14,6 +14,10 @@ class IngredientRecipeSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('ingredient_recipe')->exists()) {
+            return;
+        }
+
         $data = require database_path('data/ingredient_recipe.php');
         $recipeIds = Recipe::pluck('id', 'name');
         $ingredientIds = Ingredient::pluck('id', 'name');
