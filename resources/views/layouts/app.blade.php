@@ -12,11 +12,11 @@
 </head>
 <body>
     <header class="bg-primary">
-        <div class="flex justify-between m-auto p-2">
+        <div class="flex justify-between items-center m-auto p-2">
             <a class="text-4xl font-bold font-roboto text-accent" href="{{ route('recipes.list') }}">Allerfree Kitchen</a>
             @if( !in_array(Route::currentRouteName(), ['login', 'register']) )
-            <ul class="flex justify-end items-center gap-4 m-4">
-            @auth
+            <ul id="menu" class="hidden md:flex  md:items-center md:gap-4 flex-col gap-4 p-4">
+                @auth
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
                 <li>
@@ -30,6 +30,14 @@
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('register') }}">新規登録</a></li>
                 @endauth
             </ul>
+
+            <div class="md:hidden">
+                <button id="menu-button" class="test-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
             @endif
         </div>
         <div>@yield('nav')</div>
@@ -39,3 +47,12 @@
     </main>
 </body>
 </html>
+
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const menu = document.getElementById('menu');
+
+    menuButton.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    })
+</script>

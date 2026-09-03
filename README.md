@@ -12,7 +12,7 @@
 - [ER図](#er-図)
 - [機能一覧](#機能一覧)
 - [環境構築](#環境構築)
-- [テストアカウント](#テストアカウント)
+- [デプロイ](#デプロイ)
 - [テスト](#テスト)
 
 ## アプリ概要
@@ -47,6 +47,8 @@
 | バックエンド | PHP8.1+, Laravel 10.x, Laravel Fortify |
 | フロントエンド | TailwindCSS v4（Vite統合） |
 | データベース |  MySQL 8.4 |
+| 画像ストレージ | Cloudinary |
+| インフラ・デプロイ | Render(アプリ本体)、Aiven(MySQL) |
 | 開発環境 | Docker, Laravel Sail, phpMyAdmin |
 | 開発ツール | Laravel Pint（コード整形） |
 
@@ -125,13 +127,28 @@ init:
 ```bash
 npm run dev
 ```
+## デプロイ
 
-## テストアカウント
-| name | email | password | 備考 |
-| --- | --- | --- | --- |
-| admin | admin@example.com | password | ※phase2で機能実装予定。 |
-| user1 | user1@example.com | password | サンプルレシピの投稿者。閲覧のみお試しください。 |
-| user2 | user2@example.com | password | レシピの新規作成・編集・削除など、CRUD機能を自由にお試しいただけます。 |
+### 公開URL
+https://allerfree-kitchen.onrender.com
+
+### デモアカウント
+| 用途 | name | email | password | 備考 |
+| --- | --- | --- | --- | --- |
+| 管理者 | admin | admin@example.com | password | ※phase2で機能実装予定。 |
+| 閲覧用(サンプル投稿者) | user1 | user1@example.com | password |  |
+| 操作確認用(CRUDをお試しください) | user2 | user2@example.com | password |  |
+
+### インフラ構成
+| 役割 | サービス |
+| --- | --- |
+| アプリケーションサーバー | Render(Docker) |
+| データベース | Aiven for MySQL |
+| 画像ストレージ | Cloudinary |
+
+### 補足
+- 無料プランを使用しているため、しばらくアクセスがないとアプリの起動に30秒～1分ほどほどかかる場合があります。
+- アップロードした画像はCloudinary上に保存されるため、サーバーの再起動後も消えません。
 
 ## テスト
 Featureテストでは以下を検証しています。

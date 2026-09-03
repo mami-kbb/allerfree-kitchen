@@ -7,7 +7,7 @@
         <form class="flex flex-col items-center gap-3 w-full max-w-md my-4" method="post" action="{{ route('register') }}" novalidate>
             @csrf
             <div class="w-full">
-                <div class="flex justify-between items-center">
+                <div class="md:flex justify-between items-center">
                     <label class="text-lg" for="name">ユーザー名：</label>
                     <input class="border rounded-md bg-white w-64 py-1 px-2" type="text" id="name" name="name" value="{{ old('name') }}">
                 </div>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="w-full">
-                <div class="flex justify-between items-center">
+                <div class="md:flex justify-between items-center">
                     <label class="text-lg" for="email">メールアドレス：</label>
                     <input class="bg-white border rounded-md w-64 py-1 px-2" type="email" id="email" name="email" value="{{ old('email') }}" required>
                 </div>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="w-full">
-                <div class="flex justify-between items-center">
+                <div class="md:flex justify-between items-center">
                     <label class="text-lg" for="password">パスワード：</label>
                     <input class="bg-white border rounded-md w-64 py-1 px-2" type="password" id="password" name="password" required>
                 </div>
@@ -36,7 +36,7 @@
                 @enderror
             </div>
 
-            <div class="w-full flex justify-between items-center">
+            <div class="w-full md:flex justify-between items-center">
                 <label class="text-lg" for="password_confirmation">パスワード（確認）：</label>
                 <input class="bg-white border rounded-md w-64 py-1 px-2" type="password" id="password_confirmation" name="password_confirmation" required>
             </div>
