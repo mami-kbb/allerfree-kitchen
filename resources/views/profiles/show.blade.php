@@ -39,7 +39,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach($recipes as $recipe)
                     <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
-                        <div><img class="w-full h-48 object-cover" src="{{ asset('storage/'. $recipe->image) }}" alt="{{ $recipe->name }}"></div>
+                        <div><img class="w-full h-48 object-cover" src="{{ $recipe->image_url }}" alt="{{ $recipe->name }}"></div>
                         <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
                     </a>
                 @endforeach
