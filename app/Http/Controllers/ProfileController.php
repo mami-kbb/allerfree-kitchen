@@ -46,7 +46,7 @@ class ProfileController extends Controller
         try {
             DB::transaction(function () use ($request, $user, $oldImage, &$newImage) {
                 if ($request->hasFile('profile_image')) {
-                    $newImage = $request->file('profile_image')->store('profiles', 'public');
+                    $newImage = $request->file('profile_image')->storeOnCloudinary()->getSecurePath();
                 }
 
                 //$newImageがあればそれをなければ$oldImageを代入

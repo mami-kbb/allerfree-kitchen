@@ -108,12 +108,12 @@ class RecipeController extends Controller
 
         /** @var \App\Models\User $user */
         $user = auth()->user();
-
         $path = null;
 
         try {
             DB::transaction(function () use ($request, $user, &$path) {
-                $path = $request->file('image')->store('images', 'public');
+                //Cloudinaryにアップロードして返ってきたURLをそのまま使う
+                $path = $request->file('image')->storeOnCloudinary()->getSecurePath();
 
                 $recipe = $user->recipes()->create([
                     'name' => $request->name,
@@ -153,10 +153,6 @@ class RecipeController extends Controller
                 }
             });
         } catch (\Throwable $e) {
-            if ($path) {
-                Storage::disk('public')->delete($path);
-            }
-
             throw $e;
         }
 
@@ -200,7 +196,7 @@ class RecipeController extends Controller
                 ]);
 
                 if ($request->hasFile('image')) {
-                    $newImage = $request->file('image')->store('images', 'public');
+                    $newImage = $request->file('image')->storeOnCloudinary()->getSecurePath();
                     $recipe->update([
                         'image' => $newImage,
                     ]);
@@ -249,10 +245,6 @@ class RecipeController extends Controller
                 }
             });
         } catch (\Throwable $e) {
-            if ($newImage) {
-                //保存に失敗した場合、新しい画像を消す
-                Storage::disk('public')->delete($newImage);
-            }
             throw $e;
         }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Override;
@@ -31,6 +32,18 @@ class Recipe extends Model
                 Storage::disk('public')->delete($recipe->image);
             }
         });
+    }
+
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if (str_starts_with($this->image, 'http')) {
+                    return $this->image;
+                }
+                return asset($this->image);
+            }
+        );
     }
 
     public function user() {

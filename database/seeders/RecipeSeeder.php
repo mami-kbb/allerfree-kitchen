@@ -19,18 +19,6 @@ class RecipeSeeder extends Seeder
         }
         //sample-imagesの画像をstorage/appにimagesディレクトリ（公開用ディレクトリ）を作成してコピーする
         $recipes = require database_path('data/recipes.php');
-        $disk = Storage::disk('public');
-        $disk->makeDirectory('images');
-
-        foreach ($recipes as $recipe) {
-            $image = basename($recipe['image']);
-            $source = resource_path('sample-images/' . $image);
-            $destination = $recipe['image'];
-
-            if (File::exists($source) && !$disk->exists($destination)) {
-                $disk->put($destination, File::get($source));
-            }
-        }
 
         $now = now();
 

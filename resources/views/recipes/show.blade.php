@@ -9,7 +9,7 @@
     <div class="rounded-2xl bg-white md:mx-6 p-4 md:py-6 md:px-10 flex flex-col items-center">
         <div class="md:flex gap-10 w-full max-w-6xl">
             <div class="md:w-1/2">
-                <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ asset('storage/'.$recipe->image) }}" alt="{{ $recipe->name }}">
+                <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ $recipe->image_url }}" alt="{{ $recipe->name }}">
             </div>
             <div class="md:flex-1 mx-2 px-4">
                 <h2 class="text-center text-2xl font-bold text-accent m-4">{{ $recipe->name }}</h2>
