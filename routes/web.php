@@ -44,6 +44,7 @@ Route::get('/check-cloudinary-xyz9f3', function () {
     }
     return [
         'env_value' => env('CLOUDINARY_URL'),
-        'config_value' => config('cloudinary.cloud_url'),
+        'cloudinary_config' => config('cloudinary'), // ★丸ごと表示
+        'filesystems_cloudinary_disk' => config('filesystems.disks.cloudinary'), // ★こっちも念のため
     ];
 });
