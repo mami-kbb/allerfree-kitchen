@@ -7,9 +7,9 @@
         <form class="flex flex-col items-center w-full max-w-md my-4" action="{{ route('login') }}" method="post" novalidate>
             @csrf
             <div class="my-4 w-full">
-                <div class="md:flex justify-between items-center">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                     <label class="text-lg" for="email">メールアドレス：</label>
-                    <input class=" bg-white w-64 border rounded-md py-1 px-2" type="email" id="email" name="email" value="{{ old('email') }}">
+                    <input class="bg-white md:w-64 border rounded-md py-1 px-2" type="email" id="email" name="email" value="{{ old('email') }}">
                 </div>
                 @error('email')
                 <p class="text-error">{{ $message }}</p>
@@ -17,9 +17,9 @@
             </div>
 
             <div class="my-4 w-full">
-                <div class="md:flex justify-between items-center">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                     <label class="text-lg" for="password">パスワード：</label>
-                    <input class="bg-white w-64 border rounded-md py-1 px-2" type="password" id="password" name="password">
+                    <input class="bg-white md:w-64 border rounded-md py-1 px-2" type="password" id="password" name="password">
                 </div>
                 @error('password')
                 <p class="text-error">{{ $message }}</p>

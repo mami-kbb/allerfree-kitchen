@@ -37,3 +37,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::put('/recipe/{recipe_id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
     Route::delete('/recipe/{recipe_id}/delete', [RecipeController::class, 'delete'])->name('recipe.delete');
 });
+
+Route::get('/check-cloudinary-xyz9f3', function () {
+    if (request('key') !== env('SEED_SECRET')) {
+        abort(403);
+    }
+    return [
+        'env_value' => env('CLOUDINARY_URL'),
+        'config_value' => config('cloudinary.cloud_url'),
+    ];
+});

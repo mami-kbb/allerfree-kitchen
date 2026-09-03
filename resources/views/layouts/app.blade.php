@@ -15,7 +15,7 @@
         <div class="flex justify-between items-center m-auto p-2">
             <a class="text-4xl font-bold font-roboto text-accent" href="{{ route('recipes.list') }}">Allerfree Kitchen</a>
             @if( !in_array(Route::currentRouteName(), ['login', 'register']) )
-            <ul id="menu" class="hidden md:flex  md:items-center md:gap-4 flex-col gap-4 p-4">
+            <ul id="menu" class="hidden flex-col gap-4 p-4 md:flex md:flex-row md:items-center md:gap-4">
                 @auth
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
