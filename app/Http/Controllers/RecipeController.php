@@ -12,6 +12,7 @@ use App\Models\Recipe;
 use App\Models\Allergy;
 use App\Models\Ingredient;
 use App\Models\AllergyCategory;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class RecipeController extends Controller
 {
@@ -108,16 +109,20 @@ class RecipeController extends Controller
 
         /** @var \App\Models\User $user */
         $user = auth()->user();
-        $path = null;
+        $imageUrl = null;
+        $publicId = null;
 
         try {
-            DB::transaction(function () use ($request, $user, &$path) {
+            DB::transaction(function () use ($request, $user, &$imageUrl, &$publicId) {
                 //Cloudinaryにアップロードして返ってきたURLをそのまま使う
-                $path = $request->file('image')->storeOnCloudinary()->getSecurePath();
+                $uploaded = $request->file('image')->storeOnCloudinary();
+                $imageUrl = $uploaded->getSecurePath();
+                $publicId = $uploaded->getPublicId();
 
                 $recipe = $user->recipes()->create([
                     'name' => $request->name,
-                    'image' => $path,
+                    'image' => $imageUrl,
+                    'image_public_id' => $publicId,
                     'description' => $request->description,
                     'servings' => $request->servings,
                     'tips' => $request->tips,
@@ -153,6 +158,9 @@ class RecipeController extends Controller
                 }
             });
         } catch (\Throwable $e) {
+            if ($publicId) {
+                Cloudinary::destroy($publicId);
+            }
             throw $e;
         }
 
@@ -183,11 +191,11 @@ class RecipeController extends Controller
 
         $this->authorize('update', $recipe);
 
-        $oldImage = $recipe->image;
-        $newImage = null;
+        $oldPublicId = $recipe->image_public_id;
+        $newPublicId = null;
 
         try {
-            DB::transaction(function () use ($request, $recipe, &$newImage) {
+            DB::transaction(function () use ($request, $recipe, &$newPublicId) {
                 $recipe->update([
                     'name' => $request->name,
                     'description' => $request->description,
@@ -196,9 +204,12 @@ class RecipeController extends Controller
                 ]);
 
                 if ($request->hasFile('image')) {
-                    $newImage = $request->file('image')->storeOnCloudinary()->getSecurePath();
+                    $uploaded = $request->file('image')->storeOnCloudinary();
+                    $newPublicId = $uploaded->getPublicId();
+
                     $recipe->update([
-                        'image' => $newImage,
+                        'image' => $uploaded->getSecurePath(),
+                        'image_public_id' => $newPublicId,
                     ]);
                 }
 
@@ -245,12 +256,15 @@ class RecipeController extends Controller
                 }
             });
         } catch (\Throwable $e) {
+            if ($newPublicId) {
+                Cloudinary::destroy($newPublicId);
+            }
             throw $e;
         }
 
         //保存に成功した場合古い画像を消す
-        if ($newImage && $oldImage) {
-            Storage::disk('public')->delete($oldImage);
+        if ($newPublicId && $oldPublicId) {
+            Cloudinary::destroy($oldPublicId);
         }
 
         return redirect()->route('profile', [
@@ -262,6 +276,10 @@ class RecipeController extends Controller
         $recipe = Recipe::findOrFail($recipe_id);
 
         $this->authorize('delete', $recipe);
+
+        if ($recipe->image_public_id) {
+            Cloudinary::destroy($recipe->image_public_id);
+        }
 
         $recipe->delete();
 

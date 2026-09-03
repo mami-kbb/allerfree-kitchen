@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\Allergy;
 use App\Http\Requests\ProfileRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProfileController extends Controller
 {
@@ -39,24 +40,30 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
 
-        $oldImage = $profile?->profile_image;
-        $newImage = null;
+        $oldPublicId = $profile?->image_public_id;
+        $oldImageUrl = $profile?->profile_image;
+        $newPublicId = null;
 
         //transactionで代入した$newImageを外側でも使用するために"&"を付ける
         try {
-            DB::transaction(function () use ($request, $user, $oldImage, &$newImage) {
+            DB::transaction(function () use ($request, $user, $oldPublicId, $oldImageUrl, &$newPublicId) {
                 if ($request->hasFile('profile_image')) {
-                    $newImage = $request->file('profile_image')->storeOnCloudinary()->getSecurePath();
+                    $uploaded = $request->file('profile_image')->storeOnCloudinary();
+                    $newImageUrl = $uploaded->getSecurePath();
+                    $newPublicId = $uploaded->getPublicId();
                 }
 
                 //$newImageがあればそれをなければ$oldImageを代入
-                $profileImage = $newImage ?? $oldImage;
+                $profileImage = $newImageUrl ?? $oldImageUrl;
+
+                $imagePublicId = $newPublicId ?? $oldPublicId;
 
                 //user_idはProfileを探す第一引数。あればupdateなければcreateになる。
                 Profile::updateOrCreate(
                     ['user_id' => $user->id],
                     [
                         'profile_image' => $profileImage,
+                        'image_public_id' => $imagePublicId,
                         'comment' => $request->comment,
                     ]
                 );
@@ -69,14 +76,14 @@ class ProfileController extends Controller
                 $user->allergies()->sync($allergyIds);
             });
         } catch (\Throwable $e) {
-            if ($newImage) {
-                Storage::disk('public')->delete($newImage);
+            if ($newPublicId) {
+                Cloudinary::destroy($newPublicId);
             }
             throw $e;
         }
 
-        if ($oldImage && $newImage) {
-            Storage::disk('public')->delete($oldImage);
+        if ($oldPublicId && $newPublicId) {
+            Cloudinary::destroy($oldPublicId);
         }
 
         return redirect()->route('profile', ['user_id' => $user->id]);
