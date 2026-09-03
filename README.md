@@ -129,9 +129,9 @@ npm run dev
 ## テストアカウント
 | name | email | password | 備考 |
 | --- | --- | --- | --- |
-| admin | admin@example.com | password | ※phase2で機能実装予定 |
-| user1 | user1@example.com | password |  |
-| user2 | user2@example.com | password |  |
+| admin | admin@example.com | password | ※phase2で機能実装予定。 |
+| user1 | user1@example.com | password | サンプルレシピの投稿者。閲覧のみお試しください。 |
+| user2 | user2@example.com | password | レシピの新規作成・編集・削除など、CRUD機能を自由にお試しいただけます。 |
 
 ## テスト
 Featureテストでは以下を検証しています。

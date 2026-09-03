@@ -10,7 +10,7 @@ return [
     'status' => 1,
     ],
     [
-    'user_id' => 3,
+    'user_id' => 2,
     'name' => '豆腐と長ねぎのみそ汁',
     'image' => 'images/misosoup.jpg',
     'description' => '豆腐と長ねぎだけで作る、毎日の食卓にぴったりの定番みそ汁です。',
@@ -37,7 +37,7 @@ return [
     'status' => 1,
     ],
     [
-    'user_id' => 3,
+    'user_id' => 2,
     'name' => 'さつまいもの甘辛煮',
     'image' => 'images/satsumaimo.jpg',
     'description' => 'さつまいもの自然な甘みを生かした、やさしい味わいの煮物です。',
@@ -46,7 +46,7 @@ return [
     'status' => 1,
     ],
     [
-    'user_id' => 3,
+    'user_id' => 2,
     'name' => 'じゃがいもとにんじんの甘辛炒め',
     'image' => 'images/potato.jpg',
     'description' => 'ほくほくのじゃがいもと甘みのあるにんじんを、ごま油香る甘辛い味付けで仕上げたご飯によく合う副菜です。',
@@ -64,7 +64,7 @@ return [
     'status' => 1,
     ],
     [
-    'user_id' => 3,
+    'user_id' => 2,
     'name' => 'キャベツとツナのサラダ',
     'image' => 'images/salad.jpg',
     'description' => 'ツナの旨味とキャベツのシャキシャキ食感が楽しめる、簡単に作れる定番サラダです。',
@@ -82,7 +82,7 @@ return [
     'status' => 1,
     ],
     [
-    'user_id' => 3,
+    'user_id' => 2,
     'name' => 'サーモンの味噌バター焼き',
     'image' => 'images/salmon.jpg',
     'description' => '味噌とバターのコクがサーモンによく絡む、ご飯が進むメインディッシュです。',
