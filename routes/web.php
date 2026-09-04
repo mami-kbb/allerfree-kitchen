@@ -5,6 +5,8 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +38,21 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/recipe/{recipe_id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
     Route::put('/recipe/{recipe_id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
     Route::delete('/recipe/{recipe_id}/delete', [RecipeController::class, 'delete'])->name('recipe.delete');
+});
+
+Route::get('/reset-data-xyz9f3', function () {
+    if (request('key') !== env('SEED_SECRET')) {
+        abort(403);
+    }
+
+    DB::table('likes')->delete();
+    DB::table('comments')->delete();
+    DB::table('ingredient_recipe')->delete();
+    DB::table('allergy_recipe')->delete();
+    DB::table('steps')->delete();
+    DB::table('recipes')->delete();
+
+    Artisan::call('db:seed', ['--force' => true]);
+
+    return 'Reset & Seeding done: ' . Artisan::output();
 });
