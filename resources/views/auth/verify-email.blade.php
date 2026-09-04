@@ -7,7 +7,6 @@
         登録していただいたメールアドレスに認証メールを送信しました。<br>
         メール認証を完了してください。
         </p>
-        <a class="border rounded-md bg-taupe-200 hover:shadow-md px-4 py-2" href="http://localhost:8025" target="_blank">認証はこちらから</a>
         <form class="my-6" method="post" action="{{ route('verification.send') }}">
             @csrf
             <button class="text-blue-600 cursor-pointer hover:shadow-md" type="submit">認証メールを再送する</button>

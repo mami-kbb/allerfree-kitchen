@@ -110,7 +110,7 @@ class RecipeCrudTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('recipe.edit', ['recipe_id' => $recipe->id]));
 
-        $response->assertSee(asset('storage/' . $recipe->image));
+        $response->assertSee($recipe->image_url);
         $response->assertSee($recipe->name);
         $response->assertSee($recipe->description);
         $response->assertSee($recipe->servings);
