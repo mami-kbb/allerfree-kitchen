@@ -10,14 +10,14 @@
         <h2 class="text-center text-2xl font-bold text-accent mb-10">プロフィール設定</h2>
         <form class="mx-2" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data" novalidate>
             @csrf
+            @method('PUT')
             <div class="md:flex gap-6">
                 <div class="md:w-1/3">
-                    <div class="flex justify-center items-center gap-6 md:flex-col md:justify-center md:items-center mb-10" id="list">
-                        @if ($profile?->profile_image)
-                        <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('storage/'. $profile->profile_image) }}" alt="ユーザーアイコン">
-                        @else
-                        <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
-                        @endif
+                    <div class="flex justify-center items-center gap-6 md:flex-col md:justify-center md:items-center mb-10">
+                        <div id="list">
+                            <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ $profile->profile_image_url }}" alt="ユーザーアイコン">
+                        </div>
+
                         <label class="block w-48 text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">画像を選択する</label>
                         <input type="file" id="image" name="profile_image" accept="image/png, image/jpeg" hidden>
                         @error('profile_image')
@@ -73,7 +73,7 @@
 
         const img = document.createElement('img');
         img.src = URL.createObjectURL(file);
-        img.className = 'image';
+        img.className = 'image block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover';
 
         list.innerHTML = '';
         list.appendChild(img);

@@ -16,11 +16,7 @@
                 <div class="flex justify-end items-center m-4">
                     <p>投稿者：</p>
                     <a class="flex items-center gap-4" href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
-                        @if($recipe->user->profile?->profile_image)
-                        <img class="block shrink-0 w-12 h-12 rounded-full object-cover" src="{{ asset('storage/'.$recipe->user->profile->profile_image) }}" alt="ユーザーアイコン">
-                        @else
-                        <img class="block shrink-0 w-12 h-12 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
-                        @endif
+                        <img class="block shrink-0 w-12 h-12 rounded-full object-cover" src="{{ $recipe->user->profile->profile_image_url }}" alt="ユーザーアイコン">
                         <p>{{ $recipe->user->name }}</p>
                     </a>
                 </div>
@@ -90,11 +86,7 @@
                         <div class="my-3 border-b border-dotted py-2 comment-item {{ $index >= 3 ? 'hidden' :'' }}" data-index="{{ $index }}">
                             <div class="flex items-center gap-2">
                                 <div>
-                                    @if ($comment->user->profile?->profile_image)
-                                        <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="コメントユーザーアイコン">
-                                    @else
-                                        <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="コメントユーザーアイコン">
-                                    @endif
+                                    <img class="block shrink-0 w-10 h-10 rounded-full object-cover" src="{{ $comment->user->profile->profile_image_url }}" alt="コメントユーザーアイコン">
                                 </div>
                                 <p>{{ $comment->user->name }}</p>
                             </div>

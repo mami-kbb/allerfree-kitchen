@@ -14,11 +14,7 @@
         @endif
         <div>
             <div class="flex gap-6 justify-center items-center">
-                @if($user->profile?->profile_image)
-                    <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('storage/'.$user->profile->profile_image) }}" alt="ユーザーアイコン">
-                @else
-                    <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ asset('/images/icon.png') }}" alt="ユーザーアイコン">
-                @endif
+                <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ $user->profile->profile_image_url }}" alt="ユーザーアイコン">
                 <div class=" my-4">
                     <p class="text-2xl font-semibold">{{ $user->name }}</p>
                     @if($user->profile?->comment)

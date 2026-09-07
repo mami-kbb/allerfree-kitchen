@@ -12,8 +12,10 @@
             <form id="recipe-update-form" class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.update', ['recipe_id' => $recipe->id]) }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 @method('PUT')
-                <div class="flex flex-col items-center gap-4" id="list">
-                    <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ $recipe->image_url }}" alt="レシピ画像">
+                <div class="flex flex-col items-center gap-4 w-full">
+                    <div class="h-102 w-full md:w-xl rounded-2xl overflow-hidden" id="list">
+                        <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ $recipe->image_url }}" alt="レシピ画像">
+                    </div>
                     <label class="block text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">レシピ画像を選択する</label>
                     <input type="file" id="image" name="image" accept="image/png, image/jpeg" hidden>
                     @error('image')
@@ -151,7 +153,7 @@
 
         const img = document.createElement('img');
         img.src = URL.createObjectURL(file);
-        img.className = 'image';
+        img.className = 'w-full h-full rounded-2xl object-cover';
 
         list.innerHTML = '';
         list.appendChild(img);

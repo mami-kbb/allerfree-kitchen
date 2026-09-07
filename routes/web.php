@@ -29,7 +29,7 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/recipe/{recipe}/like', [LikeController::class, 'store'])->name('like');
     Route::post('/recipe/{recipe}/unlike', [LikeController::class, 'destroy'])->name('unlike');
     Route::post('/recipe/{recipe}/comment', [CommentController::class, 'create'])->name('comment');
