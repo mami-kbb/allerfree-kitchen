@@ -103,6 +103,8 @@ exec $SHELL
 ```bash
 make init
 ```
+※ `make`コマンドが使えない場合は、`sudo apt install make`(Ubuntu/WSL)または`brew install make`(Mac)でインストールしてください。<br>
+
 make initは以下を自動で実行します。
 
 ```
