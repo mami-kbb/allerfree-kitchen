@@ -13,7 +13,7 @@
                 @csrf
                 <div class="flex flex-col items-center w-full">
                     <div class="border h-102 w-full md:w-xl rounded-2xl @error('image') border-error @enderror overflow-hidden" id="list"></div>
-                    <label class="text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" for="image">レシピ画像を選択する</label>
+                    <label class="text-center bg-white hover:shadow-md border border-accent text-accent px-4 py-2 my-4 rounded-md font-semibold cursor-pointer" for="image">レシピ画像を選択する</label>
                     <input type="file" id="image" name="image" accept="image/png, image/jpeg" hidden>
                     @error('image')
                     <p class="text-error">{{ $message }}</p>

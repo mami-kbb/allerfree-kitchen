@@ -146,15 +146,19 @@ class RecipeController extends Controller
                     ]);
                 }
 
-                foreach ($request->steps as $index => $step) {
+                $stepNumber = 1;
+
+                foreach ($request->steps as $step) {
                     if (empty($step)) {
                         continue;
                     }
 
                     $recipe->steps()->create([
-                        'step_number' => $index + 1,
+                        'step_number' => $stepNumber,
                         'content' => $step,
                     ]);
+
+                    $stepNumber++;
                 }
             });
         } catch (\Throwable $e) {
@@ -244,15 +248,18 @@ class RecipeController extends Controller
                 //手順を登録しなおす
                 $steps = $request->input('steps', []);
 
-                foreach ($steps as $index => $step) {
+                $stepNumber = 1;
+                foreach ($steps as $step) {
                     if (empty($step)) {
                         continue;
                     }
 
                     $recipe->steps()->create([
-                        'step_number' => $index + 1,
+                        'step_number' => $stepNumber,
                         'content' => $step,
                     ]);
+
+                    $stepNumber++;
                 }
             });
         } catch (\Throwable $e) {
