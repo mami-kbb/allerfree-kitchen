@@ -8,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/recipe/{recipe_id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
     Route::put('/recipe/{recipe_id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
     Route::delete('/recipe/{recipe_id}/delete', [RecipeController::class, 'delete'])->name('recipe.delete');
+});
+
+Route::prefix('admin')->group(function() {
+    Route::get('login', [AuthenticatedSessionController::class,  'create'])->name('admin.login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->defaults('guard','admin');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
+});
+
+Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipe');
     Route::get('/admin/recipe/{recipe_id}', [AdminRecipeController::class, 'show'])->name('admin.application');
 });

@@ -15,6 +15,12 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use App\Http\Responses\LoginResponse as CustomLoginResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use App\Http\Responses\LogoutResponse as CustomLogoutResponse;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -48,10 +54,17 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
+            if(request()->is('admin/*')) {
+                return view('admin.auth.login');
+            }
             return view('auth.login');
         });
 
         $this->app->bind(FortifyLoginRequest::class,LoginRequest::class);
+
+        $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
+
+        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
 
         Fortify::registerView(function () {
             return view('auth.register');
@@ -59,6 +72,29 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            if ($request->is('admin/*')) {
+                config(['fortify.guard' => 'admin']);
+            } else {
+                config(['fortify.guard' => 'web']);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return null;
+            }
+
+            if ($request->is('admin/*') && $user->role !== 'admin') {
+                return null;
+            }
+
+            if (!$request->is('admin/*') && $user->role !== 'user') {
+                return null;
+            }
+            return $user;
         });
     }
 }
