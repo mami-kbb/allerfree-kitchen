@@ -80,6 +80,14 @@ class Recipe extends Model
         return $query->where('status', 1);
     }
 
+    public function scopePending($query) {
+        return $query->where('status', 0);
+    }
+
+    public function scopeReject($query) {
+        return $query->where('status', 2);
+    }
+
     public function scopeKeywordSearch($query, $keyword) {
         if (empty ($keyword)) {
             return $query;

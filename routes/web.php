@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminRecipeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
@@ -38,4 +39,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/recipe/{recipe_id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
     Route::put('/recipe/{recipe_id}/edit', [RecipeController::class, 'update'])->name('recipe.update');
     Route::delete('/recipe/{recipe_id}/delete', [RecipeController::class, 'delete'])->name('recipe.delete');
+    Route::get('/admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipe');
+    Route::get('/admin/recipe/{recipe_id}', [AdminRecipeController::class, 'show'])->name('admin.application');
 });

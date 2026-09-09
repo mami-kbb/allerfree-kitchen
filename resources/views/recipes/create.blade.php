@@ -113,7 +113,7 @@
                         @enderror
                 </div>
                 <div>
-                    <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">投稿する</button>
+                    <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">投稿申請する</button>
                 </div>
             </form>
         </div>

@@ -126,7 +126,7 @@ class RecipeController extends Controller
                     'description' => $request->description,
                     'servings' => $request->servings,
                     'tips' => $request->tips,
-                    'status' => 1,
+                    'status' => 0,
                 ]);
 
                 $recipe->allergies()->sync($request->allergy_recipe);
@@ -205,6 +205,7 @@ class RecipeController extends Controller
                     'description' => $request->description,
                     'servings' => $request->servings,
                     'tips' => $request->tips,
+                    'status' => 0,
                 ]);
 
                 if ($request->hasFile('image')) {
@@ -220,11 +221,8 @@ class RecipeController extends Controller
                 $allergyIds = $request->input('allergy_recipe', []);
                 $recipe->allergies()->sync($allergyIds);
 
-                //材料をすべて削除
-                //マスターの材料は残すからdetachを使用
                 $recipe->ingredients()->detach();
 
-                //材料を登録しなおす
                 $ingredients = $request->input('ingredients', []);
                 $quantities = $request->input('quantities', []);
 
@@ -242,10 +240,8 @@ class RecipeController extends Controller
                     ]);
                 }
 
-                //手順をすべて削除
                 $recipe->steps()->delete();
 
-                //手順を登録しなおす
                 $steps = $request->input('steps', []);
 
                 $stepNumber = 1;
