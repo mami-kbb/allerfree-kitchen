@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use App\Http\Requests\RejectRequest;
 
 class AdminRecipeController extends Controller
 {
@@ -31,5 +32,27 @@ class AdminRecipeController extends Controller
         $ingredients = $recipe->ingredients()->incompleteIngredient()->get();
 
         return view('admin.requests.approve', compact('recipe', 'selectedAllergies', 'ingredients'));
+    }
+
+    public function approve($recipe_id) {
+        $recipe = Recipe::findOrFail($recipe_id);
+
+        $recipe->update([
+                    'status' => 1,
+                    'rejection_reason' => null,
+                ]);
+        
+        return redirect()->route('admin.recipe');
+    }
+
+    public function reject(RejectRequest $request, $recipe_id) {
+        $recipe = Recipe::findOrFail($recipe_id);
+
+        $recipe->update([
+                    'status' => 2,
+                    'rejection_reason' => $request->rejection_reason,
+                ]);
+        
+        return redirect()->route('admin.recipe');
     }
 }

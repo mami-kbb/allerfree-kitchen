@@ -62,12 +62,16 @@
             <p>{{ $recipe->tips }}</p>
         </div>
         <div class="w-full my-4 md:my-auto">
-            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="" method="post">
+            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.reject', ['recipe_id' => $recipe->id]) }}" method="post">
+                @csrf
+                @method('PUT')
                 <label class="font-semibold text-lg" for="rejection_reason">差戻し理由</label>
                 <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('tips') border-error @enderror" name="rejection_reason" id="rejection_reason">{{ old('rejection_reason $recipe->rejection_reason')}}</textarea>
                 <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">差戻し</button>
             </form>
-            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="" method="post">
+            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.approve', ['recipe_id' => $recipe->id]) }}" method="post">
+                @csrf
+                @method('PUT')
                 <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">承認</button>
             </form>
         </div>

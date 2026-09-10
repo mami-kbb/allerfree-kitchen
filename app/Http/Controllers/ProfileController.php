@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -13,16 +14,29 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProfileController extends Controller
 {
-    public function show($user_id) {
+    public function show($user_id, Request $request) {
         $user = User::with('profile')
         ->findOrFail($user_id);
+        $tab = $request->input('tab', 'approved');
 
-        $recipes = $user->recipes()
-        ->approved()
-        ->latest()
-        ->paginate(12);
+        if ($tab === 'reject') {
+            $recipes = $user->recipes()
+            ->reject()
+            ->latest()
+            ->paginate(12);
+        } elseif ($tab === 'pending') {
+            $recipes = $user->recipes()
+            ->pending()
+            ->latest()
+            ->paginate(12);
+        } else {
+            $recipes = $user->recipes()
+            ->approved()
+            ->latest()
+            ->paginate(12);
+        }
 
-        return view('profiles.show', compact('user', 'recipes'));
+        return view('profiles.show', compact('user', 'recipes', 'tab'));
     }
 
     public function edit() {

@@ -26,8 +26,12 @@
                 </div>
             </div>
         </div>
-        <div class="m-6 border-b px-4 py-2">
-            <h2 class="text-2xl font-semibold">投稿レシピ</h2>
+        <div class="sm:mx-6 px-4 py-2 border-b">
+            <a class="text-xl {{ $tab === 'approved' ? 'font-bold' : '' }}" href="{{ route('profile', ['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'approved'])) }}">投稿レシピ</a>
+            @if (auth()->id() === $user->id)
+            <a class="text-xl {{ $tab === 'pending' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'pending'])) }}">申請中レシピ</a>
+            <a class="text-xl {{ $tab === 'reject' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'reject'])) }}">差戻しレシピ</a>
+            @endif
         </div>
         @if ($recipes->isEmpty())
             <p class="text-lg ml-4">No recipe</p>
