@@ -71,4 +71,9 @@ class RecipePolicy
     {
         //
     }
+
+    public function approve(User $user, Recipe $recipe)
+    {
+        return $user->role === 'admin';
+    }
 }

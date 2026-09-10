@@ -5,11 +5,9 @@
 @endsection
 
 @section('content')
-<div>
-    <div>
-        <div>
-            <h2>レシピ投稿・修正申請一覧</h2>
-        </div>
+<div class="bg-primary min-h-screen md:pb-8">
+    <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
+        <h2 class="text-center text-2xl font-bold text-accent mb-10">レシピ投稿・修正申請一覧</h2>
         <div>
             @if ($recipes->isEmpty())
                 <p class="text-lg ml-4">申請中のレシピはありません。</p>

@@ -6,6 +6,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\IngredientController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -51,4 +52,5 @@ Route::prefix('admin')->group(function() {
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipe');
     Route::get('/admin/recipe/{recipe_id}', [AdminRecipeController::class, 'show'])->name('admin.application');
+    Route::get('/admin/ingredients', [IngredientController::class, 'index'])->name('ingredients.list');
 });

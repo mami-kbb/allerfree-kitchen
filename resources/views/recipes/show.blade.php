@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="w-full bg-taupe-100 rounded-2xl md:w-3/4 px-4 py-3">
-            <p class="text-lg font-semibold">コツ・ポイント</h>
+            <p class="text-lg font-semibold">コツ・ポイント
             <p>{{ $recipe->tips }}</p>
         </div>
         <p class="text-sm text-orange-900 m-4">※使用する調味料や加工食品によっては、アレルゲンが含まれる可能性があります。必ず商品の表示をご確認ください。</p>

@@ -193,6 +193,7 @@ class RecipeController extends Controller
     public function update(RecipeUpdateRequest $request, $recipe_id) {
         $recipe = Recipe::findOrFail($recipe_id);
 
+        //policyチェック
         $this->authorize('update', $recipe);
 
         $oldPublicId = $recipe->image_public_id;

@@ -14,9 +14,20 @@
     <header class="bg-primary relative">
         <div class="flex justify-between items-center m-auto p-2">
             <a class="text-4xl font-bold font-roboto text-accent" href="{{ route('recipes.list') }}">Allerfree Kitchen</a>
-            @if( !in_array(Route::currentRouteName(), ['login', 'register']) )
+            @if( !in_array(Route::currentRouteName(), ['login', 'register', 'admin.login']) )
             <ul id="menu" class="hidden gap-4 md:flex md:flex-row md:items-center md:gap-4">
                 @auth
+                @if (Auth::user()->isAdmin())
+                <li>
+                    <a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('ingredients.list') }}">食材管理</a>
+                </li>
+                <li>
+                    <form action="{{ route('admin.logout') }}" method="post">
+                        @csrf
+                        <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md">ログアウト</button>
+                    </form>
+                </li>
+                @elseif (Auth::user()->isUser())
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
                 <li>
@@ -25,10 +36,12 @@
                         <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md">ログアウト</button>
                     </form>
                 </li>
-                @else
+                @endif
+                @endauth
+                @guest
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md " href="{{ route('login') }}">ログイン</a></li>
                 <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('register') }}">新規登録</a></li>
-                @endauth
+                @endguest
             </ul>
 
             <button id="menu-button" class="md:hidden p-2 focus:outline-none">
@@ -40,6 +53,17 @@
             </button>
             <ul id="mobile-menu" class="fixed top-12 right-0 w-64 bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
                 @auth
+                @if (Auth::user()->isAdmin())
+                <li class="flex-1 flex items-center justify-center border-b py-4">
+                    <a class="block w-full text-center text-lg" href="{{ route('ingredients.list') }}">食材管理</a>
+                </li>
+                <li class="flex-1 flex items-center justify-center border-b py-4">
+                    <form action="{{ route('admin.logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="block w-full text-center text-lg">ログアウト</button>
+                    </form>
+                </li>
+                @elseif (Auth::user()->isUser())
                 <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
                 <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
                 <li class="flex-1 flex items-center justify-center border-b py-4">
@@ -48,10 +72,12 @@
                         <button type="submit" class="block w-full text-center text-lg">ログアウト</button>
                     </form>
                 </li>
-                @else
+                @endif
+                @endauth
+                @guest
                 <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('login') }}">ログイン</a></li>
                 <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('register') }}">新規登録</a></li>
-                @endauth
+                @endguest
             </ul>
             @endif
         </div>

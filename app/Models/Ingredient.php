@@ -23,4 +23,8 @@ class Ingredient extends Model
     public function allergyCategories() {
         return $this->belongsToMany(AllergyCategory::class, 'allergy_category_ingredient');
     }
+
+    public function scopeIncompleteIngredient($query) {
+        return $query->whereNull('reading')->orWhereNull('category');
+    }
 }

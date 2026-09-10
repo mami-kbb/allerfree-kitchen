@@ -45,6 +45,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    public function isAdmin() {
+        return $this-> role === 'admin';
+    }
+
+    public function isUser() {
+        return $this-> role === 'user';
+    }
+
     public function profile() {
         return $this->hasOne(Profile::class);
     }
