@@ -44,7 +44,9 @@
                 </div>
                 @endforeach
                 @if ($ingredients->isNotEmpty())
-                <p class="text-error">※未設定の食材があります。食材管理画面で詳細設定を行ってから承認処理を行ってください。</p>
+                <div class="mt-3 px-4 py-3 {{ session('approval_error') ? 'rounded-lg bg-red-50' : '' }}">
+                    <p class="text-error">※未設定の食材があります。食材管理画面で詳細設定を行ってから承認処理を行ってください。</p>
+                </div>
                 @endif
             </div>
             <div class="my-6 md:flex-1">

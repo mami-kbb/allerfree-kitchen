@@ -43,7 +43,8 @@ class AdminRecipeController extends Controller
 
         if ($ingredients->isNotEmpty())
             {
-                return redirect()->route('admin.application', ['recipe_id' => $recipe->id]);
+                return redirect()->route('admin.application', ['recipe_id' => $recipe->id])
+                ->with('approval_error', true);
             }
 
         $recipe->update([

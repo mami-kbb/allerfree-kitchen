@@ -27,4 +27,5 @@ class Ingredient extends Model
     public function scopeIncompleteIngredient($query) {
         return $query->whereNull('reading')->orWhereNull('category');
     }
+
 }
