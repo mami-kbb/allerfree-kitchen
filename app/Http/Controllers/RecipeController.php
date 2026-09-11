@@ -98,6 +98,45 @@ class RecipeController extends Controller
         return view('recipes.show', compact('recipe', 'isLiked'));
     }
 
+    public function pending($recipe_id) {
+
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $recipe = $user->recipes()
+        ->pending()
+        ->with([
+            'allergies',
+            'ingredients',
+            'steps',
+        ])
+        ->findOrFail($recipe_id);
+
+        $this->authorize('viewPending', $recipe);
+
+        return view('recipes.show', compact('recipe'));
+    }
+
+    public function reject($recipe_id) {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $recipe = $user->recipes()
+        ->reject()
+        ->with([
+            'allergies',
+            'ingredients',
+            'steps',
+        ])
+        ->findOrFail($recipe_id);
+
+        $this->authorize('viewReject', $recipe);
+
+        $allergies = Allergy::all();
+        $selectedAllergies = $recipe->allergyIds();
+        $ingredients = Ingredient::select('name', 'reading')->get();
+
+        return view('recipes.edit', compact('recipe', 'allergies', 'selectedAllergies', 'ingredients'));
+    }
+
     public function create() {
         $allergies = Allergy::all();
         $ingredients =Ingredient::select('name', 'reading')->get();
@@ -174,7 +213,10 @@ class RecipeController extends Controller
     }
 
     public function edit($recipe_id) {
-        $recipe = Recipe::with([
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $recipe = $user->recipes()
+        ->with([
             'allergies',
             'ingredients',
             'steps',
@@ -191,7 +233,9 @@ class RecipeController extends Controller
     }
 
     public function update(RecipeUpdateRequest $request, $recipe_id) {
-        $recipe = Recipe::findOrFail($recipe_id);
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $recipe = $user->recipes()->findOrFail($recipe_id);
 
         //policyチェック
         $this->authorize('update', $recipe);

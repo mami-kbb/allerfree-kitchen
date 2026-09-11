@@ -13,6 +13,7 @@
             </div>
             <div class="md:flex-1 mx-2 px-4">
                 <h2 class="text-center text-2xl font-bold text-accent m-4">{{ $recipe->name }}</h2>
+                @if ($recipe->status === 1)
                 <div class="flex justify-end items-center m-4">
                     <p>投稿者：</p>
                     <a class="flex items-center gap-4" href="{{ route('profile',['user_id' => $recipe->user_id]) }}">
@@ -20,6 +21,7 @@
                         <p>{{ $recipe->user->name }}</p>
                     </a>
                 </div>
+                @endif
                 <div class="rounded-2xl bg-taupe-100 px-4 py-1">
                     <p class="my-3">{{ $recipe->description }}</p>
                 </div>
@@ -31,6 +33,7 @@
                         @endforeach
                     </div>
                 </div>
+                @if ($recipe->status === 1)
                 <div class="flex justify-end">
                     <div class="flex flex-col items-center">
                         @auth
@@ -50,6 +53,7 @@
                 </div>
                 @if (auth()->id() === $recipe->user->id)
                 <a class="block w-48 ml-auto text-center hover:shadow-md border border-accent text-accent px-4 py-2  my-4 rounded-md font-semibold" href="{{ route('recipe.edit',['recipe_id' => $recipe->id]) }}">レシピを編集</a>
+                @endif
                 @endif
             </div>
         </div>
@@ -78,6 +82,12 @@
             <p>{{ $recipe->tips }}</p>
         </div>
         <p class="text-sm text-orange-900 m-4">※使用する調味料や加工食品によっては、アレルゲンが含まれる可能性があります。必ず商品の表示をご確認ください。</p>
+
+        @if ($recipe->status === 0)
+        <p class="text-error">申請中のため編集は行えません。</p>
+        @endif
+
+        @if ($recipe->status === 1)
         <div class="w-full md:w-3/4 border border-accent/20 rounded-2xl bg-white px-6 py-4 my-4">
             <div>
                 <p class="text-lg font-bold">コメント<span>({{ $recipe->comments_count }})</span></p>
@@ -114,6 +124,7 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

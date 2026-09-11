@@ -31,6 +31,8 @@ Route::get('/user/{user_id}', [ProfileController::class, 'show'])->name('profile
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/recipe/{recipe_id}/pending', [RecipeController::class, 'pending'])->name('recipe.pending');
+    Route::get('recipe/{recipe_id}/reject', [RecipeController::class, 'reject'])->name('recipe.reject');
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/recipe/{recipe}/like', [LikeController::class, 'store'])->name('like');
@@ -53,6 +55,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipe');
     Route::get('/admin/recipe/{recipe_id}', [AdminRecipeController::class, 'show'])->name('admin.application');
     Route::get('/admin/ingredients', [IngredientController::class, 'index'])->name('ingredients.list');
-    Route::put('/admin/recipe/{recipe_id}/approve', [AdminRecipeController::class, 'approve'])->name('recipe.approve');
-    Route::put('/admin/recipe/{recipe_id}/reject', [AdminRecipeController::class, 'reject'])->name('recipe.reject');
+    Route::put('/admin/recipe/{recipe_id}/approve', [AdminRecipeController::class, 'approve'])->name('admin.recipe.approve');
+    Route::put('/admin/recipe/{recipe_id}/reject', [AdminRecipeController::class, 'reject'])->name('admin.recipe.reject');
 });

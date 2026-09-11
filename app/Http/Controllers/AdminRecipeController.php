@@ -37,11 +37,22 @@ class AdminRecipeController extends Controller
     public function approve($recipe_id) {
         $recipe = Recipe::findOrFail($recipe_id);
 
+        $this->authorize('approve', $recipe);
+
+        $ingredients = $recipe->ingredients()->incompleteIngredient()->get();
+
+        if ($ingredients->isNotEmpty())
+            {
+                return redirect()->route('admin.application', ['recipe_id' => $recipe->id]);
+            }
+
         $recipe->update([
                     'status' => 1,
                     'rejection_reason' => null,
+                    'approval_at' => now(),
                 ]);
-        
+
+
         return redirect()->route('admin.recipe');
     }
 
@@ -52,7 +63,7 @@ class AdminRecipeController extends Controller
                     'status' => 2,
                     'rejection_reason' => $request->rejection_reason,
                 ]);
-        
+
         return redirect()->route('admin.recipe');
     }
 }

@@ -8,6 +8,9 @@
 <div class="bg-primary min-h-screen md:pb-6">
     <div class="rounded-2xl bg-white p-4 mb-6 md:mx-6 md:py-8 md:px-10">
         <h2 class="text-center text-2xl font-bold text-accent mb-10">レシピ編集</h2>
+        @if ($recipe->status === 2)
+        <div class="text-64 md:text-xl font-bold text-error mb-4">差戻し理由：{{ $recipe->rejection_reason }}</div>
+        @endif
         <div>
             <form id="recipe-update-form" class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.update', ['recipe_id' => $recipe->id]) }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
@@ -133,7 +136,7 @@
                 </div>
             </form>
             <div class="flex justify-center gap-4 mt-6">
-                <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit" form="recipe-update-form">更新</button>
+                <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit" form="recipe-update-form">更新申請</button>
                 <form action="{{ route('recipe.delete', ['recipe_id' => $recipe->id]) }}" method="post">
                     @csrf
                     @method('DELETE')

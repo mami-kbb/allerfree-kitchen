@@ -19,6 +19,11 @@ class ProfileController extends Controller
         ->findOrFail($user_id);
         $tab = $request->input('tab', 'approved');
 
+        if (in_array($tab, ['pending', 'reject']) && auth()->id() !== $user->id)
+            {
+                abort(403);
+            }
+
         if ($tab === 'reject') {
             $recipes = $user->recipes()
             ->reject()

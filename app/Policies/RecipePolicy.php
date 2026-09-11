@@ -32,6 +32,18 @@ class RecipePolicy
         return $user->id === $recipe->user_id;
     }
 
+    public function viewPending(User $user, Recipe $recipe):bool
+    {
+        return $user->id === $recipe->user_id
+        && $recipe->status === 0;
+    }
+
+    public function viewReject(User $user, Recipe  $recipe): bool
+    {
+        return $user->id === $recipe->user_id
+        && $recipe->status === 2;
+    }
+
     /**
      * Determine whether the user can create models.
      */

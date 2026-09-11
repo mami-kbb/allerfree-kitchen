@@ -26,11 +26,11 @@
                 </div>
             </div>
         </div>
-        <div class="sm:mx-6 px-4 py-2 border-b">
-            <a class="text-xl {{ $tab === 'approved' ? 'font-bold' : '' }}" href="{{ route('profile', ['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'approved'])) }}">投稿レシピ</a>
+        <div class="sm:mx-6 px-4 py-2 border-b mb-4">
+            <a class="text-64 md:text-xl mr-1 {{ $tab === 'approved' ? 'font-bold' : '' }}" href="{{ route('profile', ['user_id' => $user->id, 'tab' => 'approved']) }}">投稿レシピ</a>
             @if (auth()->id() === $user->id)
-            <a class="text-xl {{ $tab === 'pending' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'pending'])) }}">申請中レシピ</a>
-            <a class="text-xl {{ $tab === 'reject' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $recipes->user_id], array_merge(request()->all(), ['tab' => 'reject'])) }}">差戻しレシピ</a>
+            <a class="text-64 md:text-xl mr-2 border-l pl-2 {{ $tab === 'pending' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $user->id, 'tab' => 'pending']) }}">申請中レシピ</a>
+            <a class="text-64 md:text-xl mr-2 border-l pl-2 {{ $tab === 'reject' ? 'font-bold' : '' }}" href="{{ route('profile',['user_id' => $user->id,'tab' => 'reject']) }}">差戻しレシピ</a>
             @endif
         </div>
         @if ($recipes->isEmpty())
@@ -38,7 +38,13 @@
         @else
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach($recipes as $recipe)
+                    @if ($tab === 'pending')
+                    <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.pending', ['recipe_id' => $recipe->id]) }}">
+                    @elseif ($tab === 'reject')
+                    <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.reject', ['recipe_id' => $recipe->id]) }}">
+                    @else
                     <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
+                    @endif
                         <div><img class="w-full h-48 object-cover" src="{{ $recipe->image_url }}" alt="{{ $recipe->name }}"></div>
                         <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
                     </a>

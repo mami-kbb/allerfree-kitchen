@@ -39,12 +39,12 @@
                 <p class="text-lg font-semibold">材料({{ $recipe->servings }})</p>
                 @foreach ($recipe->ingredients as $ingredient)
                 <div class="flex justify-between my-1 py-1 border-b border-dashed px-2.5">
-                    <p>{{ $ingredient->name }}</p>
+                    <p class="{{ $ingredients->contains('id', $ingredient->id) ? 'text-error font-semibold' : '' }}">{{ $ingredient->name }}</p>
                     <p>{{ $ingredient->pivot->quantity }}</p>
                 </div>
                 @endforeach
                 @if ($ingredients->isNotEmpty())
-                <p>※新規登録の食材があります。食材管理画面で詳細設定を行ってから承認処理を行ってください。</p>
+                <p class="text-error">※未設定の食材があります。食材管理画面で詳細設定を行ってから承認処理を行ってください。</p>
                 @endif
             </div>
             <div class="my-6 md:flex-1">
@@ -61,18 +61,18 @@
             <p class="text-lg font-semibold">コツ・ポイント
             <p>{{ $recipe->tips }}</p>
         </div>
-        <div class="w-full my-4 md:my-auto">
-            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.reject', ['recipe_id' => $recipe->id]) }}" method="post">
+        <div class="w-full my-4 md:my-auto relative px-6">
+            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('admin.recipe.reject', ['recipe_id' => $recipe->id]) }}" method="post">
                 @csrf
                 @method('PUT')
                 <label class="font-semibold text-lg" for="rejection_reason">差戻し理由</label>
-                <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('tips') border-error @enderror" name="rejection_reason" id="rejection_reason">{{ old('rejection_reason $recipe->rejection_reason')}}</textarea>
-                <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">差戻し</button>
+                <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('rejection_reason') border-error @enderror" name="rejection_reason" id="rejection_reason">{{ old('rejection_reason', $recipe->rejection_reason)}}</textarea>
+                <button class="block mx-auto text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">差戻し</button>
             </form>
-            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('recipe.approve', ['recipe_id' => $recipe->id]) }}" method="post">
+            <form class="absolute right-6 bottom-0" action="{{ route('admin.recipe.approve', ['recipe_id' => $recipe->id]) }}" method="post">
                 @csrf
                 @method('PUT')
-                <button class="block text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">承認</button>
+                <button class="text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">承認</button>
             </form>
         </div>
     </div>
