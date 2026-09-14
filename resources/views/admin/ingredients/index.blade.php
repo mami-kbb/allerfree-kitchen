@@ -8,34 +8,61 @@
 <div class="bg-primary min-h-screen md:pb-8">
     <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
         <h2 class="text-center text-2xl font-bold text-accent mb-10">食材管理・設定</h2>
-        <div>
-            <h3>食材設定</h3>
+        <div class="w-full text-center">
+            <h3 class="font-bold md:text-xl">食材設定</h3>
             @if($incompleteIngredients->isNotEmpty())
-            <p>以下の食材の設定を行ってください</p>
-            <label>食材名</label>
-            <label>読み方</label>
-            <label>食材カテゴリー</label>
-            <label>アレルギーカテゴリー</label>
+            <p class="mb-2">以下の食材の設定を行ってください</p>
+            <div class="hidden md:grid grid-cols-5 md:text-start">
+                <label class="font-bold text-lg">食材名</label>
+                <label class="font-bold text-lg">読み方</label>
+                <label class="font-bold text-lg">食材カテゴリー</label>
+                <label class="font-bold text-lg">アレルギーカテゴリー</label>
+                <label></label>
+            </div>
+
             @foreach($incompleteIngredients as $incompleteIngredient)
-            <form action="" method="post">
+            <form class="w-full border-b border-dashed mb-2 pb-2" action="{{ route('ingredient.update', ['ingredient_id' => $incompleteIngredient->id]) }}" method="post">
                 @csrf
                 @method('PUT')
-                    <div>
-                        <p>{{ $incompleteIngredient->name }}</p>
-                        <input type="text" id="reading-{{ $incompleteIngredient->id }}" name="reading" value="{{ old('reading', $incompleteIngredient->reading) }}">
-                        <select name="category" id="category-{{ $incompleteIngredient->id }}">
+                    <div class="w-full md:grid md:grid-cols-5">
+                        <div class="flex mb-2">
+                            <p class="font-bold md:hidden">食材名：
+                            </p>
+                            <p>{{ $incompleteIngredient->name }}</p>
+                        </div>
+                        <div class="text-start mb-2">
+                            <label class="font-bold md:hidden">読み方：</label>
+                            <input class="border rounded-md py-1 px-2 @error('name') border-error @enderror" type="text" id="reading-{{ $incompleteIngredient->id }}" name="reading" value="{{ old('reading', $incompleteIngredient->reading) }}">
+                            @error('reading')
+                            <p class="text-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="text-start mb-2">
+                            <label class="font-bold md:hidden">食材カテゴリー：</label>
+                            <select class="border rounded-md py-1 px-2 cursor-pointer @error('name') border-error @enderror" name="category" id="category-{{ $incompleteIngredient->id }}">
                             <option value="">選択してください</option>
                             @foreach($categories as $category)
                             <option value="{{ $category}}">{{ $category }}</option>
                             @endforeach
-                        </select>
-                        <select name="allergy_categories[]" id="allergy-categories-{{ $incompleteIngredient->id }}" multiple>
-                            <option value="">選択してください</option>
+                            </select>
+                            @error('category')
+                            <p class="text-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="text-start mb-2">
+                            <label class="font-bold md:hidden">アレルギーカテゴリー：</label>
+                            <select class="border rounded-md py-1 px-2 cursor-pointer @error('name') border-error @enderror" name="allergy_categories[]" id="allergy-categories-{{ $incompleteIngredient->id }}" multiple>
+                            <option value=""></option>
                             @foreach($allergyCategories as $allergyCategory)
                             <option value="{{ $allergyCategory->id }}">{{ $allergyCategory->category }}</option>
                             @endforeach
-                        </select>
-                        <button type="submit">設定</button>
+                            </select>
+                            @error('allergy_categories')
+                            <p class="text-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <button class="text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">設定</button>
                     </div>
             </form>
             @endforeach

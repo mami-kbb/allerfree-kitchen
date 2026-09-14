@@ -55,6 +55,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipe');
     Route::get('/admin/recipe/{recipe_id}', [AdminRecipeController::class, 'show'])->name('admin.application');
     Route::get('/admin/ingredients', [IngredientController::class, 'index'])->name('ingredients.list');
+    Route::put('/admin/ingredient/{ingredient_id}', [IngredientController::class, 'update'])->name('ingredient.update');
     Route::put('/admin/recipe/{recipe_id}/approve', [AdminRecipeController::class, 'approve'])->name('admin.recipe.approve');
     Route::put('/admin/recipe/{recipe_id}/reject', [AdminRecipeController::class, 'reject'])->name('admin.recipe.reject');
 });

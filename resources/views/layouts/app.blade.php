@@ -19,28 +19,28 @@
                 @auth
                 @if (Auth::user()->isAdmin())
                 <li>
-                    <a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('ingredients.list') }}">食材管理</a>
+                    <a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer" href="{{ route('ingredients.list') }}">食材管理</a>
                 </li>
                 <li>
                     <form action="{{ route('admin.logout') }}" method="post">
                         @csrf
-                        <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md">ログアウト</button>
+                        <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer">ログアウト</button>
                     </form>
                 </li>
                 @elseif (Auth::user()->isUser())
-                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
-                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
+                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
+                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md">ログアウト</button>
+                        <button class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer">ログアウト</button>
                     </form>
                 </li>
                 @endif
                 @endauth
                 @guest
-                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md " href="{{ route('login') }}">ログイン</a></li>
-                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md" href="{{ route('register') }}">新規登録</a></li>
+                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer" href="{{ route('login') }}">ログイン</a></li>
+                <li><a class="border border-taupe-200 bg-white rounded-md px-4 py-2 hover:shadow-md cursor-pointer" href="{{ route('register') }}">新規登録</a></li>
                 @endguest
             </ul>
 
@@ -55,21 +55,21 @@
                 @auth
                 @if (Auth::user()->isAdmin())
                 <li class="flex-1 flex items-center justify-center border-b py-4">
-                    <a class="block w-full text-center text-lg" href="{{ route('ingredients.list') }}">食材管理</a>
+                    <a class="block w-full text-center text-lg cursor-pointer" href="{{ route('ingredients.list') }}">食材管理</a>
                 </li>
                 <li class="flex-1 flex items-center justify-center border-b py-4">
                     <form action="{{ route('admin.logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="block w-full text-center text-lg">ログアウト</button>
+                        <button type="submit" class="block w-full text-center text-lg cursor-pointer">ログアウト</button>
                     </form>
                 </li>
                 @elseif (Auth::user()->isUser())
-                <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
-                <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
+                <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg cursor-pointer" href="{{ route('profile', ['user_id' => auth()->id()]) }}">マイページ</a></li>
+                <li class="flex-1 flex items-center justify-center border-b py-4"><a class="block w-full text-center text-lg cursor-pointer" href="{{ route('recipe.create') }}">レシピ投稿</a></li>
                 <li class="flex-1 flex items-center justify-center border-b py-4">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="block w-full text-center text-lg">ログアウト</button>
+                        <button type="submit" class="block w-full text-center text-lg cursor-pointer">ログアウト</button>
                     </form>
                 </li>
                 @endif

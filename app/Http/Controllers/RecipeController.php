@@ -263,8 +263,7 @@ class RecipeController extends Controller
                     ]);
                 }
 
-                $allergyIds = $request->input('allergy_recipe', []);
-                $recipe->allergies()->sync($allergyIds);
+                $recipe->allergies()->sync($request->allergy_recipe);
 
                 $recipe->ingredients()->detach();
 
