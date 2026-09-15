@@ -9,9 +9,9 @@
     <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
         <h2 class="text-center text-2xl font-bold text-accent mb-10">食材管理・設定</h2>
         <div class="w-full text-center">
-            <h3 class="font-bold md:text-xl">食材設定</h3>
+            <h3 class="inline font-bold text-lg md:text-xl bg-gray-200 border-mist-500 border rounded-full px-3 py-1">食材設定</h3>
             @if($incompleteIngredients->isNotEmpty())
-            <p class="mb-2">以下の食材の設定を行ってください</p>
+            <p class="my-3 text-accent">※以下の食材の設定を行ってください</p>
             <div class="hidden md:grid md:grid-cols-[0.7fr_1fr_1.2fr_2fr_auto] gap-3 text-start">
                 <p class="font-bold text-lg">食材名</p>
                 <p class="font-bold text-lg">読み方</p>
@@ -96,14 +96,14 @@
             <div>すべて設定済みです。登録が必要な食材はありません。</div>
             @endif
         </div>
-        <div>
-            <h3>食材リスト</h3>
+        <div class="w-full md:w-1/2 md:mx-auto text-center mt-4">
+            <h3 class="inline font-bold text-lg md:text-xl my-4 bg-gray-200 border rounded-full border-mist-500 px-3 py-1">食材リスト</h3>
 
             @foreach($categories as $category)
-            <h4>{{ $category }}</h4>
-            <table>
+            <h4 class="font-bold md:text-lg text-yellow-900 bg-amber-50 mt-5">{{ $category }}</h4>
+            <table class="w-full ">
                 <thead>
-                    <tr>
+                    <tr class="grid grid-cols-[1fr_1fr_2fr] border-b border-double mt-2">
                         <th>食材名</th>
                         <th>読み方</th>
                         <th>アレルギーカテゴリー</th>
@@ -112,7 +112,7 @@
 
                 <tbody>
                     @foreach($ingredients->where('category', $category) as $ingredient)
-                    <tr>
+                    <tr class="grid grid-cols-[1fr_1fr_2fr] border-b border-dashed my-2">
                         <td>{{ $ingredient->name }}</td>
                         <td>{{ $ingredient->reading }}</td>
                         <td>{{ $ingredient->allergyCategories->pluck('category')->join('、') }}</td>

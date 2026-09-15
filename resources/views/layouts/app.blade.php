@@ -13,7 +13,7 @@
 <body>
     <header class="bg-primary relative">
         <div class="flex justify-between items-center m-auto p-2">
-            <a class="text-4xl font-bold font-roboto text-accent" href="{{ route('recipes.list') }}">Allerfree Kitchen</a>
+            <a class="text-4xl font-bold font-roboto text-accent" href="{{ Auth::check() && Auth::user()->isAdmin()  ? route('admin.recipe') : route('recipes.list') }}">Allerfree Kitchen</a>
             @if( !in_array(Route::currentRouteName(), ['login', 'register', 'admin.login']) )
             <ul id="menu" class="hidden gap-4 md:flex md:flex-row md:items-center md:gap-4">
                 @auth
