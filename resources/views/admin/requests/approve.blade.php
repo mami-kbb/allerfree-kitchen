@@ -64,11 +64,14 @@
             <p>{{ $recipe->tips }}</p>
         </div>
         <div class="w-full my-4 md:my-auto relative px-6">
-            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('admin.recipe.reject', ['recipe_id' => $recipe->id]) }}" method="post">
+            <form class="w-full md:w-3/4 mx-auto md:my-8 px-6" action="{{ route('admin.recipe.reject', ['recipe_id' => $recipe->id]) }}" method="post" novalidate>
                 @csrf
                 @method('PUT')
                 <label class="font-semibold text-lg" for="rejection_reason">差戻し理由</label>
                 <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('rejection_reason') border-error @enderror" name="rejection_reason" id="rejection_reason">{{ old('rejection_reason', $recipe->rejection_reason)}}</textarea>
+                @error('rejection_reason')
+                <p class="text-error">{{ $message }}</p>
+                @enderror
                 <button class="block mx-auto text-center bg-taupe-200 hover:shadow-md border border-accent text-accent px-4 py-2 md:my-4 rounded-md font-semibold cursor-pointer" type="submit">差戻し</button>
             </form>
             <form class="absolute right-6 bottom-0" action="{{ route('admin.recipe.approve', ['recipe_id' => $recipe->id]) }}" method="post">

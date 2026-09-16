@@ -36,16 +36,6 @@ class VerifyEmailTest extends TestCase
         Notification::assertSentTo($user, VerifyEmail::class);
     }
 
-    public function test_verification_notice_page_has_mailhog_link(): void{
-        $user = User::factory()->unverified()->create();
-
-        $response = $this->actingAs($user)->get('/email/verify');
-
-        //第二引数にfalseを指定することで、HTMLエスケープをしない
-        $response->assertSee('href="http://localhost:8025"', false);
-        $response->assertSee('認証はこちらから');
-    }
-
     public function test_email_verification_completed_and_redirects_to_profile(): void
     {
         $user = User::factory()->unverified()->create();

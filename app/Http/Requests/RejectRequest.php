@@ -26,11 +26,11 @@ class RejectRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'rejection_reason.required' => '差戻し理由を入力してください',
-            'rejection_reason.required' => '差戻し理由は300文字以内で入力してください',
+            'rejection_reason.max' => '差戻し理由は300文字以内で入力してください',
         ];
     }
 }
