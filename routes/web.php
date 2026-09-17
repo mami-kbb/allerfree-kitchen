@@ -59,3 +59,10 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/admin/recipe/{recipe_id}/approve', [AdminRecipeController::class, 'approve'])->name('admin.recipe.approve');
     Route::put('/admin/recipe/{recipe_id}/reject', [AdminRecipeController::class, 'reject'])->name('admin.recipe.reject');
 });
+
+Route::get('/db-check', function () {
+    $start = microtime(true);
+    \DB::select('SELECT 1');
+    $end = microtime(true);
+    return 'DB1回の往復にかかった時間：' . round(($end - $start) * 1000) . 'ms';
+});
