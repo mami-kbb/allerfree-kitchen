@@ -34,16 +34,27 @@ class Recipe extends Model
         });
     }
 
+    // 詳細ページ用
     protected function imageUrl(): Attribute
     {
         return Attribute::make(
-            get: function () {
-                if (str_starts_with($this->image, 'http')) {
-                    return $this->image;
+            get: fn () => $this->buildingImageUrl(800)
+        );
+    }
+
+    protected function thumbnailUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->buildingImageUrl(300)
+        );
+    }
+
+    // cloudinaryの画像もサンプル画像（public配下の画像)も同じように呼び出せる型を作る
+    private function buildingImageUrl(int $width): string{
+        if (str_starts_with($this->image, 'http')) {
+                    return str_replace('/upload/', "/upload/w_{$width},q_auto,f_auto/", $this->image);
                 }
                 return asset($this->image);
-            }
-        );
     }
 
     public function user() {

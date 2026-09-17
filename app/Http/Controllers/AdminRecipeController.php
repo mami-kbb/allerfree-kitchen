@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Recipe;
-use App\Models\Ingredient;
 use App\Http\Requests\RejectRequest;
 
 class AdminRecipeController extends Controller
@@ -20,6 +18,7 @@ class AdminRecipeController extends Controller
 
     public function show($recipe_id) {
         $recipe = Recipe::with([
+            'user.profile',
             'allergies',
             'ingredients',
             'steps',

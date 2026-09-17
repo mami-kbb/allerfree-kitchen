@@ -45,7 +45,7 @@
                     @else
                     <a class="w-full bg-white rounded-lg shadow-md overflow-hidden" href="{{ route('recipe.show', ['recipe_id' => $recipe->id]) }}">
                     @endif
-                        <div><img class="w-full h-48 object-cover" src="{{ $recipe->image_url }}" alt="{{ $recipe->name }}"></div>
+                        <div><img class="w-full h-48 object-cover" src="{{ $recipe->thumbnail_url }}" alt="{{ $recipe->name }}"></div>
                         <p class="font-bold my-2 text-center">{{ $recipe->name }}</p>
                     </a>
                 @endforeach
