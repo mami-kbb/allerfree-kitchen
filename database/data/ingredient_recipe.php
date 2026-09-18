@@ -280,4 +280,343 @@ return [
         'ingredient' => 'サラダ油',
         'quantity' => '小さじ1',
     ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => '鶏肉',
+        'quantity' => '200g',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '鶏肉とじゃがいもの照り煮',
+        'ingredient' => '水',
+        'quantity' => '150ml',
+    ],
+
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => '豚肉',
+        'quantity' => '200g',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => 'ピーマン',
+        'quantity' => '3個',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => '生姜',
+        'quantity' => '1かけ',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => '料理酒',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉とピーマンの生姜炒め',
+        'ingredient' => '砂糖',
+        'quantity' => '小さじ1',
+    ],
+
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '豆腐',
+        'quantity' => '1丁',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => 'ひき肉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '長ねぎ',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '砂糖',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '片栗粉',
+        'quantity' => '小さじ2',
+    ],
+    [
+        'recipe' => '豆腐とひき肉のとろみそぼろ煮',
+        'ingredient' => '水',
+        'quantity' => '150ml',
+    ],
+
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => 'トマト',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => 'キャベツ',
+        'quantity' => '2枚',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => '水',
+        'quantity' => '500ml',
+    ],
+    [
+        'recipe' => '野菜たっぷりトマトスープ',
+        'ingredient' => '塩',
+        'quantity' => '小さじ1/2',
+    ],
+
+    [
+        'recipe' => 'ツナとじゃがいものチーズ焼き',
+        'ingredient' => 'ツナ缶',
+        'quantity' => '1缶',
+    ],
+    [
+        'recipe' => 'ツナとじゃがいものチーズ焼き',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => 'ツナとじゃがいものチーズ焼き',
+        'ingredient' => 'チーズ',
+        'quantity' => '50g',
+    ],
+    [
+        'recipe' => 'ツナとじゃがいものチーズ焼き',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => 'ピーマン',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => 'オリーブオイル',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '具だくさん野菜のカレー風炒め',
+        'ingredient' => '塩',
+        'quantity' => '小さじ1/3',
+    ],
+
+    [
+        'recipe' => 'りんごとさつまいものやさしい煮込み',
+        'ingredient' => 'りんご',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'りんごとさつまいものやさしい煮込み',
+        'ingredient' => 'さつまいも',
+        'quantity' => '1本',
+    ],
+    [
+        'recipe' => 'りんごとさつまいものやさしい煮込み',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'りんごとさつまいものやさしい煮込み',
+        'ingredient' => '水',
+        'quantity' => '150ml',
+    ],
+
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => '鶏肉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => 'パスタ',
+        'quantity' => '160g',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => 'しめじ',
+        'quantity' => '1/2パック',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => 'えのき',
+        'quantity' => '1/2袋',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => '料理酒',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '鶏肉ときのこの和風パスタ',
+        'ingredient' => 'オリーブオイル',
+        'quantity' => '大さじ1',
+    ],
+
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => 'えび',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => 'キャベツ',
+        'quantity' => '2枚',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => 'ピーマン',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => '片栗粉',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'えびと野菜の彩りあんかけ',
+        'ingredient' => '水',
+        'quantity' => '150ml',
+    ],
+
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => '豚肉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => '豆腐',
+        'quantity' => '1/2丁',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => 'キャベツ',
+        'quantity' => '2枚',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => '長ねぎ',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => '味噌',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '豚肉と豆腐の具だくさん味噌汁',
+        'ingredient' => '水',
+        'quantity' => '500ml',
+    ],
 ];

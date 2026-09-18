@@ -17,7 +17,7 @@ class RecipeSeeder extends Seeder
         if (DB::table('recipes')->exists()) {
             return;
         }
-        //sample-imagesの画像をstorage/appにimagesディレクトリ（公開用ディレクトリ）を作成してコピーする
+
         $recipes = require database_path('data/recipes.php');
 
         $now = now();

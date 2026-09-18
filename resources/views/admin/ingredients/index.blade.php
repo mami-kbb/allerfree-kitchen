@@ -93,10 +93,10 @@
             </form>
             @endforeach
             @else
-            <div>すべて設定済みです。登録が必要な食材はありません。</div>
+            <div class="my-3">すべて設定済みです。登録が必要な食材はありません。</div>
             @endif
         </div>
-        <div class="w-full md:w-1/2 md:mx-auto text-center mt-4">
+        <div class="w-full md:w-1/2 md:mx-auto text-center mt-6">
             <h3 class="inline font-bold text-lg md:text-xl my-4 bg-gray-200 border rounded-full border-mist-500 px-3 py-1">食材リスト</h3>
 
             @foreach($categories as $category)
