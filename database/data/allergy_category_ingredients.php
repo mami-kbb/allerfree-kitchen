@@ -268,4 +268,64 @@ return [
         'ingredient' => '水',
         'allergy_category' => 'その他',
     ],
+
+    [
+        'ingredient' => 'さば',
+        'allergy_category' => '魚類',
+    ],
+
+    [
+        'ingredient' => 'いか',
+        'allergy_category' => '魚類',
+    ],
+
+    [
+        'ingredient' => '牛肉',
+        'allergy_category' => '肉類',
+    ],
+
+    [
+        'ingredient' => 'やまいも',
+        'allergy_category' => '野菜類',
+    ],
+
+    [
+        'ingredient' => 'もも',
+        'allergy_category' => '果物系バラ科',
+    ],
+
+    [
+        'ingredient' => 'ゼラチン',
+        'allergy_category' => 'その他',
+    ],
+
+    [
+        'ingredient' => 'オレンジ',
+        'allergy_category' => '果物系柑橘類',
+    ],
+
+    [
+        'ingredient' => 'キウイフルーツ',
+        'allergy_category' => '果物系その他',
+    ],
+
+    [
+        'ingredient' => 'アーモンド',
+        'allergy_category' => 'ナッツ類',
+    ],
+
+    [
+        'ingredient' => 'くるみ',
+        'allergy_category' => 'ナッツ類',
+    ],
+
+    [
+        'ingredient' => 'カシューナッツ',
+        'allergy_category' => 'ナッツ類',
+    ],
+
+    [
+        'ingredient' => 'ごま',
+        'allergy_category' => '種子類',
+    ],
 ];

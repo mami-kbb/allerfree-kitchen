@@ -53,6 +53,11 @@ return [
             'category' => 'たんぱく質・肉・魚',
         ],
         [
+            'name' => '木綿豆腐',
+            'reading' => 'もめんどうふ',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
             'name' => '大豆',
             'reading' => 'だいず',
             'category' => 'たんぱく質・肉・魚',
@@ -295,6 +300,142 @@ return [
         [
             'name' => '水',
             'reading' => 'みず',
+            'category' => '調味料',
+        ],
+        [
+            'name' => 'さば',
+            'reading' => 'さば',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+
+        [
+            'name' => 'いか',
+            'reading' => 'いか',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+
+        [
+            'name' => '牛肉',
+            'reading' => 'ぎゅうにく',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+
+        [
+            'name' => '大根',
+            'reading' => 'だいこん',
+            'category' => '野菜・いも',
+        ],
+
+        [
+            'name' => '白菜',
+            'reading' => 'はくさい',
+            'category' => '野菜・いも',
+        ],
+
+        [
+            'name' => 'ごぼう',
+            'reading' => 'ごぼう',
+            'category' => '野菜・いも',
+        ],
+
+        [
+            'name' => 'やまいも',
+            'reading' => 'やまいも',
+            'category' => '野菜・いも',
+        ],
+
+        [
+            'name' => 'かぼちゃ',
+            'reading' => 'かぼちゃ',
+            'category' => '野菜・いも',
+        ],
+
+        [
+            'name' => 'もも',
+            'reading' => 'もも',
+            'category' => '果物・きのこ',
+        ],
+
+        [
+            'name' => 'ゼラチン',
+            'reading' => 'ぜらちん',
+            'category' => '調味料',
+        ],
+
+        [
+            'name' => 'オレンジ',
+            'reading' => 'おれんじ',
+            'category' => '果物・きのこ',
+        ],
+
+        [
+            'name' => 'キウイフルーツ',
+            'reading' => 'きういふるーつ',
+            'category' => '果物・きのこ',
+        ],
+
+        [
+            'name' => 'アーモンド',
+            'reading' => 'あーもんど',
+            'category' => 'ナッツ・種子',
+        ],
+
+        [
+            'name' => 'くるみ',
+            'reading' => 'くるみ',
+            'category' => 'ナッツ・種子',
+        ],
+
+        [
+            'name' => 'カシューナッツ',
+            'reading' => 'かしゅーなっつ',
+            'category' => 'ナッツ・種子',
+        ],
+
+        [
+            'name' => 'ごま',
+            'reading' => 'ごま',
+            'category' => 'ナッツ・種子',
+        ],
+
+        [
+            'name' => 'れんこん',
+            'reading' => 'れんこん',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => 'いんげん',
+            'reading' => 'いんげん',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => 'ひじき',
+            'reading' => 'ひじき',
+            'category' => '海藻',
+        ],
+        [
+            'name' => '枝豆',
+            'reading' => 'えだまめ',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => '豆乳',
+            'reading' => 'とうにゅう',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => '粉寒天',
+            'reading' => 'こなかんてん',
+            'category' => '調味料',
+        ],
+        [
+            'name' => '里芋',
+            'reading' => 'さといも',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => 'だし汁',
+            'reading' => 'だしじる',
             'category' => '調味料',
         ],
 ];
