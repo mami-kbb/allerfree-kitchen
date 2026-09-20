@@ -13,8 +13,18 @@ return [
             'category' => 'たんぱく質・肉・魚',
         ],
         [
+            'name' => '豚ひき肉',
+            'reading' => 'ぶたひきにく',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
             'name' => '鶏肉',
             'reading' => 'とりにく',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => '鶏ひき肉',
+            'reading' => 'とりひきにく',
             'category' => 'たんぱく質・肉・魚',
         ],
         [
@@ -45,6 +55,11 @@ return [
         [
             'name' => 'えび',
             'reading' => 'えび',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => 'あわび',
+            'reading' => 'あわび',
             'category' => 'たんぱく質・肉・魚',
         ],
         [
@@ -193,6 +208,16 @@ return [
             'category' => '調味料',
         ],
         [
+            'name'=> '米粉麺',
+            'reading' => 'こめこめん',
+            'category' => '主食・穀物'
+        ],
+        [
+            'name' => 'ベーキングパウダー',
+            'reading' => 'べーきんぐぱうだー',
+            'category' => '調味料',
+        ],
+        [
             'name' => '醤油',
             'reading' => 'しょうゆ',
             'category' => '調味料',
@@ -218,6 +243,16 @@ return [
             'category' => '調味料',
         ],
         [
+            'name' => 'こしょう',
+            'reading' => 'こしょう',
+            'category' => '調味料',
+        ],
+        [
+            'name' => '酢',
+            'reading' => 'す',
+            'category' => '調味料',
+        ],
+        [
             'name' => '味噌',
             'reading' => 'みそ',
             'category' => '調味料',
@@ -238,13 +273,28 @@ return [
             'category' => '調味料',
         ],
         [
+            'name' => 'カレー粉',
+            'reading' => 'かれーこ',
+            'category' => '調味料',
+        ],
+        [
             'name' => 'めんつゆ',
             'reading' => 'めんつゆ',
             'category' => '調味料',
         ],
         [
+            'name' => 'はちみつ',
+            'reading' => 'はちみつ',
+            'category' => '調味料',
+        ],
+        [
             'name' => '米',
             'reading' => 'こめ',
+            'category' => '主食・穀物',
+        ],
+        [
+            'name' => 'ごはん',
+            'reading' => 'ごはん',
             'category' => '主食・穀物',
         ],
         [
@@ -268,6 +318,16 @@ return [
             'category' => '主食・穀物',
         ],
         [
+            'name' => 'パン粉',
+            'reading' => 'ぱんこ',
+            'category' => '主食・穀物',
+        ],
+        [
+            'name' => '油揚げ',
+            'reading' => 'あぶらあげ',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
         'name' => 'バナナ',
             'reading' => 'ばなな',
             'category' => '果物・きのこ',
@@ -285,6 +345,21 @@ return [
         [
             'name' => 'しめじ',
             'reading' => 'しめじ',
+            'category' => '果物・きのこ',
+        ],
+        [
+            'name' => 'まいたけ',
+            'reading' => 'まいたけ',
+            'category' => '果物・きのこ',
+        ],
+        [
+            'name' => 'まつたけ',
+            'reading' => 'まつたけ',
+            'category' => '果物・きのこ',
+        ],
+        [
+            'name' => 'エリンギ',
+            'reading' => 'えりんぎ',
             'category' => '果物・きのこ',
         ],
         [
@@ -367,7 +442,16 @@ return [
             'reading' => 'おれんじ',
             'category' => '果物・きのこ',
         ],
-
+        [
+            'name' => 'みかん',
+            'reading' => 'みかん',
+            'category' => '果物・きのこ',
+        ],
+        [
+            'name' => 'ぶどう',
+            'reading' => 'ぶどう',
+            'category' => '果物・きのこ',
+        ],
         [
             'name' => 'キウイフルーツ',
             'reading' => 'きういふるーつ',
@@ -377,6 +461,11 @@ return [
         [
             'name' => 'アーモンド',
             'reading' => 'あーもんど',
+            'category' => 'ナッツ・種子',
+        ],
+        [
+            'name' => 'アーモンドパウダー',
+            'reading' => 'あーもんどぱうだー',
             'category' => 'ナッツ・種子',
         ],
 
@@ -391,13 +480,21 @@ return [
             'reading' => 'かしゅーなっつ',
             'category' => 'ナッツ・種子',
         ],
-
+        [
+            'name' => 'マカダミアナッツ',
+            'reading' => 'まかだみあなっつ',
+            'category' => 'ナッツ・種子',
+        ],
         [
             'name' => 'ごま',
             'reading' => 'ごま',
             'category' => 'ナッツ・種子',
         ],
-
+        [
+            'name' => '白ごま',
+            'reading' => 'しろごま',
+            'category' => 'ナッツ・種子',
+        ],
         [
             'name' => 'れんこん',
             'reading' => 'れんこん',
@@ -437,5 +534,30 @@ return [
             'name' => 'だし汁',
             'reading' => 'だしじる',
             'category' => '調味料',
+        ],
+        [
+            'name' => 'サケ',
+            'reading' => 'さけ',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => 'コーン',
+            'reading' => 'こーん',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => '落花生',
+            'reading' => 'らっかせい',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => 'ココアパウダー',
+            'reading' => 'ここあぱうだー',
+            'category' => 'ナッツ・種子',
+        ],
+        [
+            'name' => 'もやし',
+            'reading' => 'もやし',
+            'category' => '野菜・いも',
         ],
 ];

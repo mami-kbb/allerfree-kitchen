@@ -9,7 +9,15 @@ return [
         'allergy_category' => '肉類',
     ],
     [
+        'ingredient' => '豚ひき肉',
+        'allergy_category' => '肉類',
+    ],
+    [
         'ingredient' => '鶏肉',
+        'allergy_category' => '肉類',
+    ],
+    [
+        'ingredient' => '鶏ひき肉',
         'allergy_category' => '肉類',
     ],
     [
@@ -33,7 +41,15 @@ return [
         'allergy_category' => '魚類',
     ],
     [
+        'ingredient' => 'サケ',
+        'allergy_category' => '魚類',
+    ],
+    [
         'ingredient' => 'えび',
+        'allergy_category' => '甲殻類',
+    ],
+    [
+        'ingredient' => 'あわび',
         'allergy_category' => '甲殻類',
     ],
     [
@@ -42,6 +58,10 @@ return [
     ],
     [
         'ingredient' => '大豆',
+        'allergy_category' => '豆類',
+    ],
+    [
+        'ingredient' => '落花生',
         'allergy_category' => '豆類',
     ],
     [
@@ -149,6 +169,14 @@ return [
         'allergy_category' => '穀物',
     ],
     [
+        'ingredient' => '米粉麺',
+        'allergy_category' => '穀物'
+    ],
+    [
+        'ingredient' => 'ペーキングパウダー',
+        'allergy_category' => '穀物',
+    ],
+    [
         'ingredient' => '醤油',
         'allergy_category' => '豆類',
     ],
@@ -170,6 +198,18 @@ return [
     ],
     [
         'ingredient' => '塩',
+        'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => 'こしょう',
+        'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => '酢',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => '酢',
         'allergy_category' => 'その他',
     ],
     [
@@ -201,6 +241,10 @@ return [
         'allergy_category' => '肉類',
     ],
     [
+        'ingredient' => 'カレー粉',
+        'allergy_category' => 'その他',
+    ],
+    [
         'ingredient' => 'めんつゆ',
         'allergy_category' => '豆類',
     ],
@@ -213,7 +257,15 @@ return [
         'allergy_category' => '魚類',
     ],
     [
+        'ingredient' => 'はちみつ',
+        'allergy_category' => 'その他',
+    ],
+    [
         'ingredient' => '米',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => 'ごはん',
         'allergy_category' => '穀物',
     ],
     [
@@ -241,6 +293,22 @@ return [
         'allergy_category' => '卵類',
     ],
     [
+        'ingredient' => 'パン粉',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => 'パン粉',
+        'allergy_category' => '乳製品',
+    ],
+    [
+        'ingredient' => 'パン粉',
+        'allergy_category' => '卵類',
+    ],
+    [
+        'ingredient' => '油揚げ',
+        'allergy_category' => '豆類',
+    ],
+    [
         'ingredient' => 'バナナ',
         'allergy_category' => '果物系その他',
     ],
@@ -254,6 +322,18 @@ return [
     ],
     [
         'ingredient' => 'しめじ',
+        'allergy_category' => 'キノコ類',
+    ],
+    [
+        'ingredient' => 'まいたけ',
+        'allergy_category' => 'キノコ類',
+    ],
+    [
+        'ingredient' => 'まつたけ',
+        'allergy_category' => 'キノコ類',
+    ],
+    [
+        'ingredient' => 'エリンギ',
         'allergy_category' => 'キノコ類',
     ],
     [
@@ -293,7 +373,6 @@ return [
         'ingredient' => 'もも',
         'allergy_category' => '果物系バラ科',
     ],
-
     [
         'ingredient' => 'ゼラチン',
         'allergy_category' => 'その他',
@@ -303,7 +382,14 @@ return [
         'ingredient' => 'オレンジ',
         'allergy_category' => '果物系柑橘類',
     ],
-
+    [
+        'ingredient' => 'みかん',
+        'allergy_category' => '果物系柑橘類',
+    ],
+    [
+        'ingredient' => 'ぶどう',
+        'allergy_category' => '果物系その他',
+    ],
     [
         'ingredient' => 'キウイフルーツ',
         'allergy_category' => '果物系その他',
@@ -311,6 +397,10 @@ return [
 
     [
         'ingredient' => 'アーモンド',
+        'allergy_category' => 'ナッツ類',
+    ],
+    [
+        'ingredient' => 'アーモンドパウダー',
         'allergy_category' => 'ナッツ類',
     ],
 
@@ -323,9 +413,20 @@ return [
         'ingredient' => 'カシューナッツ',
         'allergy_category' => 'ナッツ類',
     ],
-
+    [
+        'ingredient' => 'マカダミアナッツ',
+        'allergy_category' => 'ナッツ類',
+    ],
     [
         'ingredient' => 'ごま',
         'allergy_category' => '種子類',
+    ],
+    [
+        'ingredient' => '白ごま',
+        'allergy_category' => '種子類',
+    ],
+    [
+        'ingredient' => 'もやし',
+        'allergy_category' => '野菜',
     ],
 ];
