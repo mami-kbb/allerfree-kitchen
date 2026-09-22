@@ -2763,7 +2763,7 @@ return [
     ],
     [
         'recipe' => '牛肉とピーマンのオイスター炒め',
-        'ingredient' => 'しょうゆ',
+        'ingredient' => '醤油',
         'quantity' => '小さじ1',
     ],
     [
@@ -2829,5 +2829,688 @@ return [
         'recipe' => 'かにかまと野菜のあんかけ丼',
         'ingredient' => '片栗粉',
         'quantity' => '大さじ1',
+    ],
+    // 81 豚肉とりんごのやわらか煮
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => '豚肉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => 'りんご',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => '砂糖',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => '豚肉とりんごのやわらか煮',
+        'ingredient' => 'だし汁',
+        'quantity' => '150ml',
+    ],
+
+    // 82 さばと大根の味噌煮
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => 'さば',
+        'quantity' => '2切れ',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => '大根',
+        'quantity' => '1/4本',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => '生姜',
+        'quantity' => '1かけ',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => '味噌',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'さばと大根の味噌煮',
+        'ingredient' => 'だし汁',
+        'quantity' => '200ml',
+    ],
+
+    // 83 えびとコーンの米粉お好み焼き
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => 'えび',
+        'quantity' => '80g',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => 'キャベツ',
+        'quantity' => '3枚',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => 'コーン',
+        'quantity' => '50g',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => '米粉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => 'だし汁',
+        'quantity' => '100ml',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => '長ねぎ',
+        'quantity' => '1/3本',
+    ],
+    [
+        'recipe' => 'えびとコーンの米粉お好み焼き',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+
+    // 84 アーモンド入りかぼちゃサラダ
+    [
+        'recipe' => 'アーモンド入りかぼちゃサラダ',
+        'ingredient' => 'かぼちゃ',
+        'quantity' => '200g',
+    ],
+    [
+        'recipe' => 'アーモンド入りかぼちゃサラダ',
+        'ingredient' => 'アーモンド',
+        'quantity' => '20g',
+    ],
+    [
+        'recipe' => 'アーモンド入りかぼちゃサラダ',
+        'ingredient' => '豆乳',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => 'アーモンド入りかぼちゃサラダ',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+    [
+        'recipe' => 'アーモンド入りかぼちゃサラダ',
+        'ingredient' => '砂糖',
+        'quantity' => '小さじ1',
+    ],
+
+    // 85 オレンジとにんじんのさっぱりサラダ
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => 'オレンジ',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => 'にんじん',
+        'quantity' => '1本',
+    ],
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => 'オリーブオイル',
+        'quantity' => '小さじ2',
+    ],
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => '酢',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => '砂糖',
+        'quantity' => '小さじ1/2',
+    ],
+    [
+        'recipe' => 'オレンジとにんじんのさっぱりサラダ',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+
+    // 86 バナナと豆乳の米粉蒸しパン
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => 'バナナ',
+        'quantity' => '1本',
+    ],
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => '米粉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => '豆乳',
+        'quantity' => '80ml',
+    ],
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => 'ベーキングパウダー',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => 'バナナと豆乳の米粉蒸しパン',
+        'ingredient' => '米油',
+        'quantity' => '大さじ1',
+    ],
+
+    // 87 牛肉とごぼうの炊き込みごはん
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => '牛肉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => 'ごぼう',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/3本',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => '米',
+        'quantity' => '2合',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '牛肉とごぼうの炊き込みごはん',
+        'ingredient' => 'だし汁',
+        'quantity' => '適量',
+    ],
+
+    // 88 さばと野菜のカレー風味焼き
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'さば',
+        'quantity' => '2切れ',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'ピーマン',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'カレー粉',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => 'オリーブオイル',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'さばと野菜のカレー風味焼き',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+
+    // 89 キウイとりんごのフルーツ寒天
+    [
+        'recipe' => 'キウイとりんごのフルーツ寒天',
+        'ingredient' => 'キウイフルーツ',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'キウイとりんごのフルーツ寒天',
+        'ingredient' => 'りんご',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => 'キウイとりんごのフルーツ寒天',
+        'ingredient' => '粉寒天',
+        'quantity' => '2g',
+    ],
+    [
+        'recipe' => 'キウイとりんごのフルーツ寒天',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => 'キウイとりんごのフルーツ寒天',
+        'ingredient' => '水',
+        'quantity' => '300ml',
+    ],
+
+    // 90 豚肉と野菜のごま味噌炒め
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => '豚肉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => 'キャベツ',
+        'quantity' => '3枚',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/3本',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => 'ピーマン',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => '味噌',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => 'ごま',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '豚肉と野菜のごま味噌炒め',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+    // 91 鶏肉と野菜のあったかそば
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => 'そば',
+        'quantity' => '2人分',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => '鶏肉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => '大根',
+        'quantity' => '5cm',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/3本',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => '長ねぎ',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => 'だし汁',
+        'quantity' => '500ml',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => '醤油',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '鶏肉と野菜のあったかそば',
+        'ingredient' => 'みりん',
+        'quantity' => '大さじ1',
+    ],
+
+    // 92 ピーナッツバターの米粉クッキー
+    [
+        'recipe' => 'ピーナッツバターの米粉クッキー',
+        'ingredient' => 'ピーナッツバター',
+        'quantity' => '50g',
+    ],
+    [
+        'recipe' => 'ピーナッツバターの米粉クッキー',
+        'ingredient' => '米粉',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => 'ピーナッツバターの米粉クッキー',
+        'ingredient' => '砂糖',
+        'quantity' => '30g',
+    ],
+    [
+        'recipe' => 'ピーナッツバターの米粉クッキー',
+        'ingredient' => '豆乳',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => 'ピーナッツバターの米粉クッキー',
+        'ingredient' => '米油',
+        'quantity' => '大さじ1',
+    ],
+
+    // 93 鮭といくらの彩りちらし寿司
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => '米',
+        'quantity' => '2合',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => 'サケ',
+        'quantity' => '1切れ',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => 'いくら',
+        'quantity' => '50g',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => 'きゅうり',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/3本',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => '酢',
+        'quantity' => '大さじ3',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => '鮭といくらの彩りちらし寿司',
+        'ingredient' => '塩',
+        'quantity' => '小さじ1/2',
+    ],
+
+    // 94 きのこと豆乳のやさしいポタージュ
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => 'しめじ',
+        'quantity' => '1/2パック',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => 'エリンギ',
+        'quantity' => '1本',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => 'じゃがいも',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => '豆乳',
+        'quantity' => '300ml',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => 'だし汁',
+        'quantity' => '200ml',
+    ],
+    [
+        'recipe' => 'きのこと豆乳のやさしいポタージュ',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+
+    // 95 野菜たっぷりミートソースパスタ
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'パスタ',
+        'quantity' => '160g',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => '牛ひき肉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/2個',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'にんじん',
+        'quantity' => '1/2本',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'トマト缶',
+        'quantity' => '1/2缶',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'ケチャップ',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '野菜たっぷりミートソースパスタ',
+        'ingredient' => 'コンソメ',
+        'quantity' => '小さじ1',
+    ],
+
+    // 96 ほうれん草とベーコンのキッシュ風
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => 'ほうれん草',
+        'quantity' => '1/2束',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => 'ベーコン',
+        'quantity' => '3枚',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => '卵',
+        'quantity' => '2個',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => '牛乳',
+        'quantity' => '100ml',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => 'チーズ',
+        'quantity' => '40g',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+    [
+        'recipe' => 'ほうれん草とベーコンのキッシュ風',
+        'ingredient' => 'こしょう',
+        'quantity' => '少々',
+    ],
+
+    // 97 豆腐入りふわふわチキンナゲット
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '鶏ひき肉',
+        'quantity' => '200g',
+    ],
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '絹ごし豆腐',
+        'quantity' => '100g',
+    ],
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '片栗粉',
+        'quantity' => '大さじ2',
+    ],
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '醤油',
+        'quantity' => '小さじ1',
+    ],
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '塩',
+        'quantity' => '少々',
+    ],
+    [
+        'recipe' => '豆腐入りふわふわチキンナゲット',
+        'ingredient' => '米油',
+        'quantity' => '大さじ2',
+    ],
+
+    // 98 さつまいもとチーズの春巻き
+    [
+        'recipe' => 'さつまいもとチーズの春巻き',
+        'ingredient' => 'さつまいも',
+        'quantity' => '200g',
+    ],
+    [
+        'recipe' => 'さつまいもとチーズの春巻き',
+        'ingredient' => 'チーズ',
+        'quantity' => '50g',
+    ],
+    [
+        'recipe' => 'さつまいもとチーズの春巻き',
+        'ingredient' => '春巻きの皮',
+        'quantity' => '6枚',
+    ],
+    [
+        'recipe' => 'さつまいもとチーズの春巻き',
+        'ingredient' => '米油',
+        'quantity' => '適量',
+    ],
+
+    // 99 具だくさん野菜の米粉ピザ
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => '米粉',
+        'quantity' => '150g',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'トマト',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'ピーマン',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'タマネギ',
+        'quantity' => '1/4個',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'コーン',
+        'quantity' => '30g',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'チーズ',
+        'quantity' => '60g',
+    ],
+    [
+        'recipe' => '具だくさん野菜の米粉ピザ',
+        'ingredient' => 'トマトソース',
+        'quantity' => '大さじ3',
+    ],
+
+    // 100 みかんとバナナのもちもちクレープ
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => '米粉',
+        'quantity' => '80g',
+    ],
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => '卵',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => '牛乳',
+        'quantity' => '150ml',
+    ],
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => '砂糖',
+        'quantity' => '大さじ1',
+    ],
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => 'みかん',
+        'quantity' => '1個',
+    ],
+    [
+        'recipe' => 'みかんとバナナのもちもちクレープ',
+        'ingredient' => 'バナナ',
+        'quantity' => '1本',
     ],
 ];

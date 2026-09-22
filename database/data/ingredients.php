@@ -33,6 +33,11 @@ return [
             'category' => 'たんぱく質・肉・魚',
         ],
         [
+            'name' => '牛ひき肉',
+            'reading' => 'ぎゅうひきにく',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
             'name' => 'ひき肉',
             'reading' => 'ひきにく',
             'category' => 'たんぱく質・肉・魚',
@@ -45,6 +50,11 @@ return [
         [
             'name' => 'ツナ缶',
             'reading' => 'つなかん',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => 'かにかま',
+            'reading' => 'かにかま',
             'category' => 'たんぱく質・肉・魚',
         ],
         [
@@ -70,6 +80,11 @@ return [
         [
             'name' => '木綿豆腐',
             'reading' => 'もめんどうふ',
+            'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => '絹ごし豆腐',
+            'reading' => 'きぬごしどうふ',
             'category' => 'たんぱく質・肉・魚',
         ],
         [
@@ -103,6 +118,16 @@ return [
             'category' => '野菜・いも',
         ],
         [
+            'name' => 'トマト缶',
+            'reading' => 'とまとかん',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => 'トマトソース',
+            'reading' => 'とまとそーす',
+            'category' => '調味料',
+        ],
+        [
             'name' => 'ほうれん草',
             'reading' => 'ほうれんそう',
             'category' => '野菜・いも',
@@ -125,6 +150,11 @@ return [
         [
             'name' => 'ピーマン',
             'reading' => 'ぴーまん',
+            'category' => '野菜・いも',
+        ],
+        [
+            'name' => 'きゅうり',
+            'reading' => 'きゅうり',
             'category' => '野菜・いも',
         ],
         [
@@ -188,6 +218,11 @@ return [
             'category' => '乳製品・油脂',
         ],
         [
+            'name' => '米油',
+            'reading' => 'こめあぶら',
+            'category' => '乳製品・油脂',
+        ],
+        [
             'name' => '小麦粉',
             'reading' => 'こむぎこ',
             'category' => '調味料',
@@ -210,7 +245,12 @@ return [
         [
             'name'=> '米粉麺',
             'reading' => 'こめこめん',
-            'category' => '主食・穀物'
+            'category' => '主食・穀物',
+        ],
+        [
+            'name' => '春巻きの皮',
+            'reading' => 'はるまきのかわ',
+            'category' => '主食・穀物',
         ],
         [
             'name' => 'ベーキングパウダー',
@@ -265,6 +305,11 @@ return [
         [
             'name' => 'ケチャップ',
             'reading' => 'けちゃっぷ',
+            'category' => '調味料',
+        ],
+        [
+            'name' => 'オイスターソース',
+            'reading' => 'おいすたーそーす',
             'category' => '調味料',
         ],
         [
@@ -549,6 +594,11 @@ return [
             'name' => '落花生',
             'reading' => 'らっかせい',
             'category' => 'たんぱく質・肉・魚',
+        ],
+        [
+            'name' => 'ピーナッツバター',
+            'reading' => 'ぴーなっつばたー',
+            'category' => '調味料',
         ],
         [
             'name' => 'ココアパウダー',

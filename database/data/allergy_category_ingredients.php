@@ -25,6 +25,10 @@ return [
         'allergy_category' => '肉類',
     ],
     [
+        'ingredient' => '牛ひき肉',
+        'allergy_category' => '肉類',
+    ],
+    [
         'ingredient' => 'ひき肉',
         'allergy_category' => '肉類',
     ],
@@ -35,6 +39,10 @@ return [
     [
         'ingredient' => 'ツナ缶',
         'allergy_category' => '魚類',
+    ],
+    [
+        'ingredient' => 'かにかま',
+        'allergy_category' => '甲殻類',
     ],
     [
         'ingredient' => 'サーモン',
@@ -57,12 +65,28 @@ return [
         'allergy_category' => '豆類',
     ],
     [
+        'ingredient' => '木綿豆腐',
+        'allergy_category' => '豆類',
+    ],
+    [
+        'ingredient' => '絹ごし豆腐',
+        'allergy_category' => '豆類',
+    ],
+    [
         'ingredient' => '大豆',
         'allergy_category' => '豆類',
     ],
     [
         'ingredient' => '落花生',
         'allergy_category' => '豆類',
+    ],
+    [
+        'ingredient' => 'ピーナッツバター',
+        'allergy_category' => '豆類',
+    ],
+    [
+        'ingredient' => 'ピーナッツバター',
+        'allergy_category' => '乳製品',
     ],
     [
         'ingredient' => 'いくら',
@@ -85,6 +109,18 @@ return [
         'allergy_category' => '野菜類',
     ],
     [
+        'ingredient' => 'トマト缶',
+        'allergy_category' => '野菜類',
+    ],
+    [
+        'ingredient' => 'トマトソース',
+        'allergy_category' => '野菜類',
+    ],
+    [
+        'ingredient' => 'トマトソース',
+        'allergy_category' => '豆類',
+    ],
+    [
         'ingredient' => 'ほうれん草',
         'allergy_category' => '野菜類',
     ],
@@ -102,6 +138,10 @@ return [
     ],
     [
         'ingredient' => 'ピーマン',
+        'allergy_category' => '野菜類',
+    ],
+    [
+        'ingredient' => 'きゅうり',
         'allergy_category' => '野菜類',
     ],
     [
@@ -151,6 +191,18 @@ return [
     [
         'ingredient' => 'サラダ油',
         'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => '米油',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => '春巻きの皮',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => '春巻きの皮',
+        'allergy_category' => '豆類',
     ],
     [
         'ingredient' => '小麦粉',
@@ -231,6 +283,18 @@ return [
     [
         'ingredient' => 'ケチャップ',
         'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => 'オイスターソース',
+        'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => 'オイスターソース',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => 'オイスターソース',
+        'allergy_category' => '豆類',
     ],
     [
         'ingredient' => 'コンソメ',
