@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+
 use Override;
 
 class Recipe extends Model
@@ -28,9 +29,15 @@ class Recipe extends Model
     protected static function booted()
     {
         static::deleting(function (Recipe $recipe) {
-            if ($recipe->image && Storage::disk('public')->exists($recipe->image)) {
-                Storage::disk('public')->delete($recipe->image);
+            if ($recipe->image_public_id) {
+                Cloudinary::destroy($recipe->image_public_id);
             }
+
+            $recipe->steps()->delete();
+            $recipe->ingredients()->detach();
+            $recipe->allergies()->detach();
+            $recipe->likes()->delete();
+            $recipe->comments()->delete();
         });
     }
 
