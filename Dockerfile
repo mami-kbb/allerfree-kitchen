@@ -28,5 +28,5 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/entrypoint.sh"]
