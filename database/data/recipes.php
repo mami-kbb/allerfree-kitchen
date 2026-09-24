@@ -752,15 +752,6 @@ return [
     ],
     [
         'user_id' => 2,
-        'name' => '鮭とじゃがいもの豆乳グラタン',
-        'image' => 'images/salmon_potato_soymilk_gratin.jpg',
-        'description' => '鮭とじゃがいもを豆乳のソースで包んだ、子どもにも食べやすいまろやかなグラタンです。',
-        'servings' => '2人分',
-        'tips' => 'じゃがいもはあらかじめ電子レンジで加熱しておくと、焼き時間を短くできます。',
-        'status' => 1,
-    ],
-    [
-        'user_id' => 2,
         'name' => 'いかと野菜の焼きそば風炒め',
         'image' => 'images/squid_vegetable_stir_fry.jpg',
         'description' => 'いかとキャベツ、にんじんなどの野菜を炒めた、焼きそば風の味付けのおかずです。',
@@ -829,15 +820,6 @@ return [
         'description' => '豚肉とりんごを甘辛い煮汁で煮込んだ、りんごの自然な甘みを楽しめるおかずです。',
         'servings' => '2人分',
         'tips' => 'りんごは煮崩れしすぎないよう、少し大きめに切るのがおすすめです。',
-        'status' => 1,
-    ],
-    [
-        'user_id' => 2,
-        'name' => 'さばと大根の味噌煮',
-        'image' => 'images/mackerel_daikon_miso.jpg',
-        'description' => 'さばと大根を味噌味の煮汁でじっくり煮込んだ、ごはんによく合う和食です。',
-        'servings' => '2人分',
-        'tips' => 'さばに熱湯をかけてから煮ると、臭みが出にくくなります。',
         'status' => 1,
     ],
     [
