@@ -2570,43 +2570,6 @@ return [
         'quantity' => '少々',
     ],
 
-    // 73 鮭とじゃがいもの豆乳グラタン
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => 'サケ',
-        'quantity' => '2切れ',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => 'じゃがいも',
-        'quantity' => '2個',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => 'タマネギ',
-        'quantity' => '1/2個',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => '豆乳',
-        'quantity' => '250ml',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => '米粉',
-        'quantity' => '大さじ2',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => '塩',
-        'quantity' => '少々',
-    ],
-    [
-        'recipe' => '鮭とじゃがいもの豆乳グラタン',
-        'ingredient' => 'こしょう',
-        'quantity' => '少々',
-    ],
-
     // 74 いかと野菜の焼きそば風炒め
     [
         'recipe' => 'いかと野菜の焼きそば風炒め',
@@ -2865,43 +2828,6 @@ return [
         'recipe' => '豚肉とりんごのやわらか煮',
         'ingredient' => 'だし汁',
         'quantity' => '150ml',
-    ],
-
-    // 82 さばと大根の味噌煮
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => 'さば',
-        'quantity' => '2切れ',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => '大根',
-        'quantity' => '1/4本',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => '生姜',
-        'quantity' => '1かけ',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => '味噌',
-        'quantity' => '大さじ2',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => '砂糖',
-        'quantity' => '大さじ1',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => 'みりん',
-        'quantity' => '大さじ1',
-    ],
-    [
-        'recipe' => 'さばと大根の味噌煮',
-        'ingredient' => 'だし汁',
-        'quantity' => '200ml',
     ],
 
     // 83 えびとコーンの米粉お好み焼き
