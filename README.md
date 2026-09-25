@@ -49,7 +49,7 @@
 | データベース |  MySQL 8.4 |
 | 画像ストレージ | Cloudinary |
 | メール送信 | Resend |
-| インフラ・デプロイ | Render(アプリ本体)、Aiven(MySQL) |
+| インフラ・デプロイ | Cloud Run(アプリ本体)、TiDB Cloud Starter(MySQL) |
 | 開発環境 | Docker, Laravel Sail, phpMyAdmin |
 | 開発ツール | Laravel Pint（コード整形） |
 
@@ -147,7 +147,7 @@ npm run dev
 ## デプロイ
 
 ### 公開URL
-https://allerfree-kitchen.onrender.com
+https://allerfree-kitchen-495692164278.asia-northeast1.run.app
 
 ### デモアカウント
 | 用途 | name | email | password | 備考 |
@@ -159,8 +159,8 @@ https://allerfree-kitchen.onrender.com
 ### インフラ構成
 | 役割 | サービス |
 | --- | --- |
-| アプリケーションサーバー | Render(Docker) |
-| データベース | Aiven for MySQL |
+| アプリケーションサーバー | Cloud Run |
+| データベース | TiDB Cloud Starter |
 | 画像ストレージ | Cloudinary |
 | メール送信 | Resend |
 
