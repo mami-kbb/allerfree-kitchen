@@ -59,13 +59,3 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/admin/recipe/{recipe_id}/approve', [AdminRecipeController::class, 'approve'])->name('admin.recipe.approve');
     Route::put('/admin/recipe/{recipe_id}/reject', [AdminRecipeController::class, 'reject'])->name('admin.recipe.reject');
 });
-
-Route::get('/run-seed/{secret}', function ($secret) {
-    if ($secret !== env('SEED_SECRET')) {
-        abort(403);
-    }
-
-    Artisan::call('db:seed', ['--force' => true]);
-
-    return 'シーディング完了: ' . Artisan::output();
-});
