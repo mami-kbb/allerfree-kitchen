@@ -1344,7 +1344,7 @@ return [
     ],
     [
         'recipe' => '豚肉とピーマンの塩炒め',
-        'ingredient' => '酒',
+        'ingredient' => '料理酒',
         'quantity' => '大さじ1',
     ],
     [
@@ -1432,7 +1432,7 @@ return [
 
     [
         'recipe' => '鮭とほうれん草のおにぎり',
-        'ingredient' => '鮭',
+        'ingredient' => 'サケ',
         'quantity' => '1切れ',
     ],
     [
@@ -1494,12 +1494,12 @@ return [
 
     [
         'recipe' => 'キウイと桃の寒天ゼリー',
-        'ingredient' => 'キウイ',
+        'ingredient' => 'キウイフルーツ',
         'quantity' => '1個',
     ],
     [
         'recipe' => 'キウイと桃の寒天ゼリー',
-        'ingredient' => '桃',
+        'ingredient' => 'もも',
         'quantity' => '1個',
     ],
     [
@@ -2519,12 +2519,12 @@ return [
     ],
     [
         'recipe' => '豚肉とさつまいもの甘辛煮',
-        'ingredient' => '玉ねぎ',
+        'ingredient' => 'タマネギ',
         'quantity' => '1/2個',
     ],
     [
         'recipe' => '豚肉とさつまいもの甘辛煮',
-        'ingredient' => 'しょうゆ',
+        'ingredient' => '醤油',
         'quantity' => '大さじ1',
     ],
     [

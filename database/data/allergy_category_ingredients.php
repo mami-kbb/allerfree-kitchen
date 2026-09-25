@@ -225,7 +225,7 @@ return [
         'allergy_category' => '穀物'
     ],
     [
-        'ingredient' => 'ペーキングパウダー',
+        'ingredient' => 'ベーキングパウダー',
         'allergy_category' => '穀物',
     ],
     [
@@ -243,6 +243,22 @@ return [
     [
         'ingredient' => '料理酒',
         'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => '鶏がらスープの素',
+        'allergy_category' => '穀物',
+    ],
+    [
+        'ingredient' => '鶏がらスープの素',
+        'allergy_category' => '肉類',
+    ],
+    [
+        'ingredient' => '鶏がらスープの素',
+        'allergy_category' => '豆類',
+    ],
+    [
+        'ingredient' => '鶏がらスープの素',
+        'allergy_category' => '乳製品',
     ],
     [
         'ingredient' => '砂糖',
@@ -323,6 +339,10 @@ return [
     [
         'ingredient' => 'はちみつ',
         'allergy_category' => 'その他',
+    ],
+    [
+        'ingredient' => 'レモン汁',
+        'allergy_category' => '果物系柑橘類',
     ],
     [
         'ingredient' => '米',
@@ -422,12 +442,6 @@ return [
         'ingredient' => 'いか',
         'allergy_category' => '魚類',
     ],
-
-    [
-        'ingredient' => '牛肉',
-        'allergy_category' => '肉類',
-    ],
-
     [
         'ingredient' => 'やまいも',
         'allergy_category' => '野菜類',
@@ -441,7 +455,6 @@ return [
         'ingredient' => 'ゼラチン',
         'allergy_category' => 'その他',
     ],
-
     [
         'ingredient' => 'オレンジ',
         'allergy_category' => '果物系柑橘類',
@@ -491,6 +504,6 @@ return [
     ],
     [
         'ingredient' => 'もやし',
-        'allergy_category' => '野菜',
+        'allergy_category' => '野菜類',
     ],
 ];

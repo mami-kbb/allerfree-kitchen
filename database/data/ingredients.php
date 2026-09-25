@@ -273,6 +273,11 @@ return [
             'category' => '調味料',
         ],
         [
+            'name' => '鶏がらスープの素',
+            'reading' => 'とりがらすーぷのもと',
+            'category' => '調味料',
+        ],
+        [
             'name' => '砂糖',
             'reading' => 'さとう',
             'category' => '調味料',
@@ -330,6 +335,11 @@ return [
         [
             'name' => 'はちみつ',
             'reading' => 'はちみつ',
+            'category' => '調味料',
+        ],
+        [
+            'name' => 'レモン汁',
+            'reading' => 'れもんじる',
             'category' => '調味料',
         ],
         [
@@ -431,12 +441,6 @@ return [
         [
             'name' => 'いか',
             'reading' => 'いか',
-            'category' => 'たんぱく質・肉・魚',
-        ],
-
-        [
-            'name' => '牛肉',
-            'reading' => 'ぎゅうにく',
             'category' => 'たんぱく質・肉・魚',
         ],
 
