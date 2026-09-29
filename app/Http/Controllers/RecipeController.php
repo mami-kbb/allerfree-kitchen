@@ -59,6 +59,7 @@ class RecipeController extends Controller
             $recipes = $user->likedRecipes()
                 ->approved()
                 ->orderBy('likes.created_at', 'desc')
+                ->orderByDesc('likes.id')
                 ->search($keyword, $excludeIngredients, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         } elseif ($tab === 'mylist') {
@@ -67,6 +68,7 @@ class RecipeController extends Controller
             $recipes = Recipe::query()
                 ->approved()
                 ->latest()
+                ->orderByDesc('id')
                 ->search($keyword, $excludeIngredients, $excludeAllergies, $excludeCategories)
                 ->paginate(12);
         }

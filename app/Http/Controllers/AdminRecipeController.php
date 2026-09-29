@@ -11,6 +11,7 @@ class AdminRecipeController extends Controller
         $recipes = Recipe::query()
         ->pending()
         ->latest()
+        ->orderByDesc('id')
         ->paginate(12);
 
         return view('admin.requests.index', compact('recipes'));

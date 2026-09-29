@@ -46,7 +46,7 @@
                         <label class="font-semibold md:text-lg">レシピの説明</label>
                         <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('description') border-error @enderror" name="description" cols="30" rows="5" id="description">{{ old('description') }}</textarea>
                         @error('description')
-                        <p class="text-error">{{ message }}</p>
+                        <p class="text-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <label class="font-semibold text-lg">コツ・ポイント</label>
                     <textarea class="my-2 border rounded-2xl w-full min-h-24 px-3 py-2 resize-y @error('tips') border-error @enderror" name="tips" id="tips" cols="30" rows="5">{{ old('tips') }}</textarea>
                     @error('tips')
-                        <p class="text-error">{{ message }}</p>
+                        <p class="text-error">{{ $message }}</p>
                         @enderror
                 </div>
                 <div>

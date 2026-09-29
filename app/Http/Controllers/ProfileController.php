@@ -28,16 +28,19 @@ class ProfileController extends Controller
             $recipes = $user->recipes()
             ->reject()
             ->latest()
+            ->orderByDesc('id')
             ->paginate(12);
         } elseif ($tab === 'pending') {
             $recipes = $user->recipes()
             ->pending()
             ->latest()
+            ->orderByDesc('id')
             ->paginate(12);
         } else {
             $recipes = $user->recipes()
             ->approved()
             ->latest()
+            ->orderByDesc('id')
             ->paginate(12);
         }
 
