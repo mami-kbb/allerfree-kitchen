@@ -43,6 +43,9 @@
             <button class="bg-taupe-200 hover:bg-taupe-300 active:bg-taupe-400 text-accent px-4 py-2 border rounded-md font-semibold shadow-md my-4" type="submit">登録する</button>
         </form>
 
+        <p class="text-sm text-secondary my-2 ">※このデモ環境では、メール送信の制限により認証メールが届きません。<br>新規登録しても、投稿・お気に入り・コメントなどは利用できませんので、<br>
+        お試しの際は以下の「ログインはこちら」から「デモユーザーでログイン」をご利用ください。</p>
+
         <p>
             <a class="text-blue-800 active:text-blue-900 hover:shadow-md" href="{{ route('login') }}">ログインはこちら</a>
         </p>

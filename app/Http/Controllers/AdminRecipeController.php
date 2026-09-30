@@ -35,7 +35,7 @@ class AdminRecipeController extends Controller
     }
 
     public function approve($recipe_id) {
-        $recipe = Recipe::findOrFail($recipe_id);
+        $recipe = Recipe::pending()->findOrFail($recipe_id);
 
         $this->authorize('approve', $recipe);
 
@@ -58,7 +58,7 @@ class AdminRecipeController extends Controller
     }
 
     public function reject(RejectRequest $request, $recipe_id) {
-        $recipe = Recipe::findOrFail($recipe_id);
+        $recipe = Recipe::pending()->findOrFail($recipe_id);
 
         $recipe->update([
                     'status' => 2,

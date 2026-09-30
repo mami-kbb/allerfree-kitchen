@@ -154,7 +154,8 @@ https://allerfree-kitchen-495692164278.asia-northeast1.run.app
 | --- | --- | --- | --- | --- |
 | 管理者 | admin | admin@example.com | password | レシピ投稿の承認・差戻しを行う管理者アカウント |
 | 閲覧用(サンプル投稿者) | user1 | user1@example.com | password |  |
-| 操作確認用(CRUDをお試しください) | user2 | user2@example.com | password |  |
+| 操作確認用(CRUDをお試しください) | user2 | user2@example.com | password | ログイン画面の「デモユーザーでログイン」ボタンからワンクリックで入れます |
+※デモ専用のアカウントです。データは予告なくリセットされることがあります
 
 ### インフラ構成
 | 役割 | サービス |
