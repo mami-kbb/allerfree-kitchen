@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="bg-primary min-h-screen md:pb-8">
-    <div class="rounded-2xl bg-white md:mx-6 p-4 md:py-6 md:px-10 flex flex-col items-center">
+<div class="bg-primary min-h-screen md:pb-6">
+    <div class="rounded-2xl bg-white p-4 mb-6 md:mx-6  md:py-8 md:px-10 flex flex-col items-center">
         <div class="md:flex gap-10 w-full max-w-6xl">
             <div class="md:w-1/2">
                 <img class="w-full md:w-xl h-102 rounded-2xl object-cover" src="{{ $recipe->image_url }}" alt="{{ $recipe->name }}">

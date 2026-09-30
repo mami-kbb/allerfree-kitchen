@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="bg-primary min-h-screen md:pb-6">
-    <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:py-10 md:px-10">
+    <div class="rounded-2xl bg-white p-4 mb-6 md:mx-6  md:py-8 md:px-10">
         <h2 class="text-center text-2xl font-bold text-accent mb-10">プロフィール設定</h2>
         <form class="mx-2" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data" novalidate>
             @csrf
@@ -14,7 +14,7 @@
             <div class="md:flex gap-6">
                 <div class="md:w-1/3">
                     <div class="flex justify-center items-center gap-6 md:flex-col md:justify-center md:items-center mb-10">
-                        <div id="list">
+                        <div id="list" class="m-0">
                             <img class="block shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full object-cover" src="{{ $profile->profile_image_url }}" alt="ユーザーアイコン">
                         </div>
 

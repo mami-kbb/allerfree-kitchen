@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="bg-primary min-h-screen md:pb-8">
-    <div class="rounded-2xl bg-white md:mx-6 px-4 py-6 md:px-6 md:py-10">
+<div class="bg-primary min-h-screen md:pb-6">
+    <div class="rounded-2xl bg-white p-4 mb-6 md:mx-6  md:py-8 md:px-10">
         <div>
             <h2 class="text-2xl font-bold text-accent">{{ $message }}</h2>
             @if ($excludeIngredientsDisplay)
