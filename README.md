@@ -89,6 +89,7 @@ flowchart LR
 | インフラ・デプロイ | Cloud Run(アプリ本体)、TiDB Cloud Starter(DB) |
 | 開発環境 | Docker, Laravel Sail, phpMyAdmin |
 | 開発ツール | Laravel Pint（コード整形） |
+| アイコン | Heroicons |
 
 ## ER 図
 ![image](er.png)
