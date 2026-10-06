@@ -81,6 +81,9 @@
             </ul>
             @endif
         </div>
+        @if(in_array(Route::currentRouteName(), ['recipe.list']) )
+        <p>本アプリは除外したいアレルギーを指定してレシピ検索を簡単に行えるアプリです。検索方法はこちらをクリック</p>
+        @endif
         <div>@yield('nav')</div>
     </header>
     <main>

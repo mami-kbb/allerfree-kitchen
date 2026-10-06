@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,6 +46,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sendEmailVerificationNotification() {
+        try {
+            $this->notify(new VerifyEmail);
+        } catch (\Throwable $e) {
+            // 送信に失敗しても、画面はエラーにしない。原因はログに残す
+            Log::error('認証メールの送信に失敗しました', [
+                'user_id' => $this->id,
+                'error'   => $e->getMessage(),
+            ]);
+        }
+    }
 
     public function isAdmin() {
         return $this-> role === 'admin';
