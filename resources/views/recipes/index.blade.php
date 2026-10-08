@@ -7,6 +7,17 @@
 @section('content')
 <div class="bg-primary min-h-screen md:pb-6">
     <div class="rounded-2xl bg-white p-4 mb-6 md:mx-6  md:py-8 md:px-10">
+        @unless (request()->hasAny(['keyword', 'exclude_ingredients', 'allergy_recipe', 'allergy_category']))
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-xl bg-taupe-100 px-4 py-3">
+            <p class="text-sm text-accent md:text-base">
+                <span class="font-bold">アレルギー品目を除外して</span>レシピを探せます。食品表示法の29品目に対応！
+            </p>
+            <button type="button" data-about-open
+                    class="shrink-0 text-sm font-semibold text-blue-800 underline hover:text-blue-900 cursor-pointer">
+                使い方を見る →
+            </button>
+        </div>
+        @endunless
         <div>
             <h2 class="text-2xl font-bold text-accent">{{ $message }}</h2>
             @if ($excludeIngredientsDisplay)
